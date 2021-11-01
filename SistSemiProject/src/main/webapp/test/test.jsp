@@ -16,7 +16,14 @@
 </head>
 
 <body>
+<<<<<<< HEAD
 	test1 test2 test3 test4...?
+=======
+	test1
+	test2
+	test3
+	test4
+>>>>>>> branch 'master' of https://github.com/msrim2007/SIST_SEMI.git
 </body>
 
 </html>
