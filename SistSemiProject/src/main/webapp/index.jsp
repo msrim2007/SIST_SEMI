@@ -30,11 +30,11 @@
 	PreparedStatement pstmt = null;
 
 	
-	String sql = "INSERT INTO test (num) VALUES(null)";
+	String sql = "INSERT INTO test num VALUES ?";
 	
 	try {
 		pstmt = conn.prepareStatement(sql);
-		
+		pstmt.setString(1,null);
 		
 		pstmt.execute();
 	} catch (SQLException e) {
