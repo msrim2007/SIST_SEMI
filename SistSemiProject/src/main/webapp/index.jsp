@@ -33,7 +33,7 @@
 	String sql = "INSERT INTO test num VALUES null";
 	
 	try {
-		stmt.executeQuery(sql);
+		stmt.execute(sql);
 		
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
