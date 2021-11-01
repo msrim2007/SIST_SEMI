@@ -11,12 +11,12 @@ public class DbConnect {
 	// DB DRIVER
 	static final String MYSQL_DRIVER = "com.mysql.cj.jdbc.Driver";
 	// AWS 주소
-	static final String MYSQL_URL = "jdbc:mysql://semi-mysql.cvqizixmmtzr.ap-northeast-2.rds.amazonaws.com:3306/semi_mysql";
+	static final String MYSQL_URL = "jdbc:mysql://semi.cvqizixmmtzr.ap-northeast-2.rds.amazonaws.com:3306/semi";
 	// USER ID
-	static final String USER_ID = "user";
+	static final String USER_ID = "sist";
 	// USER PASSWORD
 	static final String USER_PASS = "sist1234";
-	
+
 	// 생성자
 	public DbConnect() {
 		try {
@@ -51,7 +51,7 @@ public class DbConnect {
 			e.printStackTrace();
 		}
 	}
-	
+
 	// Object Close (ResultSet, PreparedStatement, Connection)
 	public void dbClose(ResultSet rs, PreparedStatement pstmt, Connection conn) {
 		try {
@@ -65,11 +65,10 @@ public class DbConnect {
 			e.printStackTrace();
 		}
 	}
-	
+
 	// Object Close (Statement, Connection)
 	public void dbClose(Statement stmt, Connection conn) {
 		try {
-
 			if (stmt != null)
 				stmt.close();
 			if (conn != null)
@@ -78,11 +77,10 @@ public class DbConnect {
 			e.printStackTrace();
 		}
 	}
-	
+
 	// Object Close (PreparedStatement, Connection)
 	public void dbClose(PreparedStatement pstmt, Connection conn) {
 		try {
-
 			if (pstmt != null)
 				pstmt.close();
 			if (conn != null)
