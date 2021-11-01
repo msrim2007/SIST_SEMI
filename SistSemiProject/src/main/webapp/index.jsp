@@ -1,3 +1,4 @@
+<%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="mysql.db.DbConnect"%>
@@ -25,22 +26,24 @@
 <body>
 	<%
 	DbConnect db = new DbConnect();
-	
 	Connection conn = db.getConnection();
+	PreparedStatement pstmt = null;
+
 	
-	PreparedStatement pstmt = null; 
+	String sql = "INSERT INTO myboard (num) VALUES(null)";
 	
-	String sql = "INSERT INTO test (num) VALUES(null)";
-	
-	try{
-	pstmt = conn.prepareStatement(sql);
-	
-	pstmt.execute();
-	}catch(Exception e){
-		e.getMessage();
-	}finally{
-		db.dbClose(pstmt, conn);	
+	try {
+		pstmt = conn.prepareStatement(sql);
+		
+		
+		pstmt.execute();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		db.dbClose(pstmt, conn);
 	}
+
 	%>
 </body>
 
