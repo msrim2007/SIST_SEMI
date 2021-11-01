@@ -24,13 +24,13 @@
 
 <body>
 	<%
-		DbConnect db = new DbConnect();
-			
+	DbConnect db = new DbConnect();
+	
 	Connection conn = db.getConnection();
 	
 	PreparedStatement pstmt = null; 
 	
-	String sql = "INSERT INTO test( num )VALUES null";
+	String sql = "INSERT INTO test( num )VALUES 49";
 	
 	try{
 	pstmt = conn.prepareStatement(sql);
