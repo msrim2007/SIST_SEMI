@@ -27,19 +27,20 @@
 	<%
 	DbConnect db = new DbConnect();
 	Connection conn = db.getConnection();
-	Statement stmt = null;
-
+	PreparedStatement pstmt = null;
 	
-	String sql = "INSERT INTO test num VALUES 8";
+	String sql = "INSERT INTO test num VALUES ?";
 	
 	try {
-		stmt.execute(sql);
+		pstmt.setString(1,null);
+		
+		pstmt.execute();
 		
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}finally {
-		db.dbClose(stmt, conn);
+		db.dbClose(pstmt, conn);
 	}
 
 	%>
