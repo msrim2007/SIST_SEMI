@@ -30,7 +30,7 @@
 	Statement stmt = null;
 
 	
-	String sql = "INSERT INTO test num VALUES null";
+	String sql = "INSERT INTO test num VALUES 8";
 	
 	try {
 		stmt.execute(sql);
