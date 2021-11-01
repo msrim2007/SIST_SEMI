@@ -1,3 +1,4 @@
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="mysql.db.DbConnect"%>
 <%@page import="java.sql.Connection"%>
@@ -22,7 +23,25 @@
 </head>
 
 <body>
+	<%
+		DbConnect db = new DbConnect();
+			
+	Connection conn = db.getConnection();
 	
+	PreparedStatement pstmt = null; 
+	
+	String sql = "INSERT INTO test( num )VALUES null";
+	
+	try{
+	pstmt = conn.prepareStatement(sql);
+	
+	pstmt.execute();
+	}catch(Exception e){
+		e.getMessage();
+	}finally{
+		db.dbClose(pstmt, conn);	
+	}
+	%>
 </body>
 
 </html>
