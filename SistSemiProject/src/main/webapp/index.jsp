@@ -30,7 +30,7 @@
 	PreparedStatement pstmt = null;
 
 	
-	String sql = "INSERT INTO myboard (num) VALUES(null)";
+	String sql = "INSERT INTO test (num) VALUES(null)";
 	
 	try {
 		pstmt = conn.prepareStatement(sql);
