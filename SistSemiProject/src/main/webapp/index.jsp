@@ -24,26 +24,21 @@
 </head>
 
 <body>
-	<%
-	DbConnect db = new DbConnect();
-	Connection conn = db.getConnection();
-	PreparedStatement pstmt = null;
-	
-	String sql = "INSERT INTO test num VALUES ?";
-	
-	try {
-		pstmt.setString(1,null);
-		
-		pstmt.execute();
-		
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}finally {
-		db.dbClose(pstmt, conn);
-	}
+	<% 
+    DbConnect db = new DbConnect();
+    Connection conn = db.getConnection();
+    Statement stmt = null;
 
-	%>
+    try {
+        stmt = conn.createStatement();
+        stmt.execute("INSERT INTO test VALUES(null)");
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        db.dbClose(stmt, conn);
+    }
+    %>
+
 </body>
 
 </html>
