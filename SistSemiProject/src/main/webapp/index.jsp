@@ -24,7 +24,7 @@
 </head>
 
 <body>
-	<% 
+	<% //
     DbConnect db = new DbConnect();
     Connection conn = db.getConnection();
     Statement stmt = null;
