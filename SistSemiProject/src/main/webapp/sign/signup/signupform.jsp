@@ -27,6 +27,7 @@ td {
 //프로젝트 경로구하기
 String root=request.getContextPath();
 
+
 %>
 
 <body>
@@ -223,6 +224,7 @@ $(function(){
 			$("#email2").val($(this).val());
 		}
 	});
+	
 	
 	//아이디 입력 버튼 이벤트
 	$("#btnIdcheck").click(function(){
