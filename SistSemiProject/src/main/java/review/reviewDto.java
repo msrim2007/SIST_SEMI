@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 
 public class reviewDto {
 
+	
+	
 	private String num;
 	private String movie_num;
 	private String user_num;
