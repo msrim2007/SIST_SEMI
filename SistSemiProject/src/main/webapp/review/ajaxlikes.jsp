@@ -7,6 +7,7 @@
 <%
 String num=request.getParameter("num");
 
+
 reviewDao dao=new reviewDao();
 dao.updateLikes(num);
 

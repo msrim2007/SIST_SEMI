@@ -24,6 +24,7 @@ reviewDao dao=new reviewDao();
 reviewDto dto=dao.getData(num);
 %>
 
+
 <body>
 <form action="review/updateaction.jsp" method="post" enctype="multipart/form-data" class="form-inline">
  
