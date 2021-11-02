@@ -31,7 +31,7 @@ DbConnect db = new DbConnect();
 Connection conn = db.getConnection();
 Statement stmt = null;
 
-try {
+try {//
     stmt = conn.createStatement();
     stmt.execute("INSERT INTO test VALUES(null)");
 } catch (Exception e) {
