@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<%
+//프로젝트 경로구하기
+String root=request.getContextPath();
 
+%>
 <head>
 	<meta charset="UTF-8" name='viewport' content='width=device-width, initial-scale=1.0'>
 
@@ -73,8 +77,13 @@
                 </div>
                 <div class="col-lg-2">
                     <div class="header__right">
+<<<<<<< HEAD
                     	<a style="display: display;" href="./index.jsp?main=admin/adminConfig.jsp" class="search-switch"><span class="glyphicon glyphicon-cog"></span></a>
                         <a href="./tmplt/login.html"><span class="icon_profile"></span></a>
+=======
+                        <a href="#" class="search-switch"><span class="icon_search"></span></a>
+                        <a href="<%=root %>/sign/signup/signupform.jsp"><span class="icon_profile"></span></a>
+>>>>>>> branch 'master' of https://github.com/msrim2007/SIST_SEMI.git
                     </div>
                 </div>
             </div>
