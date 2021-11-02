@@ -27,6 +27,7 @@ td {
 //프로젝트 경로구하기
 String root=request.getContextPath();
 
+
 %>
 
 <body>
