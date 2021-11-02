@@ -22,7 +22,7 @@ DbConnect db=new DbConnect();
 Connection conn=db.getConnection();
 Statement stmt=null;
 
-String sql="create table member(num smallint auto_increment primary key, id varchar(20) references guest(num) on delete cascade, pass1 varchar(100), pass2 varchar(100), birth varchar(100), hp varchar(200), email varchar(200))";
+String sql="create table member(num smallint auto_increment primary key, id varchar(20) references member(num) on delete cascade, pass1 varchar(100), pass2 varchar(100), birth varchar(100), hp varchar(200), email varchar(200))";
 
 try{
 	stmt=conn.createStatement();
