@@ -1,3 +1,4 @@
+<%@page import="Sign.SignDao"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -7,30 +8,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Dokdo&family=Gaegu&family=Gugi&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-<style type="text/css">
-th {
-	font-family: 'Nanum Myeongjo';
-	font-size: 11pt;
-}
-
-td {
-	font-family: 'Nanum Myeongjo';
-	font-size: 11pt;
-}
-
-</style>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <title>Insert title here</title>
 </head>
+<body>
 <%
+//id를 읽는다
+String id=request.getParameter("id");
+System.out.print(id);
+//dao선언
+SignDao dao=new SignDao();
+//아이디에 대한 이름
+String name=dao.getName(id);
 //프로젝트 경로구하기
 String root=request.getContextPath();
 
-
 %>
-
-<body>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -119,8 +113,7 @@ String root=request.getContextPath();
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="normal__breadcrumb__text">
-                        <h2>Sign Up</h2>
-                        <p>Welcome to the sistmovie</p>
+                        <h2><%=name %>님 회원가입을 축하합니다</h2>
                     </div>
                 </div>
             </div>
@@ -128,99 +121,6 @@ String root=request.getContextPath();
     </section>
     <!-- Normal Breadcrumb End -->
 
-    <!-- Signup Section Begin -->
-    <section class="signup spad">
-    
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="login__form">
-                        <h3>Sign Up</h3>
-                        <form action="signupaction.jsp" name="signfrm" method="post" class="form-inline"
-                        onsubmit="return check(this)">
-                            <table class="table table-boredered" style=" width:1000px; background-color: white;" >
-                              <tr>
-                                <th style="width: 60px; height:30px; background-color: 	#F5F5F5;">이름</th>
-                                <td style="background-color: white;">
-                                <input type="text" name="name" placeholder="이름을 입력해주세요." required="required">
-                                </td>
-                              </tr>
-                              
-                              <tr>
-                                <th style="width: 60px; height:30px; background-color: 	#F5F5F5;">아이디</th>
-                                <td style="background-color: white;">
-                                  <input type="text" name="id" class="form-control" readonly="readonly">
-                                  <button type="button" id="btnIdcheck">중복확인</button>
-                                </td>
-                              </tr>
-                              
-                              <tr>
-                                <th style="width: 60px; height:30px; background-color: 	#F5F5F5;">비밀번호</th>
-                                <td style="background-color: white;">
-                                  <input type="password" name="pass1" placeholder="비밀번호를 입력해주세요." required="required">
-                                </td>
-                              </tr>
-                              
-                              <tr>
-                                <th style="width: 60px; height:30px; background-color: 	#F5F5F5;">비밀번호 확인</th>
-                                <td style="background-color: white;">
-                                <input type="password" name="pass2" placeholder="비밀번호를 재입력해주세요." required="required">
-                                </td>
-                              </tr>
-                              
-                              <tr>
-                                <th style="width: 60px; height:30px; background-color: 	#F5F5F5;">생년월일</th>
-                                <td style="background-color: white;">
-                                <input type="date" name="birth">
-                                </td>
-                              </tr>
-                              
-                              <tr>
-                                <th style="width: 60px; height:30px; background-color: 	#F5F5F5;">전화번호</th>
-                                <td style="background-color: white;"><input type="text" name="hp" placeholder="전화번호"></td>
-                              </tr>
-                              
-                              <tr>
-                              <th width="100px;" style="background-color: #F5F5F5;">이메일</th>
-                              <td>
-                                <input type="text" name="email1" class="form-control"
-                                required="required" style="width: 80px;">
-                                <b>@</b>
-                                <input type="text" name="email2" class="form-control" id="email2" 
-                                required="required" style="width: 140px;"> &nbsp;&nbsp;&nbsp;
-                                <select style="width: 60px; height: 40px" id="selemail" class="form-control">
-                                  <option value="-" selected="selected">직접입력</option>
-                                  <option value="naver.com">네이버</option>
-                                  <option value="gmail.com">구글</option>
-                                  <option value="hanmail.net">다음</option>
-                                </select>
-                              </tr>
-                              
-                              <tr>
-                              <td colspan="2" align="center">
-                              <input type="submit" value="회원가입">
-                              </td>
-                              </tr>
-                            </table>
-                        </form>
-                        <h5>Already have an account? <a href="#">Log In!</a></h5>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="login__social__links">
-                        <h3>Login With:</h3>
-                        <ul>
-                            <li><a href="#" class="facebook"><i class="fa fa-facebook"></i> Sign in With Facebook</a>
-                            </li>
-                            <li><a href="#" class="google"><i class="fa fa-google"></i> Sign in With Google</a></li>
-                            <li><a href="#" class="twitter"><i class="fa fa-twitter"></i> Sign in With Twitter</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Signup Section End -->
 
     <!-- Footer Section Begin -->
     <footer class="footer">
@@ -277,42 +177,8 @@ String root=request.getContextPath();
 	<script src="<%=root %>/tmplt/js/main.js"></script>
 
 </body>
-<script type="text/javascript">
-$(function(){
-	//이메일 선택 이벤트
-	$("#selemail").change(function(){
-		if($(this).val()=='-'){
-			$("#email2").val('');  //지정된 메일 지우기
-			$("#email2").focus();  //포커스 주기
-		}else{
-			$("#email2").val($(this).val());
-		}
-	});
-	
-	
-	//아이디 입력 버튼 이벤트
-	$("#btnIdcheck").click(function(){
-		window.open("idsearch.jsp","","width=600px, height=200px,left-top=500px,top=100px");
-	});
-	
-});
 
-//check
-function check(f) {
-	
-	if(f.id.value.length==0){
-		alert("아이디 입력을 해주세요");
-		return false;
-	}
-		
-	if(f.pass1.value!=f.pass2.value){
-		alert("비밀번호가 서로 다릅니다");
-		f.pass1.value="";
-		f.pass2.value="";
-		return false; //action이 호출되지않는다
-	}
-}
-</script>
 </html>
+</body>
 </body>
 </html>
