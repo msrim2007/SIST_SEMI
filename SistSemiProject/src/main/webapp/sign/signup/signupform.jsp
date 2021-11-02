@@ -289,6 +289,7 @@ $(function(){
 		}
 	});
 	
+	
 	//아이디 입력 버튼 이벤트
 	$("#btnIdcheck").click(function(){
 		window.open("idsearch.jsp","","width=600px, height=200px,left-top=500px,top=100px");
