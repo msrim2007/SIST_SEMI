@@ -12,6 +12,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-본
+본문
 </body>
 </html>

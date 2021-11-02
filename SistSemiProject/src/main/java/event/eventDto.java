@@ -4,7 +4,6 @@ package event;
 
 public class eventDto {
 	
-
 	
 	private String event_num;
 	private String subject;

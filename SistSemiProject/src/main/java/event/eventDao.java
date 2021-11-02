@@ -43,6 +43,7 @@ public class eventDao{
 		String sql = "SELECT * FROM event ORDER BY event_num";
 		
 		try {
+			
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			

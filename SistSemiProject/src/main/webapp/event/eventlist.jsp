@@ -22,6 +22,7 @@ eventDao dao = new eventDao();
 //전체 리스트 가져오기
 ArrayList<eventDto> list = dao.getAllDatas();
 
+
 %>
 <table style="width:900px;">
 	<caption><b style="color: ">제휴/할인</b></caption>
