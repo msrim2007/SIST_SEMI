@@ -42,6 +42,13 @@ String root=request.getContextPath();
 </head>
 
 <body>
+	<%
+    String main="./layout/main.jsp";
+    if (request.getParameter("main") != null) {
+    	main = request.getParameter("main");
+    }
+    %>
+
 	<!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -77,13 +84,8 @@ String root=request.getContextPath();
                 </div>
                 <div class="col-lg-2">
                     <div class="header__right">
-<<<<<<< HEAD
                     	<a style="display: display;" href="./index.jsp?main=admin/adminConfig.jsp" class="search-switch"><span class="glyphicon glyphicon-cog"></span></a>
-                        <a href="./tmplt/login.html"><span class="icon_profile"></span></a>
-=======
-                        <a href="#" class="search-switch"><span class="icon_search"></span></a>
-                        <a href="<%=root %>/sign/signup/signupform.jsp"><span class="icon_profile"></span></a>
->>>>>>> branch 'master' of https://github.com/msrim2007/SIST_SEMI.git
+                        <a href="./index.jsp?main=sign/signup/signupform.jsp"><span class="icon_profile"></span></a>
                     </div>
                 </div>
             </div>
@@ -93,13 +95,6 @@ String root=request.getContextPath();
     <!-- Header End -->
 
     <!-- Main Section -->
-    <%
-    String main="./layout/main.jsp";
-    if (request.getParameter("main") != null) {
-    	main = request.getParameter("main");
-    }
-    %>
-    
     <div class="container">
     	<jsp:include page="<%= main %>"></jsp:include>
     </div>
