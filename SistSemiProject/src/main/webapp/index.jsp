@@ -24,20 +24,23 @@
 </head>
 
 <body>
-	<% //
-    DbConnect db = new DbConnect();
-    Connection conn = db.getConnection();
-    Statement stmt = null;
+<%
 
-    try {
-        stmt = conn.createStatement();
-        stmt.execute("INSERT INTO test VALUES(null)");
-    } catch (Exception e) {
-        e.printStackTrace();
-    } finally {
-        db.dbClose(stmt, conn);
-    }
-    %>
+
+DbConnect db = new DbConnect();
+Connection conn = db.getConnection();
+Statement stmt = null;
+
+try {
+    stmt = conn.createStatement();
+    stmt.execute("INSERT INTO test VALUES(null)");
+} catch (Exception e) {
+    e.printStackTrace();
+} finally {
+    db.dbClose(stmt, conn);
+}
+%>
+
 
 </body>
 
