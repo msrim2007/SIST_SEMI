@@ -15,6 +15,7 @@
   <table class="table table-bordered" style="width: 600px; margin-left: 50px; margin-top: 50px;">
   <caption style="margin-left: 280px;font-size: 1.5em;"><b>관람평</b></caption>
   
+  
   <tr>
     <th width="100"><span class="glyphicon glyphicon-film" style="margin-left: 30px;"></span></th>
     <td>

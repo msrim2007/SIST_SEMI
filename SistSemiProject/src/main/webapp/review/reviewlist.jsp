@@ -18,6 +18,7 @@
 <%
 reviewDao dao=new reviewDao();
 
+
 //페이징
 int totalCount;  //총글수
 int totalPage;  //총페이지수

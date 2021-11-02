@@ -54,6 +54,7 @@ reviewDto dto=dao.getData(num);
     <td>
       <textarea style="width: 400px; height: 300px;"><%=dto.getContent() %></textarea>
     </td>
+    
   </tr>
   
   <tr>

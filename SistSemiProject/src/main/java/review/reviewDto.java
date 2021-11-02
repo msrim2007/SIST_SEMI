@@ -12,6 +12,7 @@ public class reviewDto {
 	private int likes;
 	private Timestamp writeday;
 	
+	
 	public String getNum() {
 		return num;
 	}
