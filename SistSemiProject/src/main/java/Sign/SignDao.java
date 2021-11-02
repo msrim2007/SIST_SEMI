@@ -18,7 +18,7 @@ public class SignDao {
 		Connection conn=db.getConnection();
 		PreparedStatement pstmt=null;
 		
-		String sql="insert into member(name,id,pass1,birth,hp,email) values(?,?,?,?,?,?)";
+		String sql="insert into member(name,id,pass,birth,hp,email) values(?,?,?,?,?,?)";
 		
 		try {
 			pstmt=conn.prepareStatement(sql);

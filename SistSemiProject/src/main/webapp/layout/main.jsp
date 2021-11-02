@@ -17,12 +17,39 @@
     <!-- JS -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
-	<style type="text/css">
-	
-	</style>
+	<!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="tmplt/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="tmplt/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="tmplt/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="tmplt/css/plyr.css" type="text/css">
+    <link rel="stylesheet" href="tmplt/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="tmplt/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="tmplt/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="tmplt/css/style.css" type="text/css">
 </head>
 
 <body>
+	<div class="container">
+	
+	</div>
+	
+	
+	
+	
+	<!-- Js Plugins -->
+	<script src="tmplt/js/jquery-3.3.1.min.js"></script>
+	<script src="tmplt/js/bootstrap.min.js"></script>
+	<script src="tmplt/js/player.js"></script>
+	<script src="tmplt/js/jquery.nice-select.min.js"></script>
+	<script src="tmplt/js/mixitup.min.js"></script>
+	<script src="tmplt/js/jquery.slicknav.js"></script>
+	<script src="tmplt/js/owl.carousel.min.js"></script>
+	<script src="tmplt/js/main.js"></script>
 </body>
 
 </html>

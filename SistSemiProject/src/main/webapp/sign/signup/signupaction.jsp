@@ -38,7 +38,7 @@ SignDao dao=new SignDao();
 dao.insertMember(dto);
 
 //gaipsuccess로 이동
-response.sendRedirect("gaipsuccess.jsp?id="+id);
+response.sendRedirect("../../index.jsp?main=sign/signup/gaipsuccess.jsp?id="+id);
 %>
 </body>
 </html>

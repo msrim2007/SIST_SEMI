@@ -58,6 +58,10 @@
 			<button class="btn btn-info btn-lg" onclick="location.href='index.jsp?main=admin/weekBoxoffice.jsp'">주간 박스오피스 가져오기</button>
 			<button class="btn btn-info btn-lg" onclick="location.href='index.jsp?main=admin/allMovie.jsp'">영화 목록 가져오기</button>
 		</div>
+		
+		<div id="result">
+		
+		</div>
 	</div>
 	
 	

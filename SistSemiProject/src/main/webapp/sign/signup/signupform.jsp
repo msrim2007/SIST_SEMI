@@ -1,38 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=Dokdo&family=Gaegu&family=Gugi&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-<style type="text/css">
-th {
-	font-family: 'Nanum Myeongjo';
-	font-size: 11pt;
-}
-
-td {
-	font-family: 'Nanum Myeongjo';
-	font-size: 11pt;
-}
-
-</style>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-<title>Insert title here</title>
-</head>
-<%
-//프로젝트 경로구하기
-String root=request.getContextPath();
-
-
-%>
-
-<body>
-
-<!DOCTYPE html>
 <html lang="zxx">
 
 <head>
@@ -41,12 +9,20 @@ String root=request.getContextPath();
     <meta name="keywords" content="Anime, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Anime | Template</title> 
+    <title></title> 
+
+	<%
+	//프로젝트 경로구하기
+	String root=request.getContextPath();
+	
+	
+	%>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dokdo&family=Gaegu&family=Gugi&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Myeongjo:wght@800&display=swap" rel="stylesheet">
 
@@ -59,6 +35,18 @@ String root=request.getContextPath();
     <link rel="stylesheet" href="<%=root %>/tmplt/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<%=root %>/tmplt/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<%=root %>/tmplt/css/style.css" type="text/css">
+
+	<style type="text/css">
+		th {
+			font-family: 'Nanum Myeongjo';
+			font-size: 11pt;
+		}
+		
+		td {
+			font-family: 'Nanum Myeongjo';
+			font-size: 11pt;
+		}
+	</style>
 </head>
 
 </head>
@@ -72,7 +60,7 @@ String root=request.getContextPath();
                 <div class="col-lg-6">
                     <div class="login__form">
                         <h3>Sign Up</h3>
-                        <form action="signupaction.jsp" name="signfrm" method="post" class="form-inline"
+                        <form action="sign/signup/signupaction.jsp" name="signfrm" method="post" class="form-inline"
                         onsubmit="return check(this)">
                             <table class="table table-boredered" style=" width:1000px; background-color: white;" >
                               <tr>
@@ -157,50 +145,6 @@ String root=request.getContextPath();
         </div>
     </section>
     <!-- Signup Section End -->
-    
-    <!-- Footer Section Begin -->
-    <footer class="footer">
-        <div class="page-up">
-            <a href="#" id="scrollToTopButton"><span class="arrow_carrot-up"></span></a>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="footer__logo">
-                        <a href="./index.html"><img src="img/logo.png" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="footer__nav">
-                        <ul>
-                            <li class="active"><a href="./index.html">Homepage</a></li>
-                            <li><a href="./categories.html">Categories</a></li>
-                            <li><a href="./blog.html">Our Blog</a></li>
-                            <li><a href="#">Contacts</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                      Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                      <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-
-                  </div>
-              </div>
-          </div>
-      </footer>
-      <!-- Footer Section End -->
-
-      <!-- Search model Begin -->
-      <div class="search-model">
-        <div class="h-100 d-flex align-items-center justify-content-center">
-            <div class="search-close-switch"><i class="icon_close"></i></div>
-            <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="Search here.....">
-            </form>
-        </div>
-    </div>
-    <!-- Search model end -->
 
     <!-- Js Plugins -->
     <script src="<%=root %>/tmplt/js/jquery-3.3.1.min.js"></script>
@@ -228,7 +172,7 @@ $(function(){
 	
 	//아이디 입력 버튼 이벤트
 	$("#btnIdcheck").click(function(){
-		window.open("idsearch.jsp","","width=600px, height=200px,left-top=500px,top=100px");
+		window.open("sign/signup/idsearch.jsp","","width=600px, height=200px,left-top=500px,top=100px");
 	});
 	
 });

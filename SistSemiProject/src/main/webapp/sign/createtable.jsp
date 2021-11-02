@@ -22,11 +22,8 @@ DbConnect db=new DbConnect();
 Connection conn=db.getConnection();
 Statement stmt=null;
 
-<<<<<<< HEAD
-String sql="create table test(user_num SMALLINT REFERENCES member(num) ON DELETE CASCADE)";
-=======
+// String sql="create table test(user_num SMALLINT REFERENCES member(num) ON DELETE CASCADE)";
 String sql="alter table member add name varchar(100)";
->>>>>>> branch 'master' of https://github.com/msrim2007/SIST_SEMI.git
 
 try{
 	stmt=conn.createStatement();

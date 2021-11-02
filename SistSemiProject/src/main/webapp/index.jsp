@@ -20,7 +20,7 @@ String root=request.getContextPath();
 
     <!-- 자바스크립트 -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-	<script src="./tmplt/js/KobisOpenAPIRestService.js"></script>
+	<script src="tmplt/js/KobisOpenAPIRestService.js"></script>
 	
 	<!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -42,7 +42,11 @@ String root=request.getContextPath();
     String main="./layout/main.jsp";
     if (request.getParameter("main") != null) {
     	main = request.getParameter("main");
+    } else {
+    	main = "./layout/main.jsp";
     }
+    
+    boolean isLogin = false;
     %>
 </head>
 
@@ -58,7 +62,7 @@ String root=request.getContextPath();
             <div class="row">
                 <div class="col-lg-2">
                     <div class="header__logo">
-                        <a href="./index.jsp">
+                        <a href="./index.jsp?main=layout/main.jsp">
                             <b style="font-size: x-large;">SIST MOVIE</b>
                         </a>
                     </div>
@@ -67,15 +71,15 @@ String root=request.getContextPath();
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
                             <ul>
-                                <li class="active"><a href="./index.jsp">Home</a></li>
+                                <li class="active"><a href="./index.jsp?main=layout/main.jsp">Home</a></li>
                                 <li><a href="./categories.html">영화 예매 <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
                                         <li><a href="./index.jsp?main=movie/movieList.jsp">영화 목록</a></li>
                                         <li><a href="./index.jsp?main=reserve/reservation.jsp">예매</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="./index.jsp?main=review/reviewList.jsp">후기</a></li>
-                                <li><a href="./index.jsp?main=event/eventList.jsp">이벤트</a></li>
+                                <li><a href="./index.jsp?main=review/reviewlist.jsp">후기</a></li>
+                                <li><a href="./index.jsp?main=event/eventlist.jsp">이벤트</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -94,7 +98,9 @@ String root=request.getContextPath();
 
     <!-- Main Section -->
     <div class="container">
-    	<jsp:include page="<%= main %>"></jsp:include>
+    	<div>
+    		<jsp:include page="<%= main %>"></jsp:include>
+    	</div>
     </div>
     
     <!-- Js Plugins -->
