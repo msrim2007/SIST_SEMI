@@ -90,7 +90,7 @@ no=totalCount-(currentPage-1)*perPage;
 
 //날짜
 SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
-%>  
+%>   
 
 
 <!-- 관람평 출력 -->
