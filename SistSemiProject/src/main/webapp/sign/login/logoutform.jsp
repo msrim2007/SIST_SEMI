@@ -1,6 +1,7 @@
 <%@page import="Sign.SignDao"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -12,18 +13,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title></title> 
     
-    <%
-	//id를 읽는다
-	String id=request.getParameter("id");
-	System.out.print(id);
-	//dao선언
-	SignDao dao=new SignDao();
-	//아이디에 대한 이름
-	String name=dao.getName(id);
-	//프로젝트 경로구하기
-	String root=request.getContextPath();
-	
-	%>
+<%
+//세션으로 부터 id를 얻는다
+String myid=(String)session.getAttribute("myid");
+//db로부터 id에 하당하는 name을 얻는다
+SignDao db=new SignDao();
+String name=db.getName(myid);
+//프로젝트 경로구하기
+String root=request.getContextPath();
+%>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -52,7 +50,9 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="normal__breadcrumb__text">
-                        <h2><%=name %>님 회원가입을 축하합니다</h2>
+                        <h2><%=name %>님 로그인을 환영합니다</h2>
+                        <br>
+                        <input type="button" class="site-btn" value="LOG OUT" onclick="location.href='sign/login/logoutaction.jsp'">
                     </div>
                 </div>
             </div>
@@ -71,4 +71,6 @@
 	<script src="<%=root %>/tmplt/js/main.js"></script>
 
 </body>
+
 </html>
+</body>
