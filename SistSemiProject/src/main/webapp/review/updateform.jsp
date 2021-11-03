@@ -12,7 +12,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <title>Update Form</title>
 </head>
-<%      
+<%       
 String num=request.getParameter("num");
 String currentPage=request.getParameter("currentPage");
 
@@ -43,7 +43,7 @@ reviewDto dto=dao.getData(num);
     <th width="100"><span class="glyphicon glyphicon-pencil" style="margin-left: 30px; margin-top: 130px;"></span></th>
     <td>
       <textarea style="width: 400px; height: 300px;"><%=dto.getContent() %></textarea>
-    </td>
+    </td> 
     
   </tr>
   

@@ -8,11 +8,11 @@ public class reviewDto {
 	
 	private String num;
 	private String movie_num;
-	private String user_num;
 	private String subject;
 	private String content;
 	private int likes;
 	private Timestamp writeday;
+	private String myid;
 	
 	
 	public String getNum() {
@@ -26,12 +26,6 @@ public class reviewDto {
 	}
 	public void setMovie_num(String movie_num) {
 		this.movie_num = movie_num;
-	}
-	public String getUser_num() {
-		return user_num;
-	}
-	public void setUser_num(String user_num) {
-		this.user_num = user_num;
 	}
 	public String getSubject() {
 		return subject;
@@ -56,5 +50,11 @@ public class reviewDto {
 	}
 	public void setWriteday(Timestamp writeday) {
 		this.writeday = writeday;
+	}
+	public String getMyid() {
+		return myid;
+	}
+	public void setMyid(String myid) {
+		this.myid = myid;
 	}	
 }
