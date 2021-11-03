@@ -64,14 +64,14 @@
                         onsubmit="return check(this)">
                             <table class="table table-boredered" style=" width:1000px; background-color: white;" >
                               <tr>
-                                <th style="width: 60px; height:30px; background-color: 	#F5F5F5;">이름</th>
+                                <th style="width: 120px; height:30px; background-color: 	#F5F5F5;">이름</th>
                                 <td style="background-color: white;">
                                 <input type="text" name="name" placeholder="이름을 입력해주세요." required="required">
                                 </td>
                               </tr>
                               
                               <tr>
-                                <th style="width: 60px; height:30px; background-color: 	#F5F5F5;">아이디</th>
+                                <th style="width: 70px; height:30px; background-color: 	#F5F5F5;">아이디</th>
                                 <td style="background-color: white;">
                                   <input type="text" name="id" class="form-control" readonly="readonly">
                                   <button type="button" id="btnIdcheck">중복확인</button>
@@ -79,53 +79,49 @@
                               </tr>
                               
                               <tr>
-                                <th style="width: 60px; height:30px; background-color: 	#F5F5F5;">비밀번호</th>
+                                <th style="width: 70px; height:30px; background-color: 	#F5F5F5;">비밀번호</th>
                                 <td style="background-color: white;">
                                   <input type="password" name="pass1" placeholder="비밀번호를 입력해주세요." required="required">
                                 </td>
                               </tr>
                               
                               <tr>
-                                <th style="width: 60px; height:30px; background-color: 	#F5F5F5;">비밀번호 확인</th>
+                                <th style="width: 70px; height:30px; background-color: 	#F5F5F5;">비밀번호 확인</th>
                                 <td style="background-color: white;">
                                 <input type="password" name="pass2" placeholder="비밀번호를 재입력해주세요." required="required">
                                 </td>
                               </tr>
                               
                               <tr>
-                                <th style="width: 60px; height:30px; background-color: 	#F5F5F5;">생년월일</th>
+                                <th style="width: 70px; height:30px; background-color: 	#F5F5F5;">생년월일</th>
                                 <td style="background-color: white;">
                                 <input type="date" name="birth">
                                 </td>
                               </tr>
                               
                               <tr>
-                                <th style="width: 60px; height:30px; background-color: 	#F5F5F5;">전화번호</th>
+                                <th style="width: 70px; height:30px; background-color: 	#F5F5F5;">전화번호</th>
                                 <td style="background-color: white;"><input type="text" name="hp" placeholder="전화번호"></td>
                               </tr>
                               
                               <tr>
-                              <th width="100px;" style="background-color: #F5F5F5;">이메일</th>
+                              <th width="70px;" style="background-color: #F5F5F5;">이메일</th>
                               <td>
                                 <input type="text" name="email1" class="form-control"
                                 required="required" style="width: 80px;">
                                 <b>@</b>
                                 <input type="text" name="email2" class="form-control" id="email2" 
                                 required="required" style="width: 140px;"> &nbsp;&nbsp;&nbsp;
-                                <select style="width: 60px; height: 40px" id="selemail" class="form-control">
+                                <!-- <select style="width: 60px; height: 40px" id="selemail" class="form-control">
                                   <option value="-" selected="selected">직접입력</option>
                                   <option value="naver.com">네이버</option>
                                   <option value="gmail.com">구글</option>
                                   <option value="hanmail.net">다음</option>
-                                </select>
+                                </select> -->
                               </tr>
                               
-                              <tr>
-                              <td colspan="2" align="center">
-                              <input type="submit" class="site-btn" value="SIGN UP">
-                              </td>
-                              </tr>
                             </table>
+                            <input style="align:center" type="submit" class="site-btn" value="SIGN UP">
                         </form>
                         <h5>Already have an account? <a href="<%=root%>/index.jsp?main=sign/login/loginmain.jsp">Log In!</a></h5>
                     </div>

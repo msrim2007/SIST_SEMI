@@ -1,3 +1,4 @@
+<%@page import="Sign.SignDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -88,6 +89,29 @@ String root=request.getContextPath();
                     <div class="header__right">
                     	<a style="display: display;" href="./index.jsp?main=admin/adminConfig.jsp" class="search-switch"><span class="glyphicon glyphicon-cog"></span></a>
                         <a href="./index.jsp?main=sign/signup/signupform.jsp"><span class="icon_profile"></span></a>
+                        <!-- 로그인,로그아웃 버튼 부분 시작 -->
+                        <span>
+                        <%
+                        //로그인중인지..세션값 얻기
+                        String loginok=(String)session.getAttribute("loginok");
+
+                        //아이디 얻기
+                        String myid=(String)session.getAttribute("myid");
+
+                        //db로부터 가입한 이름 얻기
+                        SignDao dao=new SignDao();
+                        String name=dao.getName(myid);
+
+                        if(loginok==null){%>
+                        <button type="button" class="btn btn-success" style="width: 55px; height: 30px;"
+                        onclick="location.href='index.jsp?main=sign/login/loginform.jsp'">LOG IN</button>
+                        <%}else{%>
+                        <button type="button" class="btn btn-danger" style="width: 55px height: 30px;"
+                        onclick="location.href='sign/login/logoutaction.jsp'">LOG OUT</button>
+                        <%}
+                        %>
+                        </span>
+                        <!-- 로그인,로그아웃 버튼 부분 끝-->
                     </div>
                 </div>
             </div>
@@ -113,5 +137,7 @@ String root=request.getContextPath();
 	<script src="tmplt/js/owl.carousel.min.js"></script>
 	<script src="tmplt/js/main.js"></script>
 </body>
+
+
 
 </html>
