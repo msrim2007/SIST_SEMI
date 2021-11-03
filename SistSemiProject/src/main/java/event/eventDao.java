@@ -120,6 +120,7 @@ public class eventDao{
 				dto.setTerm(rs.getString("term"));
 				dto.setContent(rs.getString("content"));
 				
+				
 				list.add(dto);
 			}
 		} catch (SQLException e) {
