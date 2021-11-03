@@ -88,7 +88,27 @@ String root=request.getContextPath();
                 <div class="col-lg-2">
                     <div class="header__right">
                     	<a style="display: display;" href="./index.jsp?main=admin/adminConfig.jsp" class="search-switch"><span class="glyphicon glyphicon-cog"></span></a>
+                        
+                        <!-- 로그인 상태면 회원정보수정 로그아웃상태라면 회원가입으로 보내기 시작-->
+                        <%
+                        //로그인중인지..세션값 얻기
+                        String loginok2=(String)session.getAttribute("loginok");
+                       
+
+                        //아이디 얻기
+                        String myid2=(String)session.getAttribute("myid");
+
+                        SignDao db=new SignDao();
+                        String hnum=db.getNum(myid2);
+                        if(loginok2==null){%>
                         <a href="./index.jsp?main=sign/signup/signupform.jsp"><span class="icon_profile"></span></a>
+                        <%}else{%>
+                        <a href="./index.jsp?main=sign/memberupdate/updateform.jsp?hnum=<%=hnum%>"><span class="icon_profile"></span></a>
+                        <%}
+                        %>
+                        <!-- 로그인 상태면 회원정보수정 로그아웃상태라면 회원가입으로 보내기 종료-->
+                        
+                        
                         <!-- 로그인,로그아웃 버튼 부분 시작 -->
                         <span>
                         <%
@@ -97,10 +117,6 @@ String root=request.getContextPath();
 
                         //아이디 얻기
                         String myid=(String)session.getAttribute("myid");
-
-                        //db로부터 가입한 이름 얻기
-                        SignDao dao=new SignDao();
-                        String name=dao.getName(myid);
 
                         if(loginok==null){%>
                         <button type="button" class="btn btn-success" style="width: 55px; height: 30px;"
@@ -137,7 +153,13 @@ String root=request.getContextPath();
 	<script src="tmplt/js/owl.carousel.min.js"></script>
 	<script src="tmplt/js/main.js"></script>
 </body>
-
+<footer>
+<div style="color: white;">
+서울특별시 강남구 테헤란로 132(역삼동) 한독약품빌딩 | Tel_02-3482-4632~5 | Fax_02-3482-4636<br>
+사업자번호_214-85-29296 | 대표_노경한 | 개인정보처리관리책임자_장일규<br>
+통신판매업신고번호 제 833호 COPYRIGHT © Sist Movie, Inc. All rights reserved<br>
+</div>
+</footer>
 
 
 </html>

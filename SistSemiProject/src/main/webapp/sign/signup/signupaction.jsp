@@ -21,7 +21,7 @@ request.setCharacterEncoding("utf-8");
 SignDto dto=new SignDto();
 String name=request.getParameter("name");
 String id=request.getParameter("id");
-String pass1=request.getParameter("pass1");
+String pass=request.getParameter("pass");
 String birth=request.getParameter("birth");
 String hp=request.getParameter("hp");
 String email=request.getParameter("email1")+"@"+request.getParameter("email2");
@@ -29,7 +29,7 @@ String email=request.getParameter("email1")+"@"+request.getParameter("email2");
 
 dto.setName(name);
 dto.setId(id);
-dto.setPass1(pass1);
+dto.setPass(pass);
 dto.setBirth(birth);
 dto.setHp(hp);
 dto.setEmail(email);
