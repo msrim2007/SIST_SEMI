@@ -5,7 +5,7 @@
     pageEncoding="UTF-8"%>
 
 <%
-String num=request.getParameter("num");
+String num=request.getParameter("num"); 
 
 reviewDao dao=new reviewDao();
 dao.updateLikes(num);
