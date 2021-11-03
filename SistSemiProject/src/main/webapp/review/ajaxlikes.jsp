@@ -11,10 +11,10 @@ String num=request.getParameter("num");
 reviewDao dao=new reviewDao();
 dao.updateLikes(num);
 
-int likess=dao.getData(num).getLikes();
+int likes=dao.getData(num).getLikes();
 
 JSONObject ob=new JSONObject();
 
-ob.put("likes", likess);
+ob.put("likes", likes);
 %>
 <%=ob.toString()%>

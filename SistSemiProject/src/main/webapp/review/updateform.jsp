@@ -12,36 +12,25 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <title>Update Form</title>
 </head>
-
 <%
-//num
 String num=request.getParameter("num");
-//페이지 번호 읽기
 String currentPage=request.getParameter("currentPage");
 
-//db에서 num에 해당하는 dto 읽기
 reviewDao dao=new reviewDao();
 reviewDto dto=dao.getData(num);
 %>
 
-
 <body>
-<form action="review/updateaction.jsp" method="post" enctype="multipart/form-data" class="form-inline">
+<form action="review/updateaction.jsp" class="form-inline" method="post">
  
- <!-- hidden 처리 -->
-  <input type="hidden" name="num" value="<%=num%>">
-  <input type="hidden" name="currentPage" value="<%=currentPage%>">
+<!-- hidden 처리 -->
+<input type="hidden" name="num" value="<%=num%>">
+<input type="hidden" name="currentPage" value="<%=currentPage%>">
  
   <table class="table table-bordered" style="width: 600px; margin-left: 50px; margin-top: 50px;">
   <caption style="margin-left: 280px;font-size: 1.5em;"><b>관람평</b></caption>
   
-  <tr>
-    <th width="100"><span class="glyphicon glyphicon-film" style="margin-left: 30px;"></span></th>
-    <td>
-      <input type="radio" value="<%=dto.getMovie_num() %>">
-    </td>
-  </tr>
-  
+<!-- 제목,내용 수정 -->
   <tr>
     <th width="100"><span class="glyphicon glyphicon-list" style="margin-left: 30px; margin-top: 10px;"></span></th>
     <td>
@@ -60,7 +49,8 @@ reviewDto dto=dao.getData(num);
   
   <tr>
   <td colspan="2" align="center">
-    <button type="submit" class="btn btn-danger">수정</button>
+    <button type="submit" class="btn btn-default">수정</button>
+    <button type="reset" class="btn btn-default">이전</button>
   </td>
   </tr>
   </table>

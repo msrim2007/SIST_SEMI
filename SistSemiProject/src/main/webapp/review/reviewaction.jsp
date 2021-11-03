@@ -14,16 +14,21 @@
 </head>
 <body>
 <%
+request.setCharacterEncoding("utf-8");
+
 String content=request.getParameter("content");
 String subject=request.getParameter("subject");
-
-
-
+String movie_num=request.getParameter("movie_num");
 
 reviewDto dto=new reviewDto();
 dto.setContent(content);
 dto.setSubject(subject);
+dto.setMovie_num(movie_num);
 
+reviewDao dao=new reviewDao();
+dao.insertReview(dto);
+
+response.sendRedirect("../index.jsp?main=review/reviewlist.jsp");
 %>
 </body>
 </html>

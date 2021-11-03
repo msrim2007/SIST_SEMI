@@ -14,12 +14,36 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <title>Review List</title>
 </head>
+
+<script type="text/javascript">
+$(function() {
+	
+	/* 공감수 증가 */
+    $("span.likes").click(function() {
+		
+		var num=$(this).attr("num");
+		var tag=$(this);
+		
+		$.ajax({
+			type:"get",
+			dataType:"json",
+			url:"guest/ajaxlikes.jsp",
+			data:{"num":num},
+			success:function(data){
+				alert(data.likes);
+				tag.next().text(data.likes);
+				tag.next().next().animate({"font-size":"20px"},1000,function(){
+					$(this).css("font-size","0px");
+				});
+			}
+		});
+	});
+});
+</script>
+
 <body>
 <%
 reviewDao dao=new reviewDao();
-
-
-
 
 //페이징
 int totalCount;  //총글수
@@ -68,37 +92,51 @@ no=totalCount-(currentPage-1)*perPage;
 SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 %>
 
-<!-- **for문으로 출력 -->
+
 <!-- 관람평 출력 -->
 <div>
-  <table class="table" style="width: 600px;">
+
+<%
+for(reviewDto dto:list){
+	
+	%>
+	<table class="table table-bordered" style="width: 600px;">
    
-    <!-- 영화 -->
+<!-- 영화제목 -->
     <tr>
+      <td>
+        <b><%=dto.getMovie_num() %></b>
+      </td>
+    </tr>
+    
+<!-- 글제목 -->
+    <tr>
+      <td><%=dto.getSubject() %></td>
+    </tr>
+    
+<!-- 글내용 -->
+    <tr>
+      <td><%=dto.getContent().replace("\n", "<br>") %></td>  
+    </tr>
+    
+<!-- 작성자,작성일,공감 -->
+    <tr>
+      <td>
+      <span><%=dto.getUser_num() %></span>
+      <span><%=sdf.format(dto.getWriteday()) %></span>
+      <span class="num" num="<%=dto.getNum() %>">공감</span>
+      <span class="likes"><%=dto.getLikes() %></span>
+      </td>   
+    </tr>
       
-    </tr>
-    
-    <!-- 글제목 -->
-    <tr>
-    
-    </tr>
-    
-    <!-- 글내용 -->
-    <tr>
-    
-    </tr>
-    
-    <!-- 작성자 -->
-    <tr>
-    
-    </tr>
-    
-    <!-- 작성일 -->
-    <tr>
-    
-    </tr>
-    
   </table>
+	
+<%}
+
+
+%>
+
+  
 </div>
 
 
@@ -106,7 +144,6 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 <div style="width: 600px; text-align: center;" class="container">
     <ul class="pagination">
       <%
-      //이전
       if(startPage>1){%>
     	  <li>
     	    <a href="index.jsp?main=review/reviewlist.jsp?currentPage=<%=startPage-1%>">이전</a>
@@ -118,12 +155,11 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
     		<li class="active">
     		<a href="index.jsp?main=review/reviewlist.jsp?currentPage=<%=p%>"><%=p %></a>
     		</li>  
-    	  <%} else{  //active 안 줄때 %>
+    	  <%} else{ %>
     		  <a href="index.jsp?main=review/reviewlist.jsp?currentPage=<%=p%>"><%=p %></a>
     		  <%}
       }
       
-      //다음
       if(endPage<totalPage){%>
     	  <li>
     	    <a href="index.jsp?main=review/reviewlist.jsp?currentPage=<%=endPage+1%>">다음</a>

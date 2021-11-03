@@ -15,12 +15,12 @@
   <table class="table table-bordered" style="width: 600px; margin-left: 50px; margin-top: 50px;">
   <caption style="margin-left: 280px;font-size: 1.5em;"><b>관람평</b></caption>
   
-  
-  
   <tr>
     <th width="100"><span class="glyphicon glyphicon-film" style="margin-left: 30px;"></span></th>
     <td>
-      <input type="radio" >
+      <input type="radio" required="required" name="movie_num">
+      <input type="radio" required="required" name="movie_num">
+      <input type="radio" required="required" name="movie_num">
     </td>
   </tr>
   
@@ -35,13 +35,13 @@
   <tr>
     <th width="100"><span class="glyphicon glyphicon-pencil" style="margin-left: 30px; margin-top: 130px;"></span></th>
     <td>
-      <textarea style="width: 400px; height: 300px;"></textarea>
+      <textarea style="width: 400px; height: 300px;" name="content" required="required"></textarea>
     </td>
   </tr>
   
   <tr>
   <td colspan="2" align="center">
-    <button type="submit" class="btn btn-info">등록</button>
+    <button type="submit" class="btn btn-default" style="width: 100px; height: 100px;">등록</button>
   </td>
   </tr>
   </table>

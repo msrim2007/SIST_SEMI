@@ -1,3 +1,5 @@
+<%@page import="review.reviewDao"%>
+<%@page import="review.reviewDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,9 +13,24 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%
+request.setCharacterEncoding("utf-8");
 
+reviewDto dto=new reviewDto();
 
+String subject=request.getParameter("subject");
+String content=request.getParameter("content");
 
+dto.setSubject(subject);
+dto.setContent(content);
 
+reviewDao dao=new reviewDao();
+dao.updateReview(dto);
+
+String num=request.getParameter("num");
+String currentPage=request.getParameter("currentPage");
+
+response.sendRedirect("../index.jsp?main=review/reviewlist.jsp?currentPage="+currentPage);
+%>
 </body>
 </html>
