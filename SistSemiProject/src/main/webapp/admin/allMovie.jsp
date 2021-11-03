@@ -49,18 +49,12 @@
     		left: 5%;
     		top: 100px;
     		width: 100%;
-    		height: 600px;
+    		height: auto;
     		text-align: center;
     	}
     	
     	button {
     		margin: 50px;
-    	}
-    	
-    	#result {
-    		margin-top: 5%;
-    		width: 100%;
-    		height: 100%;
     	}
     	
     	div.form {
@@ -73,16 +67,17 @@
     		height: 30px;
     	}
     	
-    	b {
-    		font-size: 8pt;
-    	}
-    	
     	th { 
     		font-size: 10pt;
     	}
     	
     	td {
 			font-size: 8pt;
+			padding: 0;
+		}
+		
+		.btn {
+			margin: 0;
 		}
     </style>
     
@@ -133,7 +128,7 @@
 					appendStr += "</td>";
 					
 					insertUrl = "index.jsp?main=admin/insertMovie.jsp?code=" + movie.movieCd;
-					appendStr += "<td><button onclick='location.href='" + insertUrl +"' class='btn btn-info'>추가</button></td></tr>";
+					appendStr += "<td><a href='" + insertUrl +"' class='btn btn-info'>추가</button></td></tr>";
 					$("#boxtab tbody").append(appendStr);
 				}
 			}
@@ -144,7 +139,7 @@
 <body>
 	<div class="container">
 		<div class="boxoffice">
-			<h1><b style="color: white;">관리자 페이지</b></h1><br><br><br><br>
+			<h1><b style="color: white;">관리자 페이지</b></h1><br>
 			<button class="btn btn-info btn-lg" onclick="location.href='index.jsp?main=admin/dailyBoxoffice.jsp'">일별 박스오피스 가져오기</button>
 			<button class="btn btn-info btn-lg" onclick="location.href='index.jsp?main=admin/allMovie.jsp'">영화 목록 가져오기</button>
 			<br><br><br>
@@ -158,17 +153,14 @@
 				</form>
 				<button id="getMovie" class="btn btn-warning">조회</button>
 			</div>
-			
-			<div id="result">
-				<table class="table table-bordered" id="boxtab" style="color: white; font-size: 16pt; height: auto;">
-					<thead>
-						<tr>
-							<th rowspan="2">영화 제목</th><th>제작년도</th><th><th>개봉일</th><th>국가</th><th>감독명</th><th>DB</th>
-						</tr>
-					</thead>
-					<tbody></tbody>
-				</table>
-			</div>
+			<table class="table table-bordered" id="boxtab" style="color: white; font-size: 16pt; height: auto;">
+				<thead>
+					<tr>
+						<th rowspan="2">영화 제목</th><th>제작년도</th><th><th>개봉일</th><th>국가</th><th>감독명</th><th>DB</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
 		</div>
 	</div>
 	
