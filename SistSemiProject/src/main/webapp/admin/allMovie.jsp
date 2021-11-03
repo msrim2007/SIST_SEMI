@@ -1,3 +1,4 @@
+<%@page import="javax.swing.text.html.parser.DTD"%>
 <%@page import="org.codehaus.jackson.map.ObjectMapper"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Calendar"%>
@@ -5,7 +6,6 @@
 <%@page import="org.json.simple.JSONArray"%>
 <%@page import="org.json.simple.JSONObject"%>
 <%@page import="org.json.simple.parser.JSONParser"%>
-<%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="kr.or.kobis.kobisopenapi.consumer.rest.KobisOpenAPIRestService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -62,34 +62,83 @@
     		width: 100%;
     		height: 100%;
     	}
+    	
+    	div.form {
+    		text-align: center;
+    	}
+    	
+    	input {
+    		margin-left: 10px;
+    		margin-right: 10px;
+    		height: 30px;
+    	}
+    	
+    	b {
+    		font-size: 8pt;
+    	}
+    	
+    	th { 
+    		font-size: 10pt;
+    	}
+    	
+    	td {
+			font-size: 8pt;
+		}
     </style>
     
     <%
+    request.setCharacterEncoding("utf-8");
  	// 파라메터 설정
- 	String curPage = request.getParameter("curPage")==null?"1":request.getParameter("curPage");					//현재페이지
- 	String itemPerPage = request.getParameter("itemPerPage")==null?"15":request.getParameter("itemPerPage");		//결과row수
- 	String movieNm = request.getParameter("movieNm")==null?"":request.getParameter("movieNm");						//영화명
- 	String directorNm = request.getParameter("directorNm")==null?"":request.getParameter("directorNm");				//감독명
- 	String openStartDt = request.getParameter("openStartDt")==null?"":request.getParameter("openStartDt");			//개봉연도 시작조건 ( YYYY )
- 	String openEndDt = request.getParameter("openEndDt")==null?"":request.getParameter("openEndDt");				//개봉연도 끝조건 ( YYYY )	
- 	String prdtStartYear = request.getParameter("prdtStartYear")==null?"":request.getParameter("prdtStartYear");	//제작연도 시작조건 ( YYYY )
- 	String prdtEndYear = request.getParameter("prdtEndYear")==null?"":request.getParameter("prdtEndYear");			//제작연도 끝조건    ( YYYY )
- 	String repNationCd = request.getParameter("repNationCd")==null?"":request.getParameter("repNationCd");			//대표국적코드 (공통코드서비스에서 '2204'로 조회된 국가코드)
- 	String[] movieTypeCdArr = request.getParameterValues("movieTypeCdArr")==null? null:request.getParameterValues("movieTypeCdArr");	//영화형태코드 배열 (공통코드서비스에서 '2201'로 조회된 영화형태코드)
+	String curPage = request.getParameter("curPage")==null?"1":request.getParameter("curPage");					//현재페이지
+	String itemPerPage = request.getParameter("itemPerPage")==null?"10":request.getParameter("itemPerPage");		//결과row수
+	String movieNm = request.getParameter("movieNm")==null?"":request.getParameter("movieNm");						//영화명
+	String directorNm = request.getParameter("directorNm")==null?"":request.getParameter("directorNm");				//감독명
+	String openStartDt = request.getParameter("openStartDt")==null?"":request.getParameter("openStartDt");			//개봉연도 시작조건 ( YYYY )
+	%>
     
-	// 발급키
-	String key = "1498e677bdca66c811a03a506cc6248b";
-	// KOBIS 오픈 API Rest Client를 통해 호출
-    KobisOpenAPIRestService service = new KobisOpenAPIRestService(key);
+    <script type="text/javascript">
+	    $(function(){
+	    	var insertUrl = "";
+	    	var kobisService = new KobisOpenAPIRestService("1498e677bdca66c811a03a506cc6248b");
+	    	var resJson = null;
+	    	try{
+	    		resJson = kobisService.getMovieList(true,{curPage:"<%=curPage%>",itemPerPage:"<%=itemPerPage%>",movieNm:"<%=movieNm%>",directorNm:"<%=directorNm%>",openStartDt:"<%=openStartDt%>",openEndDt:"",prdtStartYear:"",prdtEndYear:"",repNationCd:"",movieTypeCdArr:""});
+			} catch (e) {
+				resJson = $.parseJSON(e.message);
+			}
+			if (resJson.failInfo) {
+				alert(resJson.failInfo.message);
+			} else {
+				var movieList = resJson.movieListResult.movieList;
+				var totCnt = resJson.movieListResult.totCnt;
 	
- 	// 영화코드조회 서비스 호출 (boolean isJson, String curPage, String itemPerPage,String directorNm, String movieCd, String movieNm, String openStartDt,String openEndDt, String ordering, String prdtEndYear, String prdtStartYear, String repNationCd, String[] movieTypeCdArr)
-    String movieCdResponse = service.getMovieList(true, curPage, itemPerPage, movieNm, directorNm, openStartDt, openEndDt, prdtStartYear, prdtEndYear, repNationCd, movieTypeCdArr);
-	// Json 라이브러리를 통해 Handling
-	ObjectMapper mapper = new ObjectMapper();
-	HashMap<String,Object> result = mapper.readValue(movieCdResponse, HashMap.class);
-
-	request.setAttribute("result",result);
-    %>
+				for (var i = 0; i < movieList.length; i++) {
+					var movie = movieList[i];
+	
+					var appendStr = "<tr><td>" + movie.movieNm
+							+ "</td><td>" + movie.movieNmEn
+							+ "</td><td>" + movie.prdtYear
+							+ "</td><td>" + movie.openDt
+							+ "</td><td>" + movie.repNationNm
+							+ "</td>";
+	
+					//감독
+					appendStr += "<td>";
+					if (movie.directors != null
+							&& movie.directors != "") {
+						for ( var dir in movie.directors) {
+							appendStr += movie.directors[dir].peopleNm;
+						}
+					}
+					appendStr += "</td>";
+					
+					insertUrl = "index.jsp?main=admin/insertMovie.jsp?code=" + movie.movieCd;
+					appendStr += "<td><button onclick='location.href='" + insertUrl +"' class='btn btn-info'>추가</button></td></tr>";
+					$("#boxtab tbody").append(appendStr);
+				}
+			}
+		});
+	</script>
 </head>
 
 <body>
@@ -99,22 +148,35 @@
 			<button class="btn btn-info btn-lg" onclick="location.href='index.jsp?main=admin/dailyBoxoffice.jsp'">일별 박스오피스 가져오기</button>
 			<button class="btn btn-info btn-lg" onclick="location.href='index.jsp?main=admin/allMovie.jsp'">영화 목록 가져오기</button>
 			<br><br><br>
+			<div class="form">
+				<form>
+					<b style="color: white;">현재페이지 :</b><input type="text" name="curPage" value="<%=curPage %>">
+					<b style="color: white;">최대 출력갯수:</b><input type="text" name="itemPerPage" value="<%=itemPerPage %>">
+					<b style="color: white;">감독명:</b><input type="text" name="directorNm" value="<%=directorNm %>">		
+					<b style="color: white;">영화명:</b><input type="text" name="movieNm" value="<%=movieNm %>">
+					<b style="color: white;">개봉연도:</b><input type="text" name="openStartDt" value="<%=openStartDt %>">
+				</form>
+				<button id="getMovie" class="btn btn-warning">조회</button>
+			</div>
 			
 			<div id="result">
-				<table class="table table-bordered" style="color: white; font-size: 16pt;">
-					<tr>
-						
-					</tr>
-					
+				<table class="table table-bordered" id="boxtab" style="color: white; font-size: 16pt; height: auto;">
+					<thead>
+						<tr>
+							<th rowspan="2">영화 제목</th><th>제작년도</th><th><th>개봉일</th><th>국가</th><th>감독명</th><th>DB</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
 				</table>
-				<div style="text-align: right;">
-				
-				</div>
 			</div>
 		</div>
 	</div>
 	
-	
+	<script type="text/javascript">
+		$("#getMovie").on("click", function(){
+			location.href = "index.jsp?main=admin/allMovie.jsp?curPage=" + $("input[name=curPage]").val() + "&itemPerPage=" + $("input[name=itemPerPage]").val() + "&directorNm=" + $("input[name=directorNm]").val() + "&movieNm=" + $("input[name=movieNm]").val() + "&openStartDt=" + $("input[name=openStartDt]").val();
+		});
+	</script>
 	
 	<!-- Js Plugins -->
 	<script src="tmplt/js/jquery-3.3.1.min.js"></script>

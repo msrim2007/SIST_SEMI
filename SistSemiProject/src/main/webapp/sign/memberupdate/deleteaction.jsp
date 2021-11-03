@@ -1,3 +1,4 @@
+<%@page import="Sign.SignDao"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -13,15 +14,16 @@
 </head>
 <body>
 <%
-//세션에 저장된 loginok를 읽는다
-String loginok=(String)session.getAttribute("loginok");
-//loginok는 로그인 성공시 저장하고 로그아웃시 제거
-if(loginok==null)
-{%>
-	<jsp:include page="loginform.jsp"/>
-<%}else{%>
-	<jsp:include page="logoutform.jsp"/>
-<%}
+//프로젝트 경로구하기
+String root=request.getContextPath();
+
+String num=request.getParameter("num");
+
+SignDao dao=new SignDao();
+
+dao.deleteMember(num);
+
+response.sendRedirect(root+"/index.jsp?main=sign/login/loginform.jsp");
 %>
 </body>
 </html>

@@ -90,17 +90,15 @@ function check(f) {
 </head>
 <body>
 
-    <!-- Signup Section Begin -->
-    <section class="normal-breadcrumb set-bg" data-setbg="img/normal-breadcrumb.jpg">
+    <!-- 수정폼 시작 -->
+    <section class="login spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="normal__breadcrumb__text">
+                    <div class="login__form">
                         <h3>UPDATE</h3>
                         <form action="sign/memberupdate/updateaction.jsp" name="signfrm" method="post" class="form-inline"
                         onsubmit="return check(this)">
                         <%
-                        System.out.print(num);
                     	//dao선언
                     	SignDao dao=new SignDao();
 
@@ -169,17 +167,24 @@ function check(f) {
                                   <option value="gmail.com">구글</option>
                                   <option value="hanmail.net">다음</option>
                                 </select> -->
+                                </td>
+                              </tr>
+                              <tr>
+                                <td colspan="2" align="center">
+                                <input type="submit" class="site-btn" value="UPDATE">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="button" class="site-btn" value="DELETE"
+                                onclick="location.href='sign/memberupdate/deleteaction.jsp?num=<%=num%>'">
+                                </td>
                               </tr>
                             </table>
                       </form>
-                      <input type="submit" class="site-btn" value="UPDATE">
-                    </div>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- Signup Section End -->
+    <!-- 수정폼 끝 -->
+
 
     <!-- Js Plugins -->
     <script src="<%=root %>/tmplt/js/jquery-3.3.1.min.js"></script>
