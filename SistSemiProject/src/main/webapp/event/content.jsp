@@ -1,3 +1,6 @@
+<%@page import="event.eventDto"%>
+<%@page import="event.eventDao"%>
+
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -11,7 +14,44 @@
 
 <title>Insert title here</title>
 </head>
+<%
+String num = request.getParameter("num");
+eventDao dao = new eventDao();
+eventDto dto = dao.selectData(num);
+
+%>
 <body>
-본문
+<table>
+	<tr>
+		<td>
+			<div>
+				<b style="font-size: 18pt;"><%=dto.getSubject() %></b>
+				<br>
+				<span style="font-size: 10pt; color: gray;">
+					<%=dto.getTerm() %>
+				</span>
+			</div>
+			<hr>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<img alt="" src="event/event_img/<%=dto.getContent()%>">
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<br>
+		<br>
+		
+		<span style="margin-top: 15px; ">
+			<button type="button" class="btn btn-danger" onclick="location.href='index.jsp?main=event/eventlist.jsp'">목록으로</button>
+		</span>
+		</td>
+	</tr>
+</table>
+
+
+</script>
 </body>
 </html>

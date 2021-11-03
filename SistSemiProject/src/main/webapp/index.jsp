@@ -153,7 +153,13 @@ String root=request.getContextPath();
 	<script src="tmplt/js/owl.carousel.min.js"></script>
 	<script src="tmplt/js/main.js"></script>
 </body>
-
+<footer>
+<div style="color: white;">
+서울특별시 강남구 테헤란로 132(역삼동) 한독약품빌딩 | Tel_02-3482-4632~5 | Fax_02-3482-4636<br>
+사업자번호_214-85-29296 | 대표_노경한 | 개인정보처리관리책임자_장일규<br>
+통신판매업신고번호 제 833호 COPYRIGHT © Sist Movie, Inc. All rights reserved<br>
+</div>
+</footer>
 
 
 </html>

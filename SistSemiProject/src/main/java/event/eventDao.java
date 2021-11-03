@@ -1,12 +1,14 @@
 package event;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import mysql.db.DbConnect;
+
 
 
 public class eventDao{
@@ -68,5 +70,32 @@ public class eventDao{
 		
 		
 		return list;
+	}
+	public eventDto selectData(String num) {
+		eventDto dto = new eventDto();
+		
+		Connection conn = db.getConnection();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT * FROM event WHERE event_num="+num;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto.setEvent_num(rs.getString("event_num"));
+				dto.setContent(rs.getString("content"));	
+				dto.setSubject(rs.getString("subject"));
+				dto.setTerm(rs.getString("term"));}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(pstmt, conn);
+		}
+		return dto;
 	}
 }

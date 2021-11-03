@@ -25,7 +25,8 @@ ArrayList<eventDto> list = dao.getAllDatas();
 
 %>
 <table style="width:900px;">
-	<caption><b style="color: ">제휴/할인</b></caption>
+	<caption><b  style="color:black; font-size: 18pt; margin: 20px;">제휴할인</b></caption>
+	
 		<tr>
 			<%	
 				for(int i=0; i<list.size();i++){
@@ -33,17 +34,21 @@ ArrayList<eventDto> list = dao.getAllDatas();
 					eventDto dto = list.get(i);
 					%>
 					<td>
-						<a href="content.jsp?num=<%=dto.getEvent_num()%>">
-						<img alt="" src="event_img/<%=dto.getImg()%>" style="width: 280px; height: 180px; border= 1px solid gray; margin: 5px; border-radius: 30px;" >
+						<br>
+						<a href="index.jsp?main=event/content.jsp?num=<%=dto.getEvent_num()%>">
+						<img alt="" src="event/event_img/<%=dto.getImg()%>" style="width: 280px; height: 180px; border= 1px solid gray; margin: 15px; border-radius: 30px;" >
 						<br>
 						</a>
 						<br>
-								<%=dto.getSubject() %>
+								
+						<div style="text-align: center;">
+						<%=dto.getSubject() %>
 						<span style="color: gray; font-size: 9pt" >
 					
 							<br>
 							<%=dto.getTerm() %>
 						</span>
+						</div>
 					</td>
 					<%
 					if((i+1)%3==0){%>
@@ -55,5 +60,9 @@ ArrayList<eventDto> list = dao.getAllDatas();
 				%>
 		</tr>
 </table>
+
 </body>
+<footer>
+
+</footer>
 </html>
