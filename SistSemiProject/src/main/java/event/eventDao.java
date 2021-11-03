@@ -82,6 +82,7 @@ public class eventDao{
 		String sql = "SELECT * FROM event WHERE event_num="+num;
 		
 		try {
+			
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
