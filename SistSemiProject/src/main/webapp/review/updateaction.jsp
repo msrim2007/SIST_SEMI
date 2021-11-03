@@ -17,7 +17,7 @@
 request.setCharacterEncoding("utf-8");
 
 reviewDto dto=new reviewDto();
- 
+  
 String subject=request.getParameter("subject");
 String content=request.getParameter("content");
 

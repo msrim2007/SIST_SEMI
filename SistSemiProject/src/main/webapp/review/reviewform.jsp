@@ -24,7 +24,7 @@
         <option value="듄">듄</option>
         <option value="이터널스">이터널스</option>
         <option value="베놈2">베놈2</option>
-        <option value="세버그">세버그</option> 
+        <option value="세버그">세버그</option>  
         <option value="아네트">아네트</option>
         
       </select>
