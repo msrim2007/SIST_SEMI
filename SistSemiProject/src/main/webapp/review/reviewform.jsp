@@ -1,3 +1,4 @@
+<%@page import="movies.MoviesDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,16 +12,22 @@
 <title>Insert title here</title>
 </head>
 <body>     
-<form action="review/reviewaction.jsp" method="post" enctype="multipart/form-data" class="form-inline">
+<form action="reviewaction.jsp" method="post" class="form-inline">
   <table class="table table-bordered" style="width: 600px; margin-left: 50px; margin-top: 50px;">
   <caption style="margin-left: 280px;font-size: 1.5em;"><b>관람평</b></caption>
   
   <tr>
     <th width="100"><span class="glyphicon glyphicon-film" style="margin-left: 30px;"></span></th>
     <td>
-      <input type="radio" required="required" name="movie_num">
-      <input type="radio" required="required" name="movie_num">
-      <input type="radio" required="required" name="movie_num">
+<!-- movie_num(int) 활용하기..for문..다른 곳도 다 고치기 -->
+      <select id="selmovie" class="form-control">
+        <option value="듄">듄</option>
+        <option value="이터널스">이터널스</option>
+        <option value="베놈2">베놈2</option>
+        <option value="세버그">세버그</option>  
+        <option value="아네트">아네트</option>
+        
+      </select>
     </td>
   </tr>
   
@@ -40,7 +47,7 @@
   
   <tr>
   <td colspan="2" align="center">
-    <button type="submit" class="btn btn-default" style="width: 100px; height: 100px;">등록</button>
+    <button type="submit" class="btn btn-default">등록</button>
   </td>
   </tr>
   </table>

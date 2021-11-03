@@ -14,16 +14,18 @@
 </head>
 <body>
 <%      
-request.setCharacterEncoding("utf-8");
+//세션으로부터 db에 저장할 아이디
+String myid=(String)session.getAttribute("myid");
 
 String content=request.getParameter("content");
 String subject=request.getParameter("subject");
-String movie_num=request.getParameter("movie_num");
-
+String movie_num=request.getParameter("selmovie");
+  
 reviewDto dto=new reviewDto();
 dto.setContent(content);
 dto.setSubject(subject);
 dto.setMovie_num(movie_num);
+dto.setMyid(myid);
 
 reviewDao dao=new reviewDao();
 dao.insertReview(dto);

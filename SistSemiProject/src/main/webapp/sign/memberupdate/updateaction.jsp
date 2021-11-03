@@ -15,16 +15,16 @@
 </head>
 <body>
 <%
+String root=request.getContextPath();
+
 request.setCharacterEncoding("utf-8");
 SignDao dao=new SignDao();
 
 SignDto dto=new SignDto();
 
 String num=request.getParameter("num");
-String name=request.getParameter("name");
 String id=request.getParameter("id");
 String pass=request.getParameter("pass");
-String brith=request.getParameter("birth");
 String hp=request.getParameter("hp");
 String email=request.getParameter("email1")+"@"+request.getParameter("email2");
 
@@ -35,7 +35,7 @@ dto.setEmail(email);
 dto.setNum(num);
 
 dao.updateMember(dto);
-response.sendRedirect("../../index.jsp?main");
+response.sendRedirect(root+"/index.jsp");
 %>
 </body>
 </html>
