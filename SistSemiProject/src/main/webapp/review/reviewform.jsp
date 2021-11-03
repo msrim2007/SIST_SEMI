@@ -24,7 +24,6 @@
     </td>
   </tr>
   
-  
   <tr>
     <th width="100"><span class="glyphicon glyphicon-list" style="margin-left: 30px; margin-top: 10px;"></span></th>
     <td>

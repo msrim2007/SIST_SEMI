@@ -97,8 +97,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 <div>
 
 <%
-for(reviewDto dto:list){
-	
+for(reviewDto dto:list){	
 	%>
 	<table class="table table-bordered" style="width: 600px;">
    
