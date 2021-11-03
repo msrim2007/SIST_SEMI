@@ -13,7 +13,7 @@ dao.updateLikes(num);
 int likes=dao.getData(num).getLikes();
 
 JSONObject ob=new JSONObject();
-
+ 
 ob.put("likes", likes);
 %>
 <%=ob.toString()%>

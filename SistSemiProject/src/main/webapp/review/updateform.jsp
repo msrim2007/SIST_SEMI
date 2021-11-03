@@ -12,7 +12,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <title>Update Form</title>
 </head>
-<%  
+<%   
 String num=request.getParameter("num");
 String currentPage=request.getParameter("currentPage");
 
