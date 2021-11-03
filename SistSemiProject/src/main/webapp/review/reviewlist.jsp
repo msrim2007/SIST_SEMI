@@ -124,7 +124,7 @@ for(reviewDto dto:list){
     
 <!-- 영화 -->
     <tr>
-      <%-- <td><%=mdto.getMovie_num() %></td> --%>
+      <%-- <td><%=mdto.getMovie_num() %></td> --%> 
     </tr>
     
 <!-- 글제목,공감 -->

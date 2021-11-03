@@ -20,7 +20,7 @@ String myid=(String)session.getAttribute("myid");
 String content=request.getParameter("content");
 String subject=request.getParameter("subject");
 String movie_num=request.getParameter("selmovie");
-
+ 
 reviewDto dto=new reviewDto();
 dto.setContent(content);
 dto.setSubject(subject);
