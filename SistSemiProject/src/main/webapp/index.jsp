@@ -1,3 +1,4 @@
+<%@page import="org.codehaus.jackson.annotate.JsonTypeInfo.Id"%>
 <%@page import="Sign.SignDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -87,7 +88,7 @@ String root=request.getContextPath();
                 </div>
                 <div class="col-lg-2">
                     <div class="header__right">
-                    	<a style="display: display;" href="./index.jsp?main=admin/adminConfig.jsp" class="search-switch"><span class="glyphicon glyphicon-cog"></span></a>
+                    	<a id="admin" style="visibility: hidden;" href="./index.jsp?main=admin/adminConfig.jsp" class="search-switch"><span class="glyphicon glyphicon-cog"></span></a>
                         
                         <!-- 로그인 상태면 회원정보수정 로그아웃상태라면 회원가입으로 보내기 시작-->
                         <%
@@ -124,8 +125,7 @@ String root=request.getContextPath();
                         <%}else{%>
                         <button type="button" class="btn btn-danger" style="width: 55px height: 30px;"
                         onclick="location.href='sign/login/logoutaction.jsp'">LOG OUT</button>
-                        <%}
-                        %>
+                        <%}%>
                         </span>
                         <!-- 로그인,로그아웃 버튼 부분 끝-->
                     </div>
@@ -133,6 +133,12 @@ String root=request.getContextPath();
             </div>
             <div id="mobile-menu-wrap"></div>
         </div>
+        <script type="text/javascript">
+    		// 관리자 로그인 확인
+    		if ("<%= myid %>" == "admin") {
+    			$("#admin").css("visibility", "visible");
+    		} 
+    	</script>
     </header>
     <!-- Header End -->
 
@@ -142,6 +148,16 @@ String root=request.getContextPath();
     		<jsp:include page="<%= main %>"></jsp:include>
     	</div>
     </div>
+    
+    <!-- Footer Start -->
+    <footer class="footer">
+		<div style="color: white;">
+			서울특별시 강남구 테헤란로 132(역삼동) 한독약품빌딩 | Tel_02-3482-4632~5 | Fax_02-3482-4636<br>
+			사업자번호_214-85-29296 | 대표_노경한 | 개인정보처리관리책임자_장일규<br>
+			통신판매업신고번호 제 833호 COPYRIGHT © Sist Movie, Inc. All rights reserved<br>
+		</div>
+	</footer>
+    <!-- Footer End -->
     
     <!-- Js Plugins -->
 	<script src="tmplt/js/jquery-3.3.1.min.js"></script>
@@ -153,13 +169,5 @@ String root=request.getContextPath();
 	<script src="tmplt/js/owl.carousel.min.js"></script>
 	<script src="tmplt/js/main.js"></script>
 </body>
-<footer>
-<div style="color: white;">
-서울특별시 강남구 테헤란로 132(역삼동) 한독약품빌딩 | Tel_02-3482-4632~5 | Fax_02-3482-4636<br>
-사업자번호_214-85-29296 | 대표_노경한 | 개인정보처리관리책임자_장일규<br>
-통신판매업신고번호 제 833호 COPYRIGHT © Sist Movie, Inc. All rights reserved<br>
-</div>
-</footer>
-
 
 </html>
