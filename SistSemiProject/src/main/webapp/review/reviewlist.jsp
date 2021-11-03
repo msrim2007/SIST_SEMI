@@ -1,3 +1,5 @@
+<%@page import="movies.MoviesDto"%>
+<%@page import="Sign.SignDao"%>
 <%@page import="review.reviewDto"%>
 <%@page import="java.util.List"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -43,23 +45,26 @@ $(function() {
 
 <body>
 <%
+//로그인상태 확인후 방명록입력폼 나타내기
+String loginok=(String)session.getAttribute("loginok");
+
 reviewDao dao=new reviewDao();
 
 //페이징
-int totalCount;  //총글수
-int totalPage;  //총페이지수
-int startPage;  //각 블럭의 시작 페이지
-int endPage;  //각 블럭의 마지막 페이지
-int start;  //각 페이지의 시작 번호
-int perPage=10;  //한페이지에 보여질 글의 개수
-int perBlock=5;  //한 페이지에 보여지는 페이지 개수
-int currentPage; //현재페이지
-int no;  //넘버값
+int totalCount; 
+int totalPage;  
+int startPage; 
+int endPage;  
+int start;  
+int perPage=10;  
+int perBlock=5;  
+int currentPage;
+int no;  
 
 //총 개수
 totalCount=dao.getTotalCount();
 
-//현재 페이지 번호 읽기..단 null일 경우(페이지 없을 경우) 1페이지 설정
+//현재 페이지 번호
 if(request.getParameter("currentPage")==null){
 	currentPage=1;
 } else{
@@ -80,37 +85,53 @@ if(endPage>totalPage)
 //각 페이지에서 불러올 시작번호
 start=(currentPage-1)*perPage;
 
-//각페이지에서 필요한 게시글 가져오기..dao에서 만들었음
+//각페이지에서 필요한 게시글
 List<reviewDto> list=dao.getList(start, perPage);
 
-//각 글앞에 붙일 시작번호 구하기
-//총글이 20개일 경우 1페이지 20, 2페이지 15부터
-//출력해서 1씩 감소하면서 출력할것
+//각 글앞에 붙일 시작번호
 no=totalCount-(currentPage-1)*perPage;
 
 //날짜
 SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 %>     
 
+<%
+if(loginok!=null){ //로그인중 %>
+	<jsp:include page="reviewform.jsp"/>
+	<hr align="left" width="700">
+<%} 
+%>
 
 <!-- 관람평 출력 -->
 <div>
-
 <%
 for(reviewDto dto:list){	
+	//signdao에서 이름 얻기
+	SignDao sdao=new SignDao();
+	String name=sdao.getName(dto.getMyid());
+	
+	//moviedto
+	MoviesDto mdto=new MoviesDto();
 	%>
-	<table class="table table-bordered" style="width: 600px;">
+	<table class="table table-bordered" style="width: 600px; margin-top: 30px; margin-left: 100px;">
    
-<!-- 영화제목 -->
+<!-- 번호 -->
     <tr>
-      <td>
-        <b><%=dto.getMovie_num() %></b>
+      <td rowspan="5">
+        <b><%=dto.getNum() %></b>
       </td>
     </tr>
     
-<!-- 글제목 -->
+<!-- 영화 -->
     <tr>
-      <td><%=dto.getSubject() %></td>
+      <%-- <td><%=mdto.getMovie_num() %></td> --%>
+    </tr>
+    
+<!-- 글제목,공감 -->
+    <tr>
+      <td><b><%=dto.getSubject() %></b>
+      <span class="num" num="<%=dto.getNum() %>" style="margin-left: 450px;">추천  <%=dto.getLikes() %></span>
+      </td>
     </tr>
     
 <!-- 글내용 -->
@@ -118,24 +139,27 @@ for(reviewDto dto:list){
       <td><%=dto.getContent().replace("\n", "<br>") %></td>  
     </tr>
     
-<!-- 작성자,작성일,공감 -->
+<!-- 작성자,작성일 -->
     <tr>
       <td>
-      <span><%=dto.getUser_num() %></span>
+      <span style="margin-left: 340px;"><%=name %> (<%=dto.getMyid() %>)</span>&nbsp;&nbsp;|&nbsp;&nbsp;
+        <%
+        //로그인한 아이디 세션에서 얻기
+        String myid=(String)session.getAttribute("myid");
+        
+        //로그인한 아이디와 글쓴아이디가 같을 경우에만 삭제,수정
+	      if(loginok!=null && dto.getMyid().equals(myid)){ %>
+	    	  |<a href="index.jsp?main=review/updateform.jsp?num=<%=dto.getNum() %>&currentPage=<%=currentPage %>" style="color: black;">수정</a>  	  
+	    	  |<a href="review/delete.jsp?num=<%=dto.getNum() %>&currentPage=<%=currentPage %>" style="color: black;">삭제</a>
+	     <% }
+        %>
       <span><%=sdf.format(dto.getWriteday()) %></span>
-      <span class="num" num="<%=dto.getNum() %>">공감</span>
-      <span class="likes"><%=dto.getLikes() %></span>
       </td>   
     </tr>
       
   </table>
-	
 <%}
-
-
 %>
-
-  
 </div>
 
 
@@ -147,8 +171,7 @@ for(reviewDto dto:list){
     	  <li>
     	    <a href="index.jsp?main=review/reviewlist.jsp?currentPage=<%=startPage-1%>">이전</a>
     	  </li>
-      <%}
-      
+      <%}      
       for(int p=startPage;p<=endPage;p++){
     	  if(p==currentPage){%>
     		<li class="active">
@@ -157,8 +180,7 @@ for(reviewDto dto:list){
     	  <%} else{ %>
     		  <a href="index.jsp?main=review/reviewlist.jsp?currentPage=<%=p%>"><%=p %></a>
     		  <%}
-      }
-      
+      }      
       if(endPage<totalPage){%>
     	  <li>
     	    <a href="index.jsp?main=review/reviewlist.jsp?currentPage=<%=endPage+1%>">다음</a>
