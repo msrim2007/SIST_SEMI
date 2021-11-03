@@ -27,7 +27,7 @@ eventDto dto = dao.selectData(num);
 			<div>
 				<b style="font-size: 18pt;"><%=dto.getSubject() %></b>
 				<br>
-				<span style="font-size: 10pt; color: gray;">
+				<span style="font-size: 8pt; color: gray; margin: auto;">
 					<%=dto.getTerm() %>
 				</span>
 			</div>
@@ -35,18 +35,22 @@ eventDto dto = dao.selectData(num);
 		</td>
 	</tr>
 	<tr>
-		<td>
-			<img alt="" src="event/event_img/<%=dto.getContent()%>">
+		<td >
+			<div style="text-align: center;">
+			<img alt="" src="event/event_img/<%=dto.getContent()%>" style="width: 500px; height: 1200px;">
+			</div>
 		</td>
 	</tr>
 	<tr>
 		<td>
 		<br>
 		<br>
-		
+		<hr style="border: 1px solid white; width: 1000px;">
 		<span style="margin-top: 15px; ">
+			
 			<button type="button" class="btn btn-danger" onclick="location.href='index.jsp?main=event/eventlist.jsp'">목록으로</button>
 		</span>
+		<hr style="border: 1px solid white; width: 1000px;">
 		</td>
 	</tr>
 </table>

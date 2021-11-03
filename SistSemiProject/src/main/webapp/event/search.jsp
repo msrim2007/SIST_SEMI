@@ -1,6 +1,6 @@
-<%@page import="event.eventDto"%>
-<%@page import="java.util.ArrayList"%>
 <%@page import="event.eventDao"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="event.eventDto"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -11,24 +11,14 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<style type="text/css">
-form.form1{
-	float: right;
-}
 
-</style>
 <title>Insert title here</title>
 </head>
-
 <body>
 <%
-//db선언
+String srch = request.getParameter("searchWord");
 eventDao dao = new eventDao();
-
-//전체 리스트 가져오기
-ArrayList<eventDto> list = dao.getAllDatas();
-
-
+ArrayList<eventDto> list = dao.searchData(srch);
 %>
 <form method="post" action="index.jsp?main=event/search.jsp"  class="form1">
 	<div class="col-lg-4">
@@ -40,11 +30,15 @@ ArrayList<eventDto> list = dao.getAllDatas();
 		</button>
 </form>
 <table style="width:900px; text-align: center;">
-	<caption><b  style="color:black; font-size: 18pt; margin: 20px;">제휴할인</b></caption>
+	
 	
 		<tr>
-			<%	
-				for(int i=8; i>=0;i--){
+			<%	if(list.isEmpty()){%>
+				<div style="text-align: center; font-size: 20pt; color: gray;">
+					'<%=srch %>'에 대한 검색 결과가 없습니다
+				</div>
+			<%}else{
+				for(int i=0;i<list.size();i++){
 					//i번째 dto얻기
 					eventDto dto = list.get(i);
 					%>
@@ -66,16 +60,17 @@ ArrayList<eventDto> list = dao.getAllDatas();
 						</div>
 					</td>
 					<%
-					if(i%3==0){%>
+					if((i+1)%3==0){%>
 						</tr><tr>	
 					<%}
 					%>
 				<%
 				}
+				
+			}
 				%>
+	
 		</tr>
 </table>
-
 </body>
-
 </html>
