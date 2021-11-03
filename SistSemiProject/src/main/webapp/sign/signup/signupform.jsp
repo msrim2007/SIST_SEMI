@@ -81,7 +81,7 @@
                               <tr>
                                 <th style="width: 70px; height:30px; background-color: 	#F5F5F5;">비밀번호</th>
                                 <td style="background-color: white;">
-                                  <input type="password" name="pass1" placeholder="비밀번호를 입력해주세요." required="required">
+                                  <input type="password" name="pass" placeholder="비밀번호를 입력해주세요." required="required">
                                 </td>
                               </tr>
                               
@@ -181,9 +181,9 @@ function check(f) {
 		return false;
 	}
 		
-	if(f.pass1.value!=f.pass2.value){
+	if(f.pass.value!=f.pass2.value){
 		alert("비밀번호가 서로 다릅니다");
-		f.pass1.value="";
+		f.pass.value="";
 		f.pass2.value="";
 		return false; //action이 호출되지않는다
 	}

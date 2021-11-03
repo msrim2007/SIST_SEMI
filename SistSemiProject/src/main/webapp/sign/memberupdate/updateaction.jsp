@@ -1,5 +1,5 @@
-<%@page import="Sign.SignDao"%>
 <%@page import="Sign.SignDto"%>
+<%@page import="Sign.SignDao"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -13,32 +13,29 @@
 
 <title>Insert title here</title>
 </head>
-
 <body>
 <%
 request.setCharacterEncoding("utf-8");
+SignDao dao=new SignDao();
 
 SignDto dto=new SignDto();
+
+String num=request.getParameter("num");
 String name=request.getParameter("name");
 String id=request.getParameter("id");
 String pass=request.getParameter("pass");
-String birth=request.getParameter("birth");
+String brith=request.getParameter("birth");
 String hp=request.getParameter("hp");
 String email=request.getParameter("email1")+"@"+request.getParameter("email2");
 
-
-dto.setName(name);
 dto.setId(id);
 dto.setPass(pass);
-dto.setBirth(birth);
 dto.setHp(hp);
 dto.setEmail(email);
+dto.setNum(num);
 
-SignDao dao=new SignDao();
-dao.insertMember(dto);
-
-//gaipsuccess로 이동
-response.sendRedirect("../../index.jsp?main=sign/signup/gaipsuccess.jsp?id="+id);
+dao.updateMember(dto);
+response.sendRedirect("../../index.jsp?main");
 %>
 </body>
 </html>

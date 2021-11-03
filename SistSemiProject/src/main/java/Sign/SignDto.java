@@ -5,8 +5,7 @@ public class SignDto {
 	private String num;
 	private String name;
 	private String id;
-	private String pass1;
-	private String pass2;
+	private String pass;
 	private String birth;
 	private String hp;
 	private String email;
@@ -29,17 +28,11 @@ public class SignDto {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getPass1() {
-		return pass1;
+	public String getPass() {
+		return pass;
 	}
-	public void setPass1(String pass1) {
-		this.pass1 = pass1;
-	}
-	public String getPass2() {
-		return pass2;
-	}
-	public void setPass2(String pass2) {
-		this.pass2 = pass2;
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 	public String getBirth() {
 		return birth;

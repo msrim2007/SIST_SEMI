@@ -1,3 +1,5 @@
+<%@page import="Sign.SignDao"%>
+<%@page import="Sign.SignDto"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -11,12 +13,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title></title> 
 
-	<%
-	//프로젝트 경로구하기
-	String root=request.getContextPath();
-	
-	
-	%>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -25,6 +21,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Dokdo&family=Gaegu&family=Gugi&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Myeongjo:wght@800&display=swap" rel="stylesheet">
+
+	<%
+	//프로젝트 경로구하기
+	String root=request.getContextPath();
+	String num=request.getParameter("hnum");
+	%>
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="<%=root %>/tmplt/css/bootstrap.min.css" type="text/css">
@@ -48,115 +50,6 @@
 		}
 	</style>
 </head>
-
-</head>
-
-<body>
-
-    <!-- Signup Section Begin -->
-    <section class="signup spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="login__form">
-                        <h3>Sign Up</h3>
-                        <form action="sign/signup/signupaction.jsp" name="signfrm" method="post" class="form-inline"
-                        onsubmit="return check(this)">
-                            <table class="table table-boredered" style=" width:1000px; background-color: white;" >
-                              <tr>
-                                <th style="width: 60px; height:30px; background-color: 	#F5F5F5;">이름</th>
-                                <td style="background-color: white;">
-                                <input type="text" name="name" placeholder="이름을 입력해주세요." required="required">
-                                </td>
-                              </tr>
-                              
-                              <tr>
-                                <th style="width: 60px; height:30px; background-color: 	#F5F5F5;">아이디</th>
-                                <td style="background-color: white;">
-                                  <input type="text" name="id" class="form-control" readonly="readonly">
-                                  <button type="button" id="btnIdcheck">중복확인</button>
-                                </td>
-                              </tr>
-                              
-                              <tr>
-                                <th style="width: 60px; height:30px; background-color: 	#F5F5F5;">비밀번호</th>
-                                <td style="background-color: white;">
-                                  <input type="password" name="pass1" placeholder="비밀번호를 입력해주세요." required="required">
-                                </td>
-                              </tr>
-                              
-                              <tr>
-                                <th style="width: 60px; height:30px; background-color: 	#F5F5F5;">비밀번호 확인</th>
-                                <td style="background-color: white;">
-                                <input type="password" name="pass2" placeholder="비밀번호를 재입력해주세요." required="required">
-                                </td>
-                              </tr>
-                              
-                              <tr>
-                                <th style="width: 60px; height:30px; background-color: 	#F5F5F5;">생년월일</th>
-                                <td style="background-color: white;">
-                                <input type="date" name="birth">
-                                </td>
-                              </tr>
-                              
-                              <tr>
-                                <th style="width: 60px; height:30px; background-color: 	#F5F5F5;">전화번호</th>
-                                <td style="background-color: white;"><input type="text" name="hp" placeholder="전화번호"></td>
-                              </tr>
-                              
-                              <tr>
-                              <th width="100px;" style="background-color: #F5F5F5;">이메일</th>
-                              <td>
-                                <input type="text" name="email1" class="form-control"
-                                required="required" style="width: 80px;">
-                                <b>@</b>
-                                <input type="text" name="email2" class="form-control" id="email2" 
-                                required="required" style="width: 140px;"> &nbsp;&nbsp;&nbsp;
-                                <select style="width: 60px; height: 40px" id="selemail" class="form-control">
-                                  <option value="-" selected="selected">직접입력</option>
-                                  <option value="naver.com">네이버</option>
-                                  <option value="gmail.com">구글</option>
-                                  <option value="hanmail.net">다음</option>
-                                </select>
-                              </tr>
-                              
-                              <tr>
-                              <td colspan="2" align="center">
-                              <input type="submit" class="site-btn" value="SIGN UP">
-                              </td>
-                              </tr>
-                            </table>
-                        </form>
-                        <h5>Already have an account? <a href="<%=root%>/index.jsp?main=sign/login/loginmain.jsp">Log In!</a></h5>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="login__social__links">
-                        <h3>Login With:</h3>
-                        <ul>
-                            <li><a href="#" class="facebook"><i class="fa fa-facebook"></i> Sign in With Facebook</a>
-                            </li>
-                            <li><a href="#" class="google"><i class="fa fa-google"></i> Sign in With Google</a></li>
-                            <li><a href="#" class="twitter"><i class="fa fa-twitter"></i> Sign in With Twitter</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Signup Section End -->
-
-    <!-- Js Plugins -->
-    <script src="<%=root %>/tmplt/js/jquery-3.3.1.min.js"></script>
-	<script src="<%=root %>/tmplt/js/bootstrap.min.js"></script>
-	<script src="<%=root %>/tmplt/js/player.js"></script>
-	<script src="<%=root %>/tmplt/js/jquery.nice-select.min.js"></script>
-	<script src="<%=root %>/tmplt/js/mixitup.min.js"></script>
-	<script src="<%=root %>/tmplt/js/jquery.slicknav.js"></script>
-	<script src="<%=root %>/tmplt/js/owl.carousel.min.js"></script>
-	<script src="<%=root %>/tmplt/js/main.js"></script>
-
-</body>
 <script type="text/javascript">
 $(function(){
 	//이메일 선택 이벤트
@@ -185,14 +78,120 @@ function check(f) {
 		return false;
 	}
 		
-	if(f.pass1.value!=f.pass2.value){
+	if(f.pass.value!=f.pass2.value){
 		alert("비밀번호가 서로 다릅니다");
-		f.pass1.value="";
+		f.pass.value="";
 		f.pass2.value="";
 		return false; //action이 호출되지않는다
 	}
 }
+
 </script>
+</head>
+<body>
+
+    <!-- Signup Section Begin -->
+    <section class="normal-breadcrumb set-bg" data-setbg="img/normal-breadcrumb.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="normal__breadcrumb__text">
+                        <h3>UPDATE</h3>
+                        <form action="sign/memberupdate/updateaction.jsp" name="signfrm" method="post" class="form-inline"
+                        onsubmit="return check(this)">
+                        <%
+                        System.out.print(num);
+                    	//dao선언
+                    	SignDao dao=new SignDao();
+
+                    	//dto얻기
+                    	SignDto dto=dao.getMember(num);
+
+                    	//이메일 분리하기(@기준으로)
+                    	int idx=dto.getEmail().indexOf('@');
+                    	String email1=dto.getEmail().substring(0,idx); //0~idx-1까지 추출
+                    	String email2=dto.getEmail().substring(idx+1); //idx+1번지부터 끝까지
+                        %>
+                        <input type="hidden" name="num" value="<%=num%>">
+                            <table class="table table-boredered" style=" width:500px; background-color: white;" >
+                              <tr>
+                                <th style="width: 60px; height:30px; background-color: 	#F5F5F5;">이름</th>
+                                <td style="background-color: white;">
+                                <b><%=dto.getName() %></b>
+                                </td>
+                              </tr>
+                              
+                              <tr>
+                                <th style="width: 60px; height:30px; background-color: 	#F5F5F5;">아이디</th>
+                                <td style="background-color: white;">
+                                  <input type="text" name="id" class="form-control" readonly="readonly" value="<%=dto.getId()%>">
+                                  <button type="button" id="btnIdcheck">중복확인</button>
+                                </td>
+                              </tr>
+                              
+                              <tr>
+                                <th style="width: 60px; height:30px; background-color: 	#F5F5F5;">비밀번호</th>
+                                <td style="background-color: white;">
+                                  <input type="password" name="pass" placeholder="비밀번호를 입력해주세요." required="required">
+                                </td>
+                              </tr>
+                              
+                              <tr>
+                                <th style="width: 60px; height:30px; background-color: 	#F5F5F5;">비밀번호 확인</th>
+                                <td style="background-color: white;">
+                                <input type="password" name="pass2" placeholder="비밀번호를 재입력해주세요." required="required">
+                                </td>
+                              </tr>
+                              
+                              <tr>
+                                <th style="width: 60px; height:30px; background-color: 	#F5F5F5;">생년월일</th>
+                                <td style="background-color: white;">
+                                <b><%=dto.getBirth() %></b>
+                                </td>
+                              </tr>
+                              
+                              <tr>
+                                <th style="width: 60px; height:30px; background-color: 	#F5F5F5;">전화번호</th>
+                                <td style="background-color: white;"><input type="text" name="hp" value="<%=dto.getHp()%>"></td>
+                              </tr>
+                              
+                              <tr>
+                              <th width="100px;" style="background-color: #F5F5F5;">이메일</th>
+                              <td>
+                                <input type="text" name="email1" value="<%=email1 %>" class="form-control"
+                                required="required" style="width: 80px;">
+                                <b>@</b>
+                                <input type="text" name="email2" value="<%=email2 %>" class="form-control" id="email2" 
+                                required="required" style="width: 140px;"> &nbsp;&nbsp;&nbsp;
+                                <!-- <select style="width: 60px; height: 40px" id="selemail" class="form-control">
+                                  <option value="-" selected="selected">직접입력</option>
+                                  <option value="naver.com">네이버</option>
+                                  <option value="gmail.com">구글</option>
+                                  <option value="hanmail.net">다음</option>
+                                </select> -->
+                              </tr>
+                            </table>
+                      </form>
+                      <input type="submit" class="site-btn" value="UPDATE">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Signup Section End -->
+
+    <!-- Js Plugins -->
+    <script src="<%=root %>/tmplt/js/jquery-3.3.1.min.js"></script>
+	<script src="<%=root %>/tmplt/js/bootstrap.min.js"></script>
+	<script src="<%=root %>/tmplt/js/player.js"></script>
+	<script src="<%=root %>/tmplt/js/jquery.nice-select.min.js"></script>
+	<script src="<%=root %>/tmplt/js/mixitup.min.js"></script>
+	<script src="<%=root %>/tmplt/js/jquery.slicknav.js"></script>
+	<script src="<%=root %>/tmplt/js/owl.carousel.min.js"></script>
+	<script src="<%=root %>/tmplt/js/main.js"></script>
+
+</body>
 </html>
 </body>
 </html>

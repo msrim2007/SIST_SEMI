@@ -88,7 +88,27 @@ String root=request.getContextPath();
                 <div class="col-lg-2">
                     <div class="header__right">
                     	<a style="display: display;" href="./index.jsp?main=admin/adminConfig.jsp" class="search-switch"><span class="glyphicon glyphicon-cog"></span></a>
+                        
+                        <!-- 로그인 상태면 회원정보수정 로그아웃상태라면 회원가입으로 보내기 시작-->
+                        <%
+                        //로그인중인지..세션값 얻기
+                        String loginok2=(String)session.getAttribute("loginok");
+                       
+
+                        //아이디 얻기
+                        String myid2=(String)session.getAttribute("myid");
+
+                        SignDao db=new SignDao();
+                        String hnum=db.getNum(myid2);
+                        if(loginok2==null){%>
                         <a href="./index.jsp?main=sign/signup/signupform.jsp"><span class="icon_profile"></span></a>
+                        <%}else{%>
+                        <a href="./index.jsp?main=sign/memberupdate/updateform.jsp?hnum=<%=hnum%>"><span class="icon_profile"></span></a>
+                        <%}
+                        %>
+                        <!-- 로그인 상태면 회원정보수정 로그아웃상태라면 회원가입으로 보내기 종료-->
+                        
+                        
                         <!-- 로그인,로그아웃 버튼 부분 시작 -->
                         <span>
                         <%
@@ -97,10 +117,6 @@ String root=request.getContextPath();
 
                         //아이디 얻기
                         String myid=(String)session.getAttribute("myid");
-
-                        //db로부터 가입한 이름 얻기
-                        SignDao dao=new SignDao();
-                        String name=dao.getName(myid);
 
                         if(loginok==null){%>
                         <button type="button" class="btn btn-success" style="width: 55px; height: 30px;"
