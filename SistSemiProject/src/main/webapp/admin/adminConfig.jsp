@@ -38,14 +38,16 @@
     	.boxoffice {
     		position: relative;
     		left: 5%;
-    		top: 100px;
+    		top: 10px;
     		width: 100%;
     		height: 600px;
     		text-align: center;
+    		padding: 0;
+    		margin: 0;
     	}
     	
-    	button {
-    		margin: 50px;
+    	#admin_btn {
+    		margin: 0px;
     	}
     </style>
 </head>
@@ -54,12 +56,11 @@
 	<div class="container">
 		<div class="boxoffice">
 			<h1><b style="color: white;">관리자 페이지</b></h1><br><br><br><br>
-			<button class="btn btn-info btn-lg" onclick="location.href='index.jsp?main=admin/dailyBoxoffice.jsp'">일별 박스오피스 가져오기</button>
-			<button class="btn btn-info btn-lg" onclick="location.href='index.jsp?main=admin/allMovie.jsp'">영화 목록 가져오기</button>
+			<button id="admin_btn" class="btn btn-info btn-lg" onclick="location.href='index.jsp?main=admin/dailyBoxoffice.jsp'">일별 박스오피스 가져오기</button>
+			<button id="admin_btn" class="btn btn-info btn-lg" onclick="location.href='index.jsp?main=admin/allMovie.jsp'">영화 목록 가져오기</button>
+			<button id="admin_btn" class="btn btn-info btn-lg" onclick="location.href='index.jsp?main=admin/setShowing.jsp'">상영 정보 설정</button>
 		</div>
 	</div>
-	
-	
 	
 	<!-- Js Plugins -->
 	<script src="tmplt/js/jquery-3.3.1.min.js"></script>

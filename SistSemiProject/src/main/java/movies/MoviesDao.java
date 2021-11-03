@@ -1,6 +1,7 @@
 package movies;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
@@ -26,5 +27,21 @@ public class MoviesDao {
 		} finally {
 			db.dbClose(st, conn);
 		}
+	}
+	
+	public String getTitle(String movie_code) {
+		String title = "";
+		Connection conn = db.getConnection();
+		Statement stmt = null;
+		ResultSet rs = null;
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT kr_title FROM movies WHERE movie_num = '" + movie_code + "'");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, stmt, conn);
+		}
+		return title;
 	}
 }

@@ -47,20 +47,21 @@
     	.boxoffice {
     		position: relative;
     		left: 5%;
-    		top: 100px;
+    		top: 10px;
     		width: 100%;
     		height: 600px;
     		text-align: center;
-    	}
-    	
-    	button {
-    		margin: 50px;
+    		padding: 0;
+    		margin: 0;
     	}
     	
     	#result {
-    		margin-top: 5%;
-    		width: 100%;
-    		height: 100%;
+    		text-align: center;
+    		margin-bottom: 10px;
+    	}
+    	
+    	.container {
+    		margin-bottom: 100px;
     	}
     </style>
     
@@ -103,13 +104,14 @@
 	<div class="container">
 		<div class="boxoffice">
 			<h1><b style="color: white;">관리자 페이지</b></h1><br><br><br><br>
-			<button class="btn btn-info btn-lg" onclick="location.href='index.jsp?main=admin/dailyBoxoffice.jsp'">일별 박스오피스 가져오기</button>
-			<button class="btn btn-info btn-lg" onclick="location.href='index.jsp?main=admin/allMovie.jsp'">영화 목록 가져오기</button>
+			<button id="admin_btn" class="btn btn-info btn-lg" onclick="location.href='index.jsp?main=admin/dailyBoxoffice.jsp'">일별 박스오피스 가져오기</button>
+			<button id="admin_btn" class="btn btn-info btn-lg" onclick="location.href='index.jsp?main=admin/allMovie.jsp'">영화 목록 가져오기</button>
+			<button id="admin_btn" class="btn btn-info btn-lg" onclick="location.href='index.jsp?main=admin/setShowing.jsp'">상영 정보 설정</button>
 			<br><br><br>
-			<h2><b style="color: white;">날짜 선택</b></h2>
-			<input type="date" id="daily" value="<%= day %>">
+			<b style="color: white;">날짜 선택</b><input type="date" id="daily" value="<%= day %>">
+			<button id="setMain" class="btn btn-warning btn-lg">메인 페이지 최신화</button>
 			<div id="result">
-				<table class="table table-bordered" style="color: white; font-size: 16pt;">
+				<table class="table table-bordered" style="color: white; font-size: 12pt; width: 800px; height: auto;">
 					<tr>
 						<th>순위</th><th>제목</th><th>개봉일</th>
 					</tr>
@@ -119,9 +121,6 @@
 						</tr>
 					</c:forEach>
 				</table>
-				<div style="text-align: right;">
-					<button id="setMain" class="btn btn-warning btn-lg">메인 페이지 최신화</button>
-				</div>
 			</div>
 		</div>
 		
