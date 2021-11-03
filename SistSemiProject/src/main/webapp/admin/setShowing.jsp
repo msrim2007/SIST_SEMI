@@ -70,12 +70,14 @@
 	 ArrayList<ShowingDto> list = dao.getList(start, pageLength);
 	 
 	 MoviesDao movieDao = new MoviesDao();
+	 System.out.println(list.get(0).getMovie_num());
+	 System.out.println(movieDao.getTitle(list.get(0).getMovie_num()));
 	%>
 </head>
 
 <body>
 	<div class="container" style="margin-top: 10px; margin-left: 50px;">
-		<button onclick="index.jsp?main=admin/insertShowing.jsp" class="btn btn-info">상영 영화 추가</button>
+		<button onclick="location.href='index.jsp?main=admin/insertShowing.jsp'" class="btn btn-info">상영 영화 추가</button>
 		
 		<table class="table table-bordered" style="width: 800px;">
 			<thead class="thead-light">
@@ -93,8 +95,8 @@
 							<td><%= movieDao.getTitle(i.getMovie_num()) %></td>
 							<td><%= sdf.format(i.getShowing_date()) %></td>
 							<td>
-								<button onclick="index.jsp?main=admin/updateShowing.jsp?show_num=<%= i.getShow_num() %>" class="btn btn-info">수정</button>
-								<button onclick="index.jsp?main=admin/deleteShowing.jsp?show_num=<%= i.getShow_num() %>" class="btn btn-danger">삭제</button>
+								<button onclick="location.href='index.jsp?main=admin/updateShowing.jsp?show_num=<%= i.getShow_num() %>'" class="btn btn-info">수정</button>
+								<button onclick="location.href='index.jsp?main=admin/deleteShowing.jsp?show_num=<%= i.getShow_num() %>'" class="btn btn-danger">삭제</button>
 							</td>
 						</tr>
 					<%}
@@ -111,16 +113,16 @@
 						<a class="page-link" href="#" tabindex="-1" aria-disable="true">Previous</a>
 					</li>
 				<%} else {%>
-					<li class="page-item"><a class="page-link" href="index.jsp?admin/setShowing.jsp?page=<%= startPage - 1 %>" tabindex="-1" aria-disabled="true">Previous</a></li>
+					<li class="page-item"><a class="page-link" href="index.jsp?main=admin/setShowing.jsp?page=<%= startPage - 1 %>" tabindex="-1" aria-disabled="true">Previous</a></li>
 				<%}
 				for (int i = startPage; i <= endPage; i++) {%>
 					<li class="page-item">
-						<a class="page-link" href="index.jsp?admin/setShowing.jsp?page=<%= i %>"><%= i %></a>
+						<a class="page-link" href="index.jsp?main=admin/setShowing.jsp?page=<%= i %>"><%= i %></a>
 					</li>
 				<%}
 				if (totalPages == endPage) { %>
 					<li class="page-item disabled">
-						<a class="page-link" href="index.jsp?admin/setShowing.jsp?page=<%= endPage + 1 %>">Next</a>
+						<a class="page-link" href="index.jsp?main=admin/setShowing.jsp?page=<%= endPage + 1 %>">Next</a>
 					</li>
 				<%}%>
 			</ul>

@@ -4,12 +4,29 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import mysql.db.DbConnect;
 
 public class ShowingDao {
 	DbConnect db = new DbConnect();
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	
+	public void insertShowing(ShowingDto dto) {
+		String sql = "INSERT INTO showing(movie_num, showing_date) VALUES('" + dto.getMovie_num() + "', '" +  sdf.format(dto.getShowing_date()) + "')";
+	
+		Connection conn = db.getConnection();
+		Statement stmt = null;
+		try {
+			stmt = conn.createStatement();
+			stmt.execute(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			db.dbClose(stmt, conn);
+		}
+	}
 	
 	public ArrayList<ShowingDto> getList(int startRow, int endRow) {
 		String sql = "SELECT * FROM showing ORDER BY show_num LIMIT " + startRow + ", " + endRow;
