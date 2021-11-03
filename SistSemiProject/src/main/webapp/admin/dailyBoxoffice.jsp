@@ -1,8 +1,15 @@
+<%@page import="org.codehaus.jackson.map.ObjectMapper"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="org.json.simple.JSONArray"%>
+<%@page import="org.json.simple.JSONObject"%>
+<%@page import="org.json.simple.parser.JSONParser"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="com.mysql.cj.xdevapi.JsonParser"%>
 <%@page import="kr.or.kobis.kobisopenapi.consumer.rest.KobisOpenAPIRestService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -49,17 +56,46 @@
     	button {
     		margin: 50px;
     	}
+    	
+    	#result {
+    		margin-top: 5%;
+    		width: 100%;
+    		height: 100%;
+    	}
     </style>
     
     <%
     // 날짜 포맷
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     
-    String day = sdf.format(new Date());
-    String now = day;
+    Calendar cal = Calendar.getInstance();
+    cal.setTime(new Date());
+    cal.add(Calendar.DATE, -1);
+    String day = sdf.format(cal.getTime());
+    
     if (request.getParameter("day") != null) {
     	day = request.getParameter("day");
     }
+    
+    
+    
+    // 파라메터 설정
+    SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMdd");
+	String targetDt = request.getParameter("day") == null ? sdf2.format(cal.getTime()) : request.getParameter("day").replace("-", "");			//조회일자
+
+	// 발급키
+	String key = "1498e677bdca66c811a03a506cc6248b";
+	// KOBIS 오픈 API Rest Client를 통해 호출
+    KobisOpenAPIRestService service = new KobisOpenAPIRestService(key);
+
+	// 일일 박스오피스 서비스 호출 (boolean isJson, String targetDt, String itemPerPage,String multiMovieYn, String repNationCd, String wideAreaCd)
+    String dailyResponse = service.getDailyBoxOffice(true,targetDt,"10","","","");
+ 
+	// JSON
+    ObjectMapper mapper = new ObjectMapper();
+    HashMap<String,Object> dailyResult = mapper.readValue(dailyResponse, HashMap.class);
+    
+    request.setAttribute("dailyResult",dailyResult);
     %>
 </head>
 
@@ -68,29 +104,43 @@
 		<div class="boxoffice">
 			<h1><b style="color: white;">관리자 페이지</b></h1><br><br><br><br>
 			<button class="btn btn-info btn-lg" onclick="location.href='index.jsp?main=admin/dailyBoxoffice.jsp'">일별 박스오피스 가져오기</button>
-			<button class="btn btn-info btn-lg" onclick="location.href='index.jsp?main=admin/weekBoxoffice.jsp'">주간 박스오피스 가져오기</button>
 			<button class="btn btn-info btn-lg" onclick="location.href='index.jsp?main=admin/allMovie.jsp'">영화 목록 가져오기</button>
 			<br><br><br>
 			<h2><b style="color: white;">날짜 선택</b></h2>
 			<input type="date" id="daily" value="<%= day %>">
+			<div id="result">
+				<table class="table table-bordered" style="color: white; font-size: 16pt;">
+					<tr>
+						<th>순위</th><th>제목</th><th>개봉일</th>
+					</tr>
+					<c:forEach items="${dailyResult.boxOfficeResult.dailyBoxOfficeList}" var="boxoffice">
+						<tr>
+							<td><c:out value="${boxoffice.rank }"/></td><td><c:out value="${boxoffice.movieNm }"/></td><td><c:out value="${boxoffice.openDt }"/></td>
+						</tr>
+					</c:forEach>
+				</table>
+				<div style="text-align: right;">
+					<button id="setMain" class="btn btn-warning btn-lg">메인 페이지 최신화</button>
+				</div>
+			</div>
 		</div>
 		
 		<script type="text/javascript">
 			$("#daily").change(function(){
 				var date1 = new Date($("#daily").val());
 				var date2 = new Date();
+				date2.setDate(date2.getDate() - 1);
 				if (date1 > date2){
-					alert("잘못된 날짜입니다.");
+					alert("잘못된 날짜입니다. (일별 박스오피스는 전날을 기준으로 합니다.)");
 				} else {
-					$("#result").html($("#daily").val());
 					location.href = "index.jsp?main=admin/dailyBoxoffice.jsp?day=" + $("#daily").val();
 				}
 			});
+			
+			$("#setMain").on("click", function() {
+				// 메인 페이지 데이터베이스 만들고 DAO 구현
+			});
 		</script>
-		
-		<div id="result">
-		
-		</div>
 	</div>
 	
 	
