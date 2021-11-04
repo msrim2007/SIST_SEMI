@@ -1,21 +1,19 @@
 package review;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Vector;
 
+import review.reviewDto;
 import mysql.db.DbConnect;
 
-public class reviewDao {
-
+public class reviewDao {	
 	
-	
-	DbConnect db=new DbConnect();
-	
-	
+	DbConnect db=new DbConnect();		
 	
 	//insert
 	public void insertReview(reviewDto dto) {
@@ -23,18 +21,16 @@ public class reviewDao {
 		Connection conn=db.getConnection();
 		PreparedStatement pstmt=null;
 		
-		String sql="insert into review (num, movie_num,subject,content,likes,writeday,myid) values(?,?,?,?,?,?,now(),?)";
+		String sql="insert into review (movie_num,subject,content,writeday,myid) values(?,?,?,now(),?)";
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
 			
 			//바인딩
-			pstmt.setString(1, dto.getNum());
-			pstmt.setString(2, dto.getMovie_num());
-			pstmt.setString(3, dto.getSubject());
-			pstmt.setString(4, dto.getContent());
-			pstmt.setInt(5, dto.getLikes());
-			pstmt.setString(6, dto.getMyid());
+			pstmt.setInt(1, dto.getMovie_num());
+			pstmt.setString(2, dto.getSubject());
+			pstmt.setString(3, dto.getContent());
+			pstmt.setString(4, dto.getMyid());
 			
 			//실행
 			pstmt.execute();
@@ -95,7 +91,7 @@ public class reviewDao {
 					reviewDto dto=new reviewDto();
 							
 					dto.setNum(rs.getString("num"));
-					dto.setMovie_num(rs.getString("movie_num"));
+					dto.setMovie_num(rs.getInt("movie_num"));
 					dto.setSubject(rs.getString("subject"));
 					dto.setContent(rs.getString("content"));						
 					dto.setLikes(rs.getInt("likes"));
@@ -132,7 +128,7 @@ public class reviewDao {
 						
 						if(rs.next()) {
 							dto.setNum(rs.getString("num"));
-							dto.setMovie_num(rs.getString("movie_num"));
+							dto.setMovie_num(rs.getInt("movie_num"));
 							dto.setSubject(rs.getString("subject"));
 							dto.setContent(rs.getString("content"));						
 							dto.setLikes(rs.getInt("likes"));
@@ -211,5 +207,5 @@ public class reviewDao {
 					} finally {
 						db.dbClose(pstmt, conn);
 					}
-				}				
+				}	
 }

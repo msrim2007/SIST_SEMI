@@ -29,7 +29,7 @@ $(function() {
 		$.ajax({
 			type:"get",
 			dataType:"json",
-			url:"guest/ajaxlikes.jsp",
+			url:"review/ajaxlikes.jsp",
 			data:{"num":num},
 			success:function(data){
 				alert(data.likes);
@@ -95,15 +95,16 @@ no=totalCount-(currentPage-1)*perPage;
 SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 %>     
 
-<%
+<%-- <%
 if(loginok!=null){ //로그인중 %>
 	<jsp:include page="reviewform.jsp"/>
 	<hr align="left" width="700">
 <%} 
-%>
+%> --%>
 
 <!-- 관람평 출력 -->
 <div>
+<button type="button" onclick="location.href='review/reviewform.jsp'" class="btn btn-default">작성</button>
 <%
 for(reviewDto dto:list){	
 	//signdao에서 이름 얻기
@@ -130,7 +131,9 @@ for(reviewDto dto:list){
 <!-- 글제목,공감 -->
     <tr>
       <td><b><%=dto.getSubject() %></b>
-      <span class="num" num="<%=dto.getNum() %>" style="margin-left: 450px;">추천  <%=dto.getLikes() %></span>
+      <span class="likes" style="cursor: pointer; position: absolute; left: 700px;" num="<%=dto.getNum()%>">공감</span>
+	  <span class="getlikes" style="position: absolute; left: 730px;"><%=dto.getLikes() %></span>
+      <span class="glyphicon glyphicon-thumbs-up" style="color: magenta; font-size: 0px; float: right; "></span>
       </td>
     </tr>
     
@@ -143,19 +146,27 @@ for(reviewDto dto:list){
     <tr>
       <td>
       <span style="margin-left: 340px;"><%=name %> (<%=dto.getMyid() %>)</span>&nbsp;&nbsp;|&nbsp;&nbsp;
-        <%
+       
+      <span><%=sdf.format(dto.getWriteday()) %></span>
+      </td>   
+    </tr>
+    
+<!-- 수정,삭제 버튼 -->
+         <%
         //로그인한 아이디 세션에서 얻기
         String myid=(String)session.getAttribute("myid");
         
         //로그인한 아이디와 글쓴아이디가 같을 경우에만 삭제,수정
 	      if(loginok!=null && dto.getMyid().equals(myid)){ %>
-	    	  |<a href="index.jsp?main=review/updateform.jsp?num=<%=dto.getNum() %>&currentPage=<%=currentPage %>" style="color: black;">수정</a>  	  
-	    	  |<a href="review/delete.jsp?num=<%=dto.getNum() %>&currentPage=<%=currentPage %>" style="color: black;">삭제</a>
+	      <tr>
+	        <td colspan="2" align="center">
+	    	  <a href="index.jsp?main=review/updateform.jsp?num=<%=dto.getNum() %>&currentPage=<%=currentPage %>" style="color: black;">수정</a>  	  
+	    	  | <a href="review/delete.jsp?num=<%=dto.getNum() %>&currentPage=<%=currentPage %>" style="color: black;">삭제</a>
+	    	</td>
+         </tr> 
 	     <% }
         %>
-      <span><%=sdf.format(dto.getWriteday()) %></span>
-      </td>   
-    </tr>
+         
       
   </table>
 <%}
