@@ -77,5 +77,58 @@ public class MoviesDao {
 		
 		return list;
 	}
+	
+	public int getTotalRows() {
+		int count = 0;
+		
+		Connection conn = db.getConnection();
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT COUNT(movie_num) FROM movies");
+			int index = 0;
+			if (rs.next()) {
+				count = rs.getInt(++index);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, stmt, conn);
+		}
+		
+		return count;
+	}
+	
+	public ArrayList<MoviesDto> getList(int startRow, int endRow) {
+		String sql = "SELECT * FROM movies ORDER BY movie_num desc LIMIT " + startRow + ", " + endRow;
+		ArrayList<MoviesDto> dtos = new ArrayList<MoviesDto>();
+		MoviesDto dto;
+		
+		Connection conn = db.getConnection();
+		Statement stmt = null;
+		ResultSet rs = null;
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+				dto = new MoviesDto();
+				dto.setMovie_num(rs.getString("movie_num"));
+				dto.setDirector(rs.getString("director"));
+				dto.setEn_title(rs.getString("en_title"));
+				dto.setGenre(rs.getString("genre"));
+				dto.setKr_title(rs.getString("kr_title"));
+				dto.setOpenDate(rs.getDate("opendate"));
+				dtos.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, stmt, conn);
+		}
+		
+		return dtos;
+	}
 }
 
