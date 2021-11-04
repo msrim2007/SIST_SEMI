@@ -13,24 +13,26 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%      
+<%
 request.setCharacterEncoding("utf-8");
+
+String myid=(String)session.getAttribute("myid");
 
 reviewDto dto=new reviewDto();
   
 String subject=request.getParameter("subject");
 String content=request.getParameter("content");
 
+String num=request.getParameter("num");
+
 dto.setSubject(subject);
 dto.setContent(content);
+dto.setNum(num);
 
 reviewDao dao=new reviewDao();
 dao.updateReview(dto);
 
-String num=request.getParameter("num");
-String currentPage=request.getParameter("currentPage");
-
-response.sendRedirect("../index.jsp?main=review/reviewlist.jsp?currentPage="+currentPage);
+response.sendRedirect("../index.jsp?main=review/reviewlist.jsp");
 %>
 </body>
 </html>

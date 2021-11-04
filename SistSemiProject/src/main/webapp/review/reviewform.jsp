@@ -46,7 +46,7 @@ movie_num(int) 활용하기..for문..다른 곳도 다 고치기
   <tr>
     <th width="100"><span class="glyphicon glyphicon-pencil" style="margin-left: 30px; margin-top: 130px;"></span></th>
     <td>
-      <textarea style="width: 400px; height: 300px;" name="content" required="required"></textarea>
+      <textarea style="width: 400px; height: 300px;" name="content" required="required" class="form-control"></textarea>
     </td>
   </tr>
   

@@ -14,7 +14,6 @@
 </head>
 <%       
 String num=request.getParameter("num");
-String currentPage=request.getParameter("currentPage");
 
 reviewDao dao=new reviewDao();
 reviewDto dto=dao.getData(num);
@@ -25,16 +24,14 @@ reviewDto dto=dao.getData(num);
  
 <!-- hidden 처리 -->
 <input type="hidden" name="num" value="<%=num%>">
-<input type="hidden" name="currentPage" value="<%=currentPage%>">
  
   <table class="table table-bordered" style="width: 600px; margin-left: 50px; margin-top: 50px;">
-  <caption style="margin-left: 280px;font-size: 1.5em;"><b>관람평</b></caption>
   
 <!-- 제목,내용 수정 -->
   <tr>
     <th width="100"><span class="glyphicon glyphicon-list" style="margin-left: 30px; margin-top: 10px;"></span></th>
     <td>
-      <input type="text" class="form-control" required="required" autofocus="autofocus" name="subject" 
+      <input type="text" class="form-control" required="required" name="subject" 
         style="width: 300px;" value="<%=dto.getSubject()%>">
     </td>
   </tr>
@@ -42,7 +39,7 @@ reviewDto dto=dao.getData(num);
   <tr>
     <th width="100"><span class="glyphicon glyphicon-pencil" style="margin-left: 30px; margin-top: 130px;"></span></th>
     <td>
-      <textarea style="width: 400px; height: 300px;"><%=dto.getContent() %></textarea>
+      <textarea style="width: 400px; height: 300px;" class="form-control" name="content" required="required"><%=dto.getContent() %></textarea>
     </td> 
     
   </tr>
@@ -50,7 +47,6 @@ reviewDto dto=dao.getData(num);
   <tr>
   <td colspan="2" align="center">
     <button type="submit" class="btn btn-default">수정</button>
-    <button type="reset" class="btn btn-default">이전</button>
   </td>
   </tr>
   </table>

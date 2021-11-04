@@ -56,7 +56,7 @@ int totalPage;
 int startPage; 
 int endPage;  
 int start;  
-int perPage=10;  
+int perPage=3;  
 int perBlock=5;  
 int currentPage;
 int no;  
@@ -104,7 +104,8 @@ if(loginok!=null){ //로그인중 %>
 
 <!-- 관람평 출력 -->
 <div>
-<button type="button" onclick="location.href='review/reviewform.jsp'" class="btn btn-default">작성</button>
+<button type="button" onclick="location.href='review/reviewform.jsp'" class="btn btn-default"
+  style="position: absolute;">작성</button>
 <%
 for(reviewDto dto:list){	
 	//signdao에서 이름 얻기
@@ -118,7 +119,7 @@ for(reviewDto dto:list){
    
 <!-- 번호 -->
     <tr>
-      <td rowspan="5">
+      <td rowspan="6">
         <b><%=dto.getNum() %></b>
       </td>
     </tr>
@@ -160,8 +161,8 @@ for(reviewDto dto:list){
 	      if(loginok!=null && dto.getMyid().equals(myid)){ %>
 	      <tr>
 	        <td colspan="2" align="center">
-	    	  <a href="index.jsp?main=review/updateform.jsp?num=<%=dto.getNum() %>&currentPage=<%=currentPage %>" style="color: black;">수정</a>  	  
-	    	  | <a href="review/delete.jsp?num=<%=dto.getNum() %>&currentPage=<%=currentPage %>" style="color: black;">삭제</a>
+	    	  <a href="index.jsp?main=review/updateform.jsp?num=<%=dto.getNum() %>&currentPage=<%=currentPage %>" style="color: orange;">수정</a>  	  
+	    	  | <a href="review/delete.jsp?num=<%=dto.getNum() %>&currentPage=<%=currentPage %>" style="color: red;">삭제</a>
 	    	</td>
          </tr> 
 	     <% }
