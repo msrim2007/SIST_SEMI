@@ -1,6 +1,6 @@
 package movies;
 
-import java.sql.Date;
+import java.util.Date;
 
 
 import lombok.Getter;
@@ -9,6 +9,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MoviesDto {
-	private String movie_num, kr_title, en_title, type, genre, director, company;
-	private Date open_date;
+	private String movie_num, kr_title, en_title, genre, director;
+	private Date openDate;
 }

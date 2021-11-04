@@ -17,6 +17,8 @@
 String root=request.getContextPath();
 //loginok라는 세션을 제거한다
 session.removeAttribute("loginok");
+//myid 세선 제거
+session.removeAttribute("myid");
 //loginmain으로 이동
 response.sendRedirect(root+"/index.jsp?main=sign/login/loginform.jsp");
 %>

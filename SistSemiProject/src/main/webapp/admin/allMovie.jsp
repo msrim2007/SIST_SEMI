@@ -47,24 +47,11 @@
     	.boxoffice {
     		position: relative;
     		left: 5%;
-    		top: 100px;
+    		top: 10px;
     		width: 100%;
-    		height: 600px;
+    		height: auto;
     		text-align: center;
-    	}
-    	
-    	button {
-    		margin: 50px;
-    	}
-    	
-    	#result {
-    		margin-top: 5%;
-    		width: 100%;
-    		height: 100%;
-    	}
-    	
-    	div.form {
-    		text-align: center;
+    		margin-top: 0;
     	}
     	
     	input {
@@ -73,17 +60,22 @@
     		height: 30px;
     	}
     	
-    	b {
-    		font-size: 8pt;
-    	}
-    	
     	th { 
     		font-size: 10pt;
     	}
     	
     	td {
 			font-size: 8pt;
+			padding: 0;
 		}
+		
+		.btn {
+			margin: 0;
+		}
+		
+		.container {
+    		margin-bottom: 100px;
+    	}
     </style>
     
     <%
@@ -133,7 +125,7 @@
 					appendStr += "</td>";
 					
 					insertUrl = "index.jsp?main=admin/insertMovie.jsp?code=" + movie.movieCd;
-					appendStr += "<td><button onclick='location.href='" + insertUrl +"' class='btn btn-info'>추가</button></td></tr>";
+					appendStr += "<td><a href='" + insertUrl +"' class='btn btn-info'>추가</button></td></tr>";
 					$("#boxtab tbody").append(appendStr);
 				}
 			}
@@ -142,33 +134,27 @@
 </head>
 
 <body>
-	<div class="container">
+	<div class="container" style="padding: 0;">
 		<div class="boxoffice">
-			<h1><b style="color: white;">관리자 페이지</b></h1><br><br><br><br>
+			<h1><b style="color: white;">관리자 페이지</b></h1><br>
 			<button class="btn btn-info btn-lg" onclick="location.href='index.jsp?main=admin/dailyBoxoffice.jsp'">일별 박스오피스 가져오기</button>
 			<button class="btn btn-info btn-lg" onclick="location.href='index.jsp?main=admin/allMovie.jsp'">영화 목록 가져오기</button>
+			<button id="admin_btn" class="btn btn-info btn-lg" onclick="location.href='index.jsp?main=admin/setShowing.jsp'">상영 정보 설정</button>
 			<br><br><br>
-			<div class="form">
-				<form>
-					<b style="color: white;">현재페이지 :</b><input type="text" name="curPage" value="<%=curPage %>">
-					<b style="color: white;">최대 출력갯수:</b><input type="text" name="itemPerPage" value="<%=itemPerPage %>">
-					<b style="color: white;">감독명:</b><input type="text" name="directorNm" value="<%=directorNm %>">		
-					<b style="color: white;">영화명:</b><input type="text" name="movieNm" value="<%=movieNm %>">
-					<b style="color: white;">개봉연도:</b><input type="text" name="openStartDt" value="<%=openStartDt %>">
-				</form>
-				<button id="getMovie" class="btn btn-warning">조회</button>
-			</div>
-			
-			<div id="result">
-				<table class="table table-bordered" id="boxtab" style="color: white; font-size: 16pt; height: auto;">
-					<thead>
-						<tr>
-							<th rowspan="2">영화 제목</th><th>제작년도</th><th><th>개봉일</th><th>국가</th><th>감독명</th><th>DB</th>
-						</tr>
-					</thead>
-					<tbody></tbody>
-				</table>
-			</div>
+			<b style="color: white;">현재페이지 :</b><input type="text" name="curPage" value="<%=curPage %>">
+			<b style="color: white;">최대 출력갯수:</b><input type="text" name="itemPerPage" value="<%=itemPerPage %>">
+			<b style="color: white;">감독명:</b><input type="text" name="directorNm" value="<%=directorNm %>">		
+			<b style="color: white;">영화명:</b><input type="text" name="movieNm" value="<%=movieNm %>">
+			<b style="color: white;">개봉연도:</b><input type="text" name="openStartDt" value="<%=openStartDt %>">
+			<button id="getMovie" class="btn btn-warning">조회</button>
+			<table class="table table-bordered" id="boxtab" style="color: white; font-size: 16pt; height: auto;">
+				<thead>
+					<tr>
+						<th rowspan="2">영화 제목</th><th>제작년도</th><th><th>개봉일</th><th>국가</th><th>감독명</th><th>DB</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
 		</div>
 	</div>
 	

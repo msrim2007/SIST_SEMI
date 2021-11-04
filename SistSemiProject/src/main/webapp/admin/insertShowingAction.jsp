@@ -1,3 +1,7 @@
+<%@page import="java.sql.Timestamp"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="showing.ShowingDto"%>
+<%@page import="showing.ShowingDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,9 +20,20 @@
 </head>
 
 <body>
-	<div class="container">
+	<%
+	request.setCharacterEncoding("utf-8");
+	Timestamp show_date = Timestamp.valueOf(request.getParameter("showing_date") + " 00:00:00");
 	
-	</div>
+	ShowingDao dao = new ShowingDao();
+	ShowingDto dto = new ShowingDto();
+	
+	dto.setMovie_num(request.getParameter("movie_num"));
+	dto.setShowing_date(show_date);
+	
+	dao.insertShowing(dto);
+	%>
 </body>
-
+	<script type="text/javascript">
+		location.href = "index.jsp?main=admin/setShowing.jsp";
+	</script>
 </html>
