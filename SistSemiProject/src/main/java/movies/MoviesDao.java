@@ -130,5 +130,30 @@ public class MoviesDao {
 		
 		return dtos;
 	}
+	
+	public MoviesDto getData(String movie_num) {
+		MoviesDto dto = new MoviesDto();
+		Connection conn = db.getConnection();
+		Statement stmt = null;
+		ResultSet rs = null;
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM movies WHERE movie_num='" + movie_num + "'");
+			if (rs.next()) {
+				dto.setDirector(rs.getString("director"));
+				dto.setEn_title(rs.getString("en_title"));
+				dto.setGenre(rs.getString("genre"));
+				dto.setKr_title(rs.getString("kr_title"));
+				dto.setMovie_num(movie_num);
+				dto.setOpenDate(rs.getDate("opendate"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, stmt, conn);
+		}
+		
+		return dto;
+	}
 }
 

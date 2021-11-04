@@ -159,6 +159,12 @@
 	</div>
 	
 	<script type="text/javascript">
+		$("input").keydown(function(key) {
+			if (key.keyCode == 13) {
+				location.href = "index.jsp?main=admin/allMovie.jsp?curPage=" + $("input[name=curPage]").val() + "&itemPerPage=" + $("input[name=itemPerPage]").val() + "&directorNm=" + $("input[name=directorNm]").val() + "&movieNm=" + $("input[name=movieNm]").val() + "&openStartDt=" + $("input[name=openStartDt]").val();
+			}
+		});
+		
 		$("#getMovie").on("click", function(){
 			location.href = "index.jsp?main=admin/allMovie.jsp?curPage=" + $("input[name=curPage]").val() + "&itemPerPage=" + $("input[name=itemPerPage]").val() + "&directorNm=" + $("input[name=directorNm]").val() + "&movieNm=" + $("input[name=movieNm]").val() + "&openStartDt=" + $("input[name=openStartDt]").val();
 		});
