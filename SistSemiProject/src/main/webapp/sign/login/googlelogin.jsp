@@ -12,13 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title></title> 
-    
 <%
-//세션으로 부터 id를 얻는다
-String myid=(String)session.getAttribute("myid");
-//db로부터 id에 하당하는 name을 얻는다
-SignDao db=new SignDao();
-String name=db.getName(myid);
+String gname=request.getParameter("gname");
 //프로젝트 경로구하기
 String root=request.getContextPath();
 %>
@@ -50,7 +45,7 @@ String root=request.getContextPath();
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="normal__breadcrumb__text">
-                      <h2><%=name %>님 로그인을 환영합니다</h2>
+                      <h2><%=gname %>님 로그인을 환영합니다</h2>
                         <br>
                         <input type="button" class="site-btn" value="LOG OUT" onclick="location.href='sign/login/logoutaction.jsp'">
                     </div>
