@@ -139,7 +139,7 @@ public class reviewDao {
 				
 				
 		//수정
-		public void updateReview(reviewDto dto) {			
+		public void updateReview(reviewDto dto) { 			
 		    Connection conn=db.getConnection();
 			PreparedStatement pstmt=null;
 					

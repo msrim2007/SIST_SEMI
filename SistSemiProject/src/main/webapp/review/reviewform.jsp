@@ -35,7 +35,7 @@ movie_num(int) 활용하기..for문..다른 곳도 다 고치기
       </select>
     </td>
   </tr> -->
-  
+   
   <tr>
     <th width="100"><span class="glyphicon glyphicon-list" style="margin-left: 30px; margin-top: 10px;"></span></th>
     <td>

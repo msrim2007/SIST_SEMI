@@ -28,7 +28,7 @@ reviewDto dto=dao.getData(num);
   <table class="table table-bordered" style="width: 600px; margin-left: 50px; margin-top: 50px;">
   
 <!-- 제목,내용 수정 -->
-  <tr>
+  <tr> 
     <th width="100"><span class="glyphicon glyphicon-list" style="margin-left: 30px; margin-top: 10px;"></span></th>
     <td>
       <input type="text" class="form-control" required="required" name="subject" 

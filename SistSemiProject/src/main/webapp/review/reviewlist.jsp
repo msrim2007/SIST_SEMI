@@ -130,7 +130,7 @@ for(reviewDto dto:list){
     </tr>
     
 <!-- 글제목,공감 -->
-    <tr>
+    <tr> 
       <td><b><%=dto.getSubject() %></b>
       <span class="likes" style="cursor: pointer; position: absolute; left: 700px;" num="<%=dto.getNum()%>">공감</span>
 	  <span class="getlikes" style="position: absolute; left: 730px;"><%=dto.getLikes() %></span>

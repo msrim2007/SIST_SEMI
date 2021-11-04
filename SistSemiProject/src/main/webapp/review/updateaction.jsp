@@ -13,7 +13,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
+<% 
 request.setCharacterEncoding("utf-8");
 
 String myid=(String)session.getAttribute("myid");

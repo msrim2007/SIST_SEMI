@@ -13,7 +13,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%    
+<%     
 request.setCharacterEncoding("utf-8");
 //세션으로부터 db에 저장할 아이디
 String myid=(String)session.getAttribute("myid");
