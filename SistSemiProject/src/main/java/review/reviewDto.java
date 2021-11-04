@@ -7,7 +7,7 @@ public class reviewDto {
 	
 	
 	private String num;
-	private int movie_num;
+	private String movie_num;
 	private String subject;
 	private String content;
 	private int likes;
@@ -21,10 +21,11 @@ public class reviewDto {
 	public void setNum(String num) {
 		this.num = num;
 	}
-	public int getMovie_num() {
+
+	public String getMovie_num() {
 		return movie_num;
 	}
-	public void setMovie_num(int movie_num) {
+	public void setMovie_num(String movie_num) {
 		this.movie_num = movie_num;
 	}
 	public String getSubject() {

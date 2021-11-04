@@ -20,12 +20,13 @@ String myid=(String)session.getAttribute("myid");
 
 String content=request.getParameter("content");
 String subject=request.getParameter("subject");
-/* String movie_num=request.getParameter("movie_num"); */
- 
+String movie_num=request.getParameter("movie_num");
+  
 reviewDto dto=new reviewDto();
 dto.setContent(content);
 dto.setSubject(subject);
-/* dto.setMovie_num(movie_num); */
+dto.setMovie_num(movie_num);
+
 dto.setMyid(myid);
 
 reviewDao dao=new reviewDao();

@@ -10,7 +10,7 @@ import java.util.Vector;
 
 import review.reviewDto;
 import mysql.db.DbConnect;
-
+ 
 public class reviewDao {	
 	
 	DbConnect db=new DbConnect();		
@@ -26,7 +26,7 @@ public class reviewDao {
 		try {
 			pstmt=conn.prepareStatement(sql);
 						
-			pstmt.setInt(1, dto.getMovie_num());
+			pstmt.setString(1, dto.getMovie_num());
 			pstmt.setString(2, dto.getSubject());
 			pstmt.setString(3, dto.getContent());
 			pstmt.setString(4, dto.getMyid());
@@ -87,7 +87,7 @@ public class reviewDao {
 					reviewDto dto=new reviewDto();
 							
 					dto.setNum(rs.getString("num"));
-					dto.setMovie_num(rs.getInt("movie_num"));
+					dto.setMovie_num(rs.getString("movie_num"));
 					dto.setSubject(rs.getString("subject"));
 					dto.setContent(rs.getString("content"));						
 					dto.setLikes(rs.getInt("likes"));
@@ -123,7 +123,7 @@ public class reviewDao {
 						
 				if(rs.next()) {
 					dto.setNum(rs.getString("num"));
-					dto.setMovie_num(rs.getInt("movie_num"));
+					dto.setMovie_num(rs.getString("movie_num"));
 					dto.setSubject(rs.getString("subject"));
 					dto.setContent(rs.getString("content"));						
 					dto.setLikes(rs.getInt("likes"));

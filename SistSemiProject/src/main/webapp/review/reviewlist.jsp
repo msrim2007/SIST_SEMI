@@ -1,4 +1,4 @@
-<%@page import="movies.MoviesDto"%>
+<%@page import="movies.MoviesDao"%>
 <%@page import="Sign.SignDao"%>
 <%@page import="review.reviewDto"%>
 <%@page import="java.util.List"%>
@@ -112,21 +112,21 @@ for(reviewDto dto:list){
 	SignDao sdao=new SignDao();
 	String name=sdao.getName(dto.getMyid());
 	
-	//moviedto
-	MoviesDto mdto=new MoviesDto();
+	MoviesDao mdao=new MoviesDao();
+	String movie=mdao.getTitle(dto.getMovie_num());
 	%>
 	<table class="table table-bordered" style="width: 600px; margin-top: 30px; margin-left: 100px;">
    
 <!-- 번호 -->
     <tr>
-      <td rowspan="6">
+      <td rowspan="7">
         <b><%=dto.getNum() %></b>
       </td>
     </tr>
     
 <!-- 영화 -->
     <tr>
-      <%-- <td><%=mdto.getMovie_num() %></td> --%>  
+      <td><%=movie %></td>
     </tr>
     
 <!-- 글제목,공감 -->
@@ -137,7 +137,7 @@ for(reviewDto dto:list){
       <span class="glyphicon glyphicon-thumbs-up" style="color: magenta; font-size: 0px; float: right; "></span>
       </td>
     </tr>
-     
+      
 <!-- 글내용 -->
     <tr>
       <td><%=dto.getContent().replace("\n", "<br>") %></td>  
