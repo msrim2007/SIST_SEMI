@@ -137,7 +137,7 @@ for(reviewDto dto:list){
       <span class="glyphicon glyphicon-thumbs-up" style="color: magenta; font-size: 0px; float: right; "></span>
       </td>
     </tr>
-    
+     
 <!-- 글내용 -->
     <tr>
       <td><%=dto.getContent().replace("\n", "<br>") %></td>  

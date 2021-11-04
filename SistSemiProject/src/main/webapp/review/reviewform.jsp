@@ -12,7 +12,7 @@
 <title>Insert title here</title>
 </head>
 <body>  
-   
+    
 <form action="reviewaction.jsp" method="post" class="form-inline">
   <table class="table table-bordered" style="width: 600px; margin-left: 50px; margin-top: 50px;">
   <caption style="margin-left: 280px;font-size: 1.5em;"><b>관람평</b></caption>

@@ -18,7 +18,7 @@ String currentPage=request.getParameter("currentPage");
 
 reviewDao dao=new reviewDao();
 dao.deleteReview(num);
- 
+  
  
 response.sendRedirect("../index.jsp?main=review/reviewlist.jsp?currentPage="+currentPage);
 %>
