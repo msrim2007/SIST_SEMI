@@ -72,10 +72,16 @@
 	 
 	 MoviesDao movieDao = new MoviesDao();
 	%>
+	
+	<style type="text/css">
+		td {
+			font-size: 16pt;
+		}
+	</style>
 </head>
 
 <body>
-	<div class="container" style="margin-top: 10px; margin-left: 50px;">
+	<div align="center" class="container" style="margin-top: 10px; margin-left: 50px;">
 		<button onclick="location.href='index.jsp?main=admin/insertShowing.jsp'" class="btn btn-info">상영 영화 추가</button>
 		
 		<table class="table table-bordered" style="width: 800px;">
