@@ -1,3 +1,4 @@
+<%@page import="showing.ShowingDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,7 +17,16 @@
 </head>
 
 <body>
+	<%
+	request.setCharacterEncoding("utf-8");
 	
+	String show_num = request.getParameter("show_num");
+	
+	ShowingDao dao = new ShowingDao();
+	dao.deleteShowing(show_num);
+	%>
 </body>
-
+	<script type="text/javascript">
+		location.href = "index.jsp?main=admin/setShowing.jsp";
+	</script>
 </html>

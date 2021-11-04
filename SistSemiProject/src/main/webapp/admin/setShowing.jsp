@@ -37,11 +37,12 @@
 	<%
 	request.setCharacterEncoding("utf-8");
 	
-	SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd");
+	SimpleDateFormat sdf = new SimpleDateFormat("yy년 MM월 dd일 HH시 mm분");
 	ShowingDao dao = new ShowingDao();
 	
 	int pageLength = 5;
-	int totalPages = dao.getTotalRows();
+	int totalRows = dao.getTotalRows();
+	int totalPages = totalRows % pageLength == 0 ? totalRows / pageLength : (totalRows / pageLength) + 1;
 	int cPage;
 	String tempPage = request.getParameter("page");
 	if (tempPage == null || tempPage.length() == 0) {
@@ -70,8 +71,6 @@
 	 ArrayList<ShowingDto> list = dao.getList(start, pageLength);
 	 
 	 MoviesDao movieDao = new MoviesDao();
-	 System.out.println(list.get(0).getMovie_num());
-	 System.out.println(movieDao.getTitle(list.get(0).getMovie_num()));
 	%>
 </head>
 
@@ -88,7 +87,7 @@
 			<tbody style="color: white;">
 				<%
 				if (list.size() != 0) {
-					int pageNum = totalPages - (cPage - 1) * pageLength;
+					int pageNum = totalRows - (cPage - 1) * pageLength;
 					for (ShowingDto i : list) {%>
 						<tr>
 							<td><%= pageNum-- %></td><td><%= i.getShow_num() %></td>

@@ -11,18 +11,17 @@ String root=request.getContextPath();
 <head>
 	<meta charset="UTF-8" name='viewport' content='width=device-width, initial-scale=1.0'>
 	
-	<!-- TITLE -->
-	<title>영화 예매 웹사이트</title>
-
 	<!-- jQuery -->
     <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
-   	
-    <!-- CSS -->
+    
+    <!-- 합쳐지고 최소화된 최신 CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-    <!-- 자바스크립트 -->
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-	<script src="tmplt/js/KobisOpenAPIRestService.js"></script>
+	
+	<!-- TITLE -->
+	<title>영화 예매 웹사이트</title>
 	
 	<!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -160,14 +159,16 @@ String root=request.getContextPath();
     <!-- Footer End -->
     
     <!-- Js Plugins -->
+    <script src="tmplt/js/KobisOpenAPIRestService.js"></script>
 	<script src="tmplt/js/jquery-3.3.1.min.js"></script>
 	<script src="tmplt/js/bootstrap.min.js"></script>
 	<script src="tmplt/js/player.js"></script>
-	<script src="tmplt/js/jquery.nice-select.min.js"></script>
 	<script src="tmplt/js/mixitup.min.js"></script>
+	<script src="tmplt/js/jquery.nice-select.min.js"></script>
 	<script src="tmplt/js/jquery.slicknav.js"></script>
 	<script src="tmplt/js/owl.carousel.min.js"></script>
 	<script src="tmplt/js/main.js"></script>
+	
 </body>
 
 </html>

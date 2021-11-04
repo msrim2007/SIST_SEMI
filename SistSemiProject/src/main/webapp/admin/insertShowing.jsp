@@ -30,14 +30,6 @@
     <link rel="stylesheet" href="tmplt/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="tmplt/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="tmplt/css/style.css" type="text/css">
-    
-    <style type="text/css">
-    	b {
-    		font-size: 14pt;
-    		color: white;
-    		margin-left: 10%;
-    	}
-    </style>
 </head>
 
 <body>
@@ -53,19 +45,21 @@
 				<%} %>
 			</select>
 			
-			<b>상영 날짜</b>
+			<b style="font-size: 14pt; color: white; margin-left: 10%;">상영 날짜</b>
 			<input type="date" id="show_date" style="margin-right: 20px;">
+			<input type="time" id="show_time" style="margin-right: 20px;"> 
 			<button class="btn btn-info btn-lg" id="insert" style="margin-right: 10px;">추가</button>
-			<button class="btn btn-warning btn-lg" onclick="location.href='index.jsp?admin/setShowing.jsp'">취소</button>
+			<button class="btn btn-warning btn-lg" onclick="location.href='index.jsp?main=admin/setShowing.jsp'">취소</button>
 		</div>
 	</div>
 	
 	<script type="text/javascript">
 		$("#insert").on("click", function(){
 			var title = $("#titles option:selected").val();
-			var date = $("#show_date").val()
-			if (date != null && date != "") {
-				location.href = "index.jsp?main=admin/insertShowingAction.jsp?movie_num=" + title + "&showing_date=" + date;
+			var date = $("#show_date").val();
+			var time = $("#show_time").val();
+			if (date != null && date != "" && time != null && time != "") {
+				location.href = "index.jsp?main=admin/insertShowingAction.jsp?movie_num=" + title + "&showing_date=" + date + " " + time;
 			} else {
 				alert("잘못된 날짜입니다.");
 			}
