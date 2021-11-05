@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -140,6 +141,9 @@ public class ShowingDao {
 			while (rs.next()) {
 				dto = new ShowingDto();
 				dto.setMovie_num(rs.getString("movie_num"));
+				dto.setShow_num(rs.getString("show_num"));
+				dto.setShowing_date(rs.getTimestamp("showing_date"));
+				list.add(dto);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

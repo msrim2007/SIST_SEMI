@@ -98,6 +98,10 @@
 		.theaters:hover {
 			cursor: pointer;
 		}
+		
+		.showDate:hover {
+			cursor: pointer;
+		}
 	</style>
 	
 	<script type="text/javascript">
@@ -111,9 +115,14 @@
 					$(this).closest("tr").css("background-color", '#ccc');
 					movie_num = $(this).siblings("input").val();
 				} else {
+					$("div.select-date").children("div.scroll").html("");
 					$(this).closest("tr").css("background-color", "rgba(0, 0, 0, 0)");
 					movie_num = "";
 				}
+				
+				if (movie_num != "" && theater_num != "") {
+					getDate();
+ 				}
 			});
 			
 			$("tr.theaters").children("td").click(function () {
@@ -122,10 +131,45 @@
 					$(this).closest("tr").css("background-color", '#ccc');
 					theater_num = $(this).children("input").val();
 				} else {
+					$("div.select-date").children("div.scroll").html("");
 					$(this).closest("tr").css("background-color", "rgba(0, 0, 0, 0.075)");
 					theater_num = "";
 				}
+ 				
+ 				if (movie_num != "" && theater_num != "") {
+					getDate();
+ 				}
 			});
+			
+			function getDate() {
+				$.ajax({
+					type: "get",
+					dataType: "json",
+					url: "reserve/selectDateAjax.jsp",
+					data: {
+						"movie_num" : movie_num,
+						"theater_num": theater_num
+					},
+					success: function(data) {
+						var s = "<table class='table table-hover' style='color: white; font-size: 20pt; font-weight: bold;'>";
+						for (var i = 0; i < Object.keys(data).length; i++) {
+							s += '<tr class="showDate" style="height: auto; vertical-align: middle;" align="center">'
+							s += '<td>' + JSON.stringify(data[i].show_date) + '</td></tr>'
+						}
+						s += "</table>";
+						$("div.select-date").children("div.scroll").html(s);
+						
+						$("tr.showDate").children("td").click(function () {
+			 				if ($(this).closest("tr").css("background-color") == "rgba(0, 0, 0, 0.075)"){
+								$("tr.showDate").css("background-color", "rgba(0, 0, 0, 0.075)");
+								$(this).closest("tr").css("background-color", '#ccc');
+							} else {
+								$(this).closest("tr").css("background-color", "rgba(0, 0, 0, 0.075)");
+							}
+						});
+					}
+				});
+			}
 		});
 	</script>
 	
@@ -154,20 +198,29 @@
 					</thead>
 					<tbody style="color: white;">
 					<%for (MoviesDto i : list) {%>
+						<% if (movie_num.equals(i.getMovie_num())) { %>
+						<tr class="set_color" style="background-color: #ccc;">
+							<td><%= movie_cnt++ %></td>
+							<td>
+								<a class="movie_title"><%= i.getKr_title() %></a>
+								<input type="hidden" value="<%= i.getMovie_num() %>"/>
+								<script type="text/javascript">
+									movie_num = "<%= movie_num %>";
+								</script>
+							</td>
+							<td><%= i.getGenre() != null ? i.getGenre() : "-" %></td>
+						</tr>
+						<%} else {%>
 						<tr class="set_color">
 							<td><%= movie_cnt++ %></td>
 							<td>
 								<a class="movie_title"><%= i.getKr_title() %></a>
 								<input type="hidden" value="<%= i.getMovie_num() %>"/>
-								<% if (movie_num.equals(i.getMovie_num())) { %>
-								<script type="text/javascript">
-									$("a.movie_title").trigger('click');
-								</script>
-								<%} %>
 							</td>
 							<td><%= i.getGenre() != null ? i.getGenre() : "-" %></td>
 						</tr>
-					<%} %>
+						<%}
+					}%>
 					</tbody>
 				</table>
 			</div>
@@ -195,7 +248,9 @@
 		%>
 		<div class="select-date" align="center">
 			<h3><b style="color: magenta;">SELECT DATE</b></h3>
-			
+			<div class="scroll">
+				<!-- AJAX -->
+			</div>
 		</div>
 		
 		<button class="btn btn-info btn-lg" id="selectSeat" style="margin-top: 10px;">좌석 선택</button>

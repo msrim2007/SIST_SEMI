@@ -68,9 +68,9 @@ figure:hover figcaption {opacity: 1;transition: all .3s ease; }
 <section class="hero">
   <div class="container">
     <div class="w3-content w3-display-container" style="max-width:500px; max-height: 700px;">
-      <a href="#"><img class="mySlides" src="./tmplt/img/20218052.jpeg"></a>
-      <a href="#"><img class="mySlides" src="./tmplt/img/20218256.jpeg" ></a>
-      <a href="#"><img class="mySlides" src="./tmplt/img/20210865.jpeg" ></a>
+      <a href="index.jsp?main=reserve/reservation.jsp?movie_num=20218052"><img class="mySlides" src="./tmplt/img/20218052.jpeg"></a>
+      <a href="index.jsp?main=reserve/reservation.jsp?movie_num=20218256"><img class="mySlides" src="./tmplt/img/20218256.jpeg" ></a>
+      <a href="index.jsp?main=reserve/reservation.jsp?movie_num=20210865"><img class="mySlides" src="./tmplt/img/20210865.jpeg" ></a>
       <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
       <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
       <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
