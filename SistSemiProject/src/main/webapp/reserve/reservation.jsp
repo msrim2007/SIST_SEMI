@@ -1,3 +1,6 @@
+<%@page import="movies.MoviesDto"%>
+<%@page import="movies.MoviesDao"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -39,9 +42,10 @@
 			float: left;
 			margin-right: 5%;
 			border: 1px solid #ccc;
-			width: 30%;
+			width: 40%;
 			height: 600px;
-			border-radius: 10%;
+			border-radius: 5%;
+			padding: 0;
 		}
 		
 		div.select-theater {
@@ -50,28 +54,83 @@
 			border: 1px solid #ccc;
 			width: 30%;
 			height: 600px;
-			border-radius: 10%;
+			border-radius: 5%;
 		}
 		
 		div.select-date {
 			float: left;
 			border: 1px solid #ccc;
-			width: 30%;
+			width: 20%;
 			height: 600px;
-			border-radius: 10%;
+			border-radius: 5%;
+		}
+		
+		div.scroll {
+			height: 90%;
+			overflow: auto;
+		}
+		
+		/* 스크롤바 설정*/
+		div.scroll::-webkit-scrollbar{
+		    width: 6px;
+		}
+		
+		/* 스크롤바 막대 설정*/
+		div.scroll::-webkit-scrollbar-thumb{
+		    height: 10%;
+		    background-color: rgba(255,255,255,1);
+		    /* 스크롤바 둥글게 설정    */
+		    border-radius: 10px;    
+		}
+		
+		/* 스크롤바 뒷 배경 설정*/
+		div.scroll::-webkit-scrollbar-track{
+		    background-color: rgba(0,0,0,0);
 		}
 	</style>
 </head>
 
 <body>
 	<div class="container" align="center" style="margin-top: 20px;">
-		<h2 style="margin-bottom: 5%;"><b style="color: white;">예약하기</b></h2>
+		<%
+		ArrayList<MoviesDto> list = new MoviesDao().getAllDatas();
+		int movie_cnt = 1;
+		%>
+		<h2 style="margin-bottom: 5%;"><b style="color: white;">예매 하기</b></h2>
 		<div class="select-movie" align="center">
-			<h3><b style="color: magenta;">SELECT MOVIE</b></h3>
+			<h3><b style="color: magenta;">SELECT MOVIE</b></h3><br>
+			<div class="scroll">
+				<table class="table" style="font-size: 12pt;">
+					<thead class="thead-light">
+						<tr>
+							<th>#</th><th>영화</th><th>장르</th>
+						</tr>
+					</thead>
+					<tbody style="color: white;">
+					<%for (MoviesDto i : list) {%>
+						<tr>
+							<td><%= movie_cnt++ %></td>
+							<td><%= i.getKr_title() %></td>
+							<td><%= i.getGenre() != null ? i.getGenre() : "-" %></td>
+						</tr>
+					<%} %>
+					<tr>
+						<td colspan="3">스크롤 테스트</td>
+					</tr>
+					<tr>
+						<td colspan="3">스크롤 테스트</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
-			
+		
+		<%
+		
+		%>
 		<div class="select-theater" align="center">
 			<h3><b style="color: magenta;">SELECT THEATER</b></h3>
+			
 			
 		</div>
 			
