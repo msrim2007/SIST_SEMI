@@ -32,10 +32,9 @@ $(function() {
 			url:"review/ajaxlikes.jsp",
 			data:{"num":num},
 			success:function(data){
-				//alert(data.likes);
 				tag.next().text(data.likes);
-				tag.next().next().animate({"font-size":"20px"},500,function(){
-					$(this).css("font-size","0px");
+				tag.next().animate({"font-size":"20px"},500,function(){
+					$(this).css("font-size","1em");
 				});
 			}
 		});
@@ -132,9 +131,9 @@ for(reviewDto dto:list){
 <!-- 글제목,공감 -->
     <tr> 
       <td><b><%=dto.getSubject() %></b>
-      <span class="likes" style="cursor: pointer; position: absolute; left: 750px;" num="<%=dto.getNum()%>">공감</span>
-	  <span class="getlikes" style="position: absolute; left: 780px;"><%=dto.getLikes() %></span>
-      <span class="glyphicon glyphicon-thumbs-up" style="color: magenta; font-size: 0px; float: right; "></span>
+      <span class="likes" style="cursor: pointer; position: absolute; left: 770px;" num="<%=dto.getNum()%>">공감</span>
+	  <span class="getlikes" style="position: absolute; left: 800px;"><%=dto.getLikes() %></span>
+      <!-- <span class="glyphicon glyphicon-thumbs-up" style="color: magenta; font-size: 0px; float: right; "></span> -->
       </td>
     </tr>
       
