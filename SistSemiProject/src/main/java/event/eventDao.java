@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import mysql.db.DbConnect;
 
 
@@ -57,7 +56,7 @@ public class eventDao{
 				dto.setSubject(rs.getString("subject"));
 				dto.setContent(rs.getString("content"));
 				dto.setTerm(rs.getString("term"));
-			
+				dto.setExpirydate(rs.getTimestamp("expirydate"));
 				
 				list.add(dto);
 			}
@@ -91,6 +90,7 @@ public class eventDao{
 				dto.setContent(rs.getString("content"));	
 				dto.setSubject(rs.getString("subject"));
 				dto.setTerm(rs.getString("term"));}
+				dto.setExpirydate(rs.getTimestamp("expirydate"));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -120,6 +120,7 @@ public class eventDao{
 				dto.setSubject(rs.getString("subject"));
 				dto.setTerm(rs.getString("term"));
 				dto.setContent(rs.getString("content"));
+				dto.setExpirydate(rs.getTimestamp("expirydate"));
 				
 				
 				list.add(dto);
@@ -130,6 +131,44 @@ public class eventDao{
 		}finally {
 			db.dbClose(rs, pstmt, conn);
 		}
+		return list;
+	}
+	
+	public ArrayList<eventDto> getexpiredDatas(){
+		
+		ArrayList<eventDto> list = new ArrayList<eventDto>();
+		
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT * FROM event WHERE expirydate < now()";
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				eventDto dto = new eventDto();
+				
+				dto.setEvent_num(rs.getString("event_num"));
+				dto.setImg(rs.getString("img"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setContent(rs.getString("content"));
+				dto.setTerm(rs.getString("term"));
+				dto.setExpirydate(rs.getTimestamp("expirydate"));
+				
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		
+		
 		return list;
 	}
 }

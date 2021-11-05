@@ -11,7 +11,37 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style type="text/css">
 
+.btn_wrap{
+
+	margin: 60px 0;
+    text-align: center;
+}
+.tolist{
+	display: inline-block;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid #414141;
+    font-size: 14px;
+    color: #ffffff !important;
+    text-align: center;
+    background-color: #414141;
+    cursor: pointer;
+    height: 43px;
+ 	min-width: 100px;
+ 	 margin: 0 3px;
+ 	 height: 45px;
+    line-height: 43px;
+    padding: 0 18px;
+}
+.sideBanner {
+ position:absolute;
+ top:50%;
+ margin-top:-50px;
+ right:10px
+}
+</style>
 <title>Insert title here</title>
 </head>
 <%
@@ -20,6 +50,9 @@ eventDao dao = new eventDao();
 eventDto dto = dao.selectData(num);
 
 %>
+<div class="sideBanner">
+    <img alt="" src="event/event_img/top.png">
+ </div>
 <body>
 <table>
 	<tr>
@@ -37,7 +70,7 @@ eventDto dto = dao.selectData(num);
 	<tr>
 		<td >
 			<div style="text-align: center;">
-			<img alt="" src="event/event_img/<%=dto.getContent()%>" style="width: 500px; height: 1200px;">
+			<img alt="" src="event/event_img/<%=dto.getContent()%>" >
 			</div>
 		</td>
 	</tr>
@@ -45,17 +78,35 @@ eventDto dto = dao.selectData(num);
 		<td>
 		<br>
 		<br>
-		<hr style="border: 1px solid white; width: 1000px;">
-		<span style="margin-top: 15px; ">
+		
+		<div style="margin-top: 15px;" class="btn_wrap">
 			
-			<button type="button" class="btn btn-danger" onclick="location.href='index.jsp?main=event/eventlist.jsp'">목록으로</button>
-		</span>
+			<a href='index.jsp?main=event/eventlist.jsp' class="tolist">목록</a>
+		</div>
 		<hr style="border: 1px solid white; width: 1000px;">
 		</td>
 	</tr>
 </table>
 
 
+<script type="text/javascript">
+var floatPosition = parseInt($(".sideBanner").css('top'))
+
+//scroll 인식
+$(window).scroll(function() {
+
+ // 현재 스크롤 위치
+ var currentTop = $(window).scrollTop();
+ var bannerTop = currentTop + floatPosition + "px";
+
+ //이동 애니메이션
+ $(".sideBanner").stop().animate({
+   "top" : bannerTop
+ }, 500);
+ 
+}).scroll();
+$(".sideBanner").click(function() { $('html, body').animate({ scrollTop : 0 }, 400); return false; });
 </script>
+
 </body>
 </html>

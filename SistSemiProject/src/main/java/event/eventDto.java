@@ -1,6 +1,6 @@
 package event;
 
-
+import java.sql.Timestamp;
 
 public class eventDto {
 	
@@ -10,7 +10,14 @@ public class eventDto {
 	private String content;
 	private String img;
 	private String term;
+	private Timestamp expirydate;
 
+	public Timestamp getExpirydate() {
+		return expirydate;
+	}
+	public void setExpirydate(Timestamp expirydate) {
+		this.expirydate = expirydate;
+	}
 	public String getEvent_num() {
 		return event_num;
 	}
