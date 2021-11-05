@@ -1,3 +1,4 @@
+<%@page import="theater.TheaterDao"%>
 <%@page import="movies.MoviesDto"%>
 <%@page import="movies.MoviesDao"%>
 <%@page import="java.util.ArrayList"%>
@@ -87,7 +88,44 @@
 		div.scroll::-webkit-scrollbar-track{
 		    background-color: rgba(0,0,0,0);
 		}
+		
+		a:hover {
+			cursor: pointer;
+		}
+		
+		.theaters:hover {
+			cursor: pointer;
+		}
 	</style>
+	
+	<script type="text/javascript">
+		$(function (){
+			var movie_num = "";
+			var theater_num = "";
+			
+			$("a.movie_title").click(function () {
+				if ($(this).closest("tr").css("background-color") == "rgba(0, 0, 0, 0)"){
+					$("tr.set_color").css("background-color", "rgba(0, 0, 0, 0)");
+					$(this).closest("tr").css("background-color", '#ccc');
+					movie_num = $(this).siblings("input").val();
+				} else {
+					$(this).closest("tr").css("background-color", "rgba(0, 0, 0, 0)");
+					movie_num = "";
+				}
+			});
+			
+			$("tr.theaters").children("td").click(function () {
+ 				if ($(this).closest("tr").css("background-color") == "rgba(0, 0, 0, 0.075)"){
+					$("tr.theaters").css("background-color", "rgba(0, 0, 0, 0.075)");
+					$(this).closest("tr").css("background-color", '#ccc');
+					theater_num = $(this).children("input").val();
+				} else {
+					$(this).closest("tr").css("background-color", "rgba(0, 0, 0, 0.075)");
+					theater_num = "";
+				}
+			});
+		});
+	</script>
 </head>
 
 <body>
@@ -108,30 +146,35 @@
 					</thead>
 					<tbody style="color: white;">
 					<%for (MoviesDto i : list) {%>
-						<tr>
+						<tr class="set_color">
 							<td><%= movie_cnt++ %></td>
-							<td><%= i.getKr_title() %></td>
+							<td>
+								<a class="movie_title"><%= i.getKr_title() %></a>
+								<input type="hidden" value="<%= i.getMovie_num() %>"/>
+							</td>
 							<td><%= i.getGenre() != null ? i.getGenre() : "-" %></td>
 						</tr>
 					<%} %>
-					<tr>
-						<td colspan="3">스크롤 테스트</td>
-					</tr>
-					<tr>
-						<td colspan="3">스크롤 테스트</td>
-					</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
 		
 		<%
-		
+		ArrayList<String> theater_list = new TheaterDao().getTheaterNum();
 		%>
 		<div class="select-theater" align="center">
 			<h3><b style="color: magenta;">SELECT THEATER</b></h3>
-			
-			
+			<% for (String i : theater_list) {%>
+				<table class="table table-hover" style="color: white; font-size: 20pt; font-weight: bold;">
+					<tr class="theaters" style="height: auto; vertical-align: middle;" align="center">
+						<td>
+							<%= i %>번 상영관
+							<input type="hidden" value="<%= i %>"/>
+						</td>
+					</tr>
+				</table>
+			<%} %>
 		</div>
 			
 		<div class="select-date" align="center">
