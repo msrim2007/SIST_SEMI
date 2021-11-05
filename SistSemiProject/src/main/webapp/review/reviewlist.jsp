@@ -9,6 +9,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -25,11 +30,6 @@
     <link rel="stylesheet" href="tmplt/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="tmplt/css/style.css" type="text/css">
 
-<meta charset="UTF-8">
-<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <title>Review List</title>
 </head>
 
@@ -115,7 +115,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
 <!-- 로그인시 작성버튼 생성 -->
 <% if(loginok!=null) { %>
-<button type="button" onclick="location.href='review/reviewform.jsp'" class="btn btn-default"
+<button type="button" onclick="location.href='review/reviewform.jsp'" class="btn btn-info"
   style="position: absolute;" id="btnadd">작성</button>
  <% } 
  %>
@@ -135,34 +135,34 @@ for(reviewDto dto:list){
     <tr>
       <td rowspan="7" style="width: 120px; text-align: center;">
         <img alt="" src="./tmplt/img/<%= dto.getMovie_num() %>.jpeg" width="100px" height="140px">
-        <b><%=dto.getNum() %></b>
+        <b style="color: white;"><%=dto.getNum() %></b>
       </td>
     </tr>
     
 <!-- 영화 -->
     <tr>
-      <td><%=movie %></td>
+      <td style="color: white;"><%=movie %></td>
     </tr>
     
 <!-- 글제목,공감 -->
     <tr> 
-      <td><b><%=dto.getSubject() %></b>
-      <span class="likes" style="cursor: pointer; position: absolute; left: 770px;" num="<%=dto.getNum()%>">공감</span>
-	  <span class="getlikes" style="position: absolute; left: 800px;"><%=dto.getLikes() %></span>
+      <td style="color: white;"><b><%=dto.getSubject() %></b>
+      <span class="likes" style="color: white; cursor: pointer; position: absolute; left: 770px;" num="<%=dto.getNum()%>">공감</span>
+	  <span class="getlikes" style="color: white; position: absolute; left: 800px;"><%=dto.getLikes() %></span>
       <!-- <span class="glyphicon glyphicon-thumbs-up" style="color: magenta; font-size: 0px; float: right; "></span> -->
       </td>
     </tr>
       
 <!-- 글내용 -->
     <tr>
-      <td><%=dto.getContent().replace("\n", "<br>") %></td>  
+      <td style="color: white;"><%=dto.getContent().replace("\n", "<br>") %></td>  
     </tr>
     
 <!-- 작성자,작성일 -->
     <tr>
       <td>     
-      <span style="float: right;"><%=sdf.format(dto.getWriteday()) %></span>
-      <span style="float: right;"><%=name %> (<%=dto.getMyid() %>)&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <span style="float: right;color: white;"><%=sdf.format(dto.getWriteday()) %></span>
+      <span style="float: right;color: white;"><%=name %> (<%=dto.getMyid() %>)&nbsp;&nbsp;|&nbsp;&nbsp;</span>
       </td>   
     </tr>
     
@@ -175,8 +175,8 @@ for(reviewDto dto:list){
 	      if(loginok!=null && dto.getMyid().equals(myid)){ %>
 	      <tr>
 	        <td colspan="2" align="center">
-	    	  <a href="index.jsp?main=review/updateform.jsp?num=<%=dto.getNum() %>&currentPage=<%=currentPage %>" style="color: orange;">수정</a>  	  
-	    	  | <a href="review/delete.jsp?num=<%=dto.getNum() %>&currentPage=<%=currentPage %>" style="color: red;">삭제</a>
+	    	  <a href="index.jsp?main=review/updateform.jsp?num=<%=dto.getNum() %>&currentPage=<%=currentPage %>" style="color: yellow;">수정 | </a>  	  
+	    	  <a href="review/delete.jsp?num=<%=dto.getNum() %>&currentPage=<%=currentPage %>" style="color: yellow;">삭제</a>
 	    	</td>
          </tr> 
 	     <% }
