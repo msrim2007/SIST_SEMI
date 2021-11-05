@@ -28,60 +28,11 @@
     <link rel="stylesheet" href="tmplt/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="tmplt/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="tmplt/css/style.css" type="text/css">
-
-	<style type="text/css">
-		div.container {
-			width: auto;
-			height: 60%;
-		}
-	
-		div.select-movie {
-			float: left;
-			margin-right: 5%;
-			border: 1px solid #ccc;
-			width: 30%;
-			height: 600px;
-			border-radius: 10%;
-		}
-		
-		div.select-theater {
-			float: left;
-			margin-right: 5%;
-			border: 1px solid #ccc;
-			width: 30%;
-			height: 600px;
-			border-radius: 10%;
-		}
-		
-		div.select-date {
-			float: left;
-			border: 1px solid #ccc;
-			width: 30%;
-			height: 600px;
-			border-radius: 10%;
-		}
-	</style>
 </head>
 
 <body>
-	<div class="container" align="center" style="margin-top: 20px;">
-		<h2 style="margin-bottom: 5%;"><b style="color: white;">예약하기</b></h2>
-		<div class="select-movie" align="center">
-			<h3><b style="color: magenta;">SELECT MOVIE</b></h3>
-		</div>
-			
-		<div class="select-theater" align="center">
-			<h3><b style="color: magenta;">SELECT THEATER</b></h3>
-			
-		</div>
-			
-		<div class="select-date" align="center">
-			<h3><b style="color: magenta;">SELECT DATE</b></h3>
-			
-		</div>
-		
-		<button class="btn btn-info btn-lg" id="selectSeat" style="margin-top: 10px;">좌석 선택</button>
-	</div>
+	
+	
 	
 	<!-- Js Plugins -->
 	<script src="tmplt/js/jquery-3.3.1.min.js"></script>
