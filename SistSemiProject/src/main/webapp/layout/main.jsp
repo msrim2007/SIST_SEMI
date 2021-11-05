@@ -1,15 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="zxx">
 <html>
 
 <head>
 	<meta charset="UTF-8" name='viewport' content='width=device-width, initial-scale=1.0'>
 
-
 	<!-- TITLE -->
 	<title>INDEX</title>
-
 
 	<!-- jQuery -->
     <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
@@ -42,26 +39,52 @@
 .mySlides {display:none; width: 100%; height: 100%;}
 .w3-left, .w3-right, .w3-badge {cursor:pointer}
 .w3-badge {height:13px;width:13px;padding:0}
+</style>
 
+<!-- 마우스오버 css -->
+<style type="text/css">
+body {margin: 0}
+
+figure {transition: opacity 0.2s; position: relative; margin: 0;}
+
+figure img {width: 100%; height: 100%}
+
+figure figcaption {color: #fff;bottom: 70px; opacity: 0;position: absolute; text-align: center; width: 100%;transition: all .3s ease;}
+
+figure .w3-content {opacity: 1;transition: all 0.3s ease 0s;overflow: hidden}
+
+figure:hover .w3-content {background-color: #000}
+
+figure:hover img {transform: scale(1.1, 1.1);transition: all .3s ease;opacity: 0.15;cursor: url("https://hcode.b-cdn.net/wp-content/themes/h-code/assets/images/icon-zoom-white.png")}
+
+figure:hover figcaption {opacity: 1;transition: all .3s ease; }
 </style>
 
 </head>
 <body>
 
 <!-- 슬라이드쇼 바디 -->
-<div class="w3-content w3-display-container" style="max-width:500px; max-height: 700px;">
-  <img class="mySlides" src="./tmplt/img/20218052.jpeg" >
-  <img class="mySlides" src="./tmplt/img/20218256.jpeg" >
-  <img class="mySlides" src="./tmplt/img/20210865.jpeg" >
-  <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
-    <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
-    <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
-    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
-    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
-    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
+<figure>
+<section class="hero">
+  <div class="container">
+    <div class="w3-content w3-display-container" style="max-width:500px; max-height: 700px;">
+      <a href="#"><img class="mySlides" src="./tmplt/img/20218052.jpeg"></a>
+      <a href="#"><img class="mySlides" src="./tmplt/img/20218256.jpeg" ></a>
+      <a href="#"><img class="mySlides" src="./tmplt/img/20210865.jpeg" ></a>
+      <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
+      <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
+      <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
+      <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
+      <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
+      <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
+      </div>
+    </div>
   </div>
-</div>
-	
+</section>
+<figcaption><h1 style="color: #fff;" id="fig"></h1></figcaption>
+</figure>
+<!-- 마우스오버 -->
+
 	<!-- Js Plugins -->
 	<script src="tmplt/js/jquery-3.3.1.min.js"></script>
 	<script src="tmplt/js/bootstrap.min.js"></script>
@@ -73,13 +96,16 @@
 	<script src="tmplt/js/main.js"></script>
 </body>
 
+
 <!-- 슬라이드쇼 스크립트 -->
 <script>
 var slideIndex = 1;
 showDivs(slideIndex);
 
+
 function plusDivs(n) {
   showDivs(slideIndex += n);
+  
 }
 
 function currentDiv(n) {
