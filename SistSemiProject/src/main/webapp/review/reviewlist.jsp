@@ -32,9 +32,9 @@ $(function() {
 			url:"review/ajaxlikes.jsp",
 			data:{"num":num},
 			success:function(data){
-				alert(data.likes);
+				//alert(data.likes);
 				tag.next().text(data.likes);
-				tag.next().next().animate({"font-size":"20px"},1000,function(){
+				tag.next().next().animate({"font-size":"20px"},500,function(){
 					$(this).css("font-size","0px");
 				});
 			}
@@ -45,9 +45,8 @@ $(function() {
 
 <body>
 <%
-//로그인상태 확인후 방명록입력폼 나타내기
+//로그인상태,dao
 String loginok=(String)session.getAttribute("loginok");
-
 reviewDao dao=new reviewDao();
 
 //페이징
@@ -95,17 +94,17 @@ no=totalCount-(currentPage-1)*perPage;
 SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 %>     
 
-<%-- <%
-if(loginok!=null){ //로그인중 %>
-	<jsp:include page="reviewform.jsp"/>
-	<hr align="left" width="700">
-<%} 
-%> --%>
 
 <!-- 관람평 출력 -->
 <div>
+
+<!-- 로그인시 작성버튼 생성 -->
+<% if(loginok!=null) { %>
 <button type="button" onclick="location.href='review/reviewform.jsp'" class="btn btn-default"
-  style="position: absolute;">작성</button>
+  style="position: absolute;" id="btnadd">작성</button>
+ <% } 
+ %>
+
 <%
 for(reviewDto dto:list){	
 	//signdao에서 이름 얻기
@@ -115,11 +114,12 @@ for(reviewDto dto:list){
 	MoviesDao mdao=new MoviesDao();
 	String movie=mdao.getTitle(dto.getMovie_num());
 	%>
-	<table class="table table-bordered" style="width: 600px; margin-top: 30px; margin-left: 100px;">
+	<table class="table table-bordered" style="width: 650px; margin-top: 30px; margin-left: 100px;">
    
-<!-- 번호 -->
+<!-- 포스터,번호 -->
     <tr>
-      <td rowspan="7">
+      <td rowspan="7" style="width: 120px; text-align: center;">
+        <img alt="" src="./tmplt/img/<%= dto.getMovie_num() %>.jpeg" width="100px" height="140px">
         <b><%=dto.getNum() %></b>
       </td>
     </tr>
@@ -132,8 +132,8 @@ for(reviewDto dto:list){
 <!-- 글제목,공감 -->
     <tr> 
       <td><b><%=dto.getSubject() %></b>
-      <span class="likes" style="cursor: pointer; position: absolute; left: 700px;" num="<%=dto.getNum()%>">공감</span>
-	  <span class="getlikes" style="position: absolute; left: 730px;"><%=dto.getLikes() %></span>
+      <span class="likes" style="cursor: pointer; position: absolute; left: 750px;" num="<%=dto.getNum()%>">공감</span>
+	  <span class="getlikes" style="position: absolute; left: 780px;"><%=dto.getLikes() %></span>
       <span class="glyphicon glyphicon-thumbs-up" style="color: magenta; font-size: 0px; float: right; "></span>
       </td>
     </tr>
@@ -145,10 +145,9 @@ for(reviewDto dto:list){
     
 <!-- 작성자,작성일 -->
     <tr>
-      <td>
-      <span style="margin-left: 340px;"><%=name %> (<%=dto.getMyid() %>)</span>&nbsp;&nbsp;|&nbsp;&nbsp;
-       
-      <span><%=sdf.format(dto.getWriteday()) %></span>
+      <td>     
+      <span style="float: right;"><%=sdf.format(dto.getWriteday()) %></span>
+      <span style="float: right;"><%=name %> (<%=dto.getMyid() %>)&nbsp;&nbsp;|&nbsp;&nbsp;</span>
       </td>   
     </tr>
     
@@ -166,9 +165,7 @@ for(reviewDto dto:list){
 	    	</td>
          </tr> 
 	     <% }
-        %>
-         
-      
+        %>    
   </table>
 <%}
 %>
