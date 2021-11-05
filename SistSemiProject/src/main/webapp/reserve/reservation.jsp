@@ -1,3 +1,5 @@
+<%@page import="showing.ShowingDao"%>
+<%@page import="showing.ShowingDto"%>
 <%@page import="theater.TheaterDao"%>
 <%@page import="movies.MoviesDto"%>
 <%@page import="movies.MoviesDao"%>
@@ -126,6 +128,12 @@
 			});
 		});
 	</script>
+	
+	<%
+	request.setCharacterEncoding("utf-8");
+	
+	String movie_num = request.getParameter("movie_num") != null ? request.getParameter("movie_num") : "none";
+	%>
 </head>
 
 <body>
@@ -151,6 +159,11 @@
 							<td>
 								<a class="movie_title"><%= i.getKr_title() %></a>
 								<input type="hidden" value="<%= i.getMovie_num() %>"/>
+								<% if (movie_num.equals(i.getMovie_num())) { %>
+								<script type="text/javascript">
+									$("a.movie_title").trigger('click');
+								</script>
+								<%} %>
 							</td>
 							<td><%= i.getGenre() != null ? i.getGenre() : "-" %></td>
 						</tr>
@@ -165,18 +178,21 @@
 		%>
 		<div class="select-theater" align="center">
 			<h3><b style="color: magenta;">SELECT THEATER</b></h3>
-			<% for (String i : theater_list) {%>
-				<table class="table table-hover" style="color: white; font-size: 20pt; font-weight: bold;">
-					<tr class="theaters" style="height: auto; vertical-align: middle;" align="center">
-						<td>
-							<%= i %>번 상영관
-							<input type="hidden" value="<%= i %>"/>
-						</td>
-					</tr>
-				</table>
-			<%} %>
+			<table class="table table-hover" style="color: white; font-size: 20pt; font-weight: bold;">
+				<% for (String i : theater_list) {%>
+				<tr class="theaters" style="height: auto; vertical-align: middle;" align="center">
+					<td>
+						<%= i %>번 상영관
+						<input type="hidden" value="<%= i %>"/>
+					</td>
+				</tr>
+				<%} %>
+			</table>
 		</div>
-			
+		
+		<%
+		ArrayList<ShowingDto> show_list = new ShowingDao().getAllDatas();
+		%>
 		<div class="select-date" align="center">
 			<h3><b style="color: magenta;">SELECT DATE</b></h3>
 			

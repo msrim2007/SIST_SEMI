@@ -127,4 +127,26 @@ public class ShowingDao {
 			db.dbClose(stmt, conn);
 		}
 	}
+	
+	public ArrayList<ShowingDto> getAllDatas() {
+		ArrayList<ShowingDto> list = new ArrayList<ShowingDto>();
+		ShowingDto dto;
+		Connection conn = db.getConnection();
+		Statement stmt = null;
+		ResultSet rs = null;
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM showing");
+			while (rs.next()) {
+				dto = new ShowingDto();
+				dto.setMovie_num(rs.getString("movie_num"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, stmt, conn);
+		}
+		
+		return list;
+	}
 }
