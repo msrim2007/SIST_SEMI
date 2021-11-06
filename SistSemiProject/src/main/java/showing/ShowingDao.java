@@ -137,7 +137,7 @@ public class ShowingDao {
 		ResultSet rs = null;
 		try {
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("SELECT * FROM showing");
+			rs = stmt.executeQuery("SELECT * FROM showing ORDER BY showing_date");
 			while (rs.next()) {
 				dto = new ShowingDto();
 				dto.setMovie_num(rs.getString("movie_num"));

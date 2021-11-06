@@ -104,10 +104,17 @@
 		}
 	</style>
 	
+	<%
+	request.setCharacterEncoding("utf-8");
+	
+	String movie_num = request.getParameter("movie_num") != null ? request.getParameter("movie_num") : "";
+	%>
+	
 	<script type="text/javascript">
 		$(function (){
-			var movie_num = "";
+			var movie_num = "<%=movie_num%>";
 			var theater_num = "";
+			var show_date = "";
 			
 			$("a.movie_title").click(function () {
 				if ($(this).closest("tr").css("background-color") == "rgba(0, 0, 0, 0)"){
@@ -163,21 +170,28 @@
 			 				if ($(this).closest("tr").css("background-color") == "rgba(0, 0, 0, 0.075)"){
 								$("tr.showDate").css("background-color", "rgba(0, 0, 0, 0.075)");
 								$(this).closest("tr").css("background-color", '#ccc');
+								show_date = $(this).html();
 							} else {
 								$(this).closest("tr").css("background-color", "rgba(0, 0, 0, 0.075)");
+								show_date = "";
 							}
 						});
+					},
+					error: function (a, b, c) {
+						alert(a, b, c);
 					}
 				});
 			}
+			
+			$("#selectSeat").click(function () {
+				if (movie_num != "" && theater_num != "" && show_date != "") {
+					location.href = "index.jsp?main=reserve/selectSeat.jsp?movie_num=" + movie_num + "&theater_num=" + theater_num + "&show_date=" + show_date;
+				} else {
+					alert("영화, 상영관, 날짜를 모두 선택해 주세요.");
+				}
+			});
 		});
 	</script>
-	
-	<%
-	request.setCharacterEncoding("utf-8");
-	
-	String movie_num = request.getParameter("movie_num") != null ? request.getParameter("movie_num") : "none";
-	%>
 </head>
 
 <body>

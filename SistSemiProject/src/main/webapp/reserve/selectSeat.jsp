@@ -31,8 +31,17 @@
 </head>
 
 <body>
+	<%
+	request.setCharacterEncoding("utf-8");
 	
+	String movie_num = request.getParameter("movie_num");
+	String theater_num = request.getParameter("theater_num");
+	String show_date = request.getParameter("show_date");
 	
+	%>
+	<div class="container" align="center">
+		<%= movie_num + theater_num + show_date %>
+	</div>
 	
 	<!-- Js Plugins -->
 	<script src="tmplt/js/jquery-3.3.1.min.js"></script>

@@ -10,9 +10,9 @@
 <%
 request.setCharacterEncoding("utf-8");
 
-SimpleDateFormat sdf = new SimpleDateFormat("yy년 MM월 yy일 HH시 mm분");
+SimpleDateFormat sdf = new SimpleDateFormat("yy년 MM월 dd일 HH시 mm분");
 
-String movie_num =  "20190815";
+String movie_num =  request.getParameter("movie_num");
 String theater_num = request.getParameter("theater_num");
 
 ShowingDao show_dao = new ShowingDao();
