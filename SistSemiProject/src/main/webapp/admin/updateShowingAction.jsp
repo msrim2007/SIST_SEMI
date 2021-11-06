@@ -16,7 +16,12 @@
 	
 	String movie_num = request.getParameter("movie_num");
 	String show_num = request.getParameter("show_num");
-	Timestamp show_date = Timestamp.valueOf(request.getParameter("showing_date") + ":00");
+	Timestamp show_date;
+	if (request.getParameter("showing_date").length() == 16) {
+		show_date = Timestamp.valueOf(request.getParameter("showing_date") + ":00");
+	} else {
+		show_date = Timestamp.valueOf(request.getParameter("showing_date"));
+	}
 	
 	ShowingDao dao = new ShowingDao();
 	ShowingDto dto = new ShowingDto();
@@ -24,6 +29,7 @@
 	dto.setShow_num(show_num);
 	dto.setMovie_num(movie_num);
 	dto.setShowing_date(show_date);
+	dto.setTheater_num(request.getParameter("theater_num"));
 	
 	dao.updateShowing(dto);
 	%>

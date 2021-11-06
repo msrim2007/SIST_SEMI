@@ -29,6 +29,7 @@
 	
 	dto.setMovie_num(request.getParameter("movie_num"));
 	dto.setShowing_date(show_date);
+	dto.setTheater_num(request.getParameter("theater_num"));
 	
 	dao.insertShowing(dto);
 	%>

@@ -9,6 +9,6 @@ import lombok.Setter;
 @Setter
 @Getter
 public class ShowingDto {
-	private String show_num, movie_num;
+	private String show_num, movie_num, theater_num;
 	private Timestamp showing_date;
 }
