@@ -1,3 +1,4 @@
+<%@page import="theater.TheaterDao"%>
 <%@page import="showing.ShowingDto"%>
 <%@page import="showing.ShowingDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -41,12 +42,15 @@
 	request.setCharacterEncoding("utf-8");
 	SimpleDateFormat for_date = new SimpleDateFormat("yyyy-MM-dd");
 	SimpleDateFormat for_tiem = new SimpleDateFormat("HH:mm:ss");
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-ddHH:mm");
 	ShowingDao dao = new ShowingDao();
 	
 	String show_num = request.getParameter("show_num");
 	ShowingDto dto = dao.getData(show_num);
 	
 	ArrayList<MoviesDto> movies = new MoviesDao().getAllDatas();
+	ArrayList<String> theaters = new TheaterDao().getTheaterNum();
+	ArrayList<ShowingDto> showing = new ShowingDao().getAllDatas();
 	%>
 	
 	<div class="container" style="margin: 10px 50px;">
@@ -62,6 +66,16 @@
 				} %>
 			</select>
 			
+			<b style="font-size: 14pt; color: white; margin-left: 10%;">상영관</b>
+			<select id="theaters" class="form-select sel">
+				<%for (String i : theaters) {
+					if (i.equals(dto.getTheater_num())) {%>
+						<option value="<%= i %>" selected="selected"><%= i %>번 상영관</option>
+					<%} else {%>
+						<option value="<%= i %>"><%= i %>번 상영관</option>
+					<%}
+				} %>
+			</select>
 			<b style="font-size: 14pt; color: white; margin-left: 10%;">상영 날짜</b>
 			<input type="date" id="show_date" value="<%= for_date.format(dto.getShowing_date()) %>" style="margin-right: 20px;">
 			<input type="time" id="show_time" value="<%= for_tiem.format(dto.getShowing_date()) %>" style="margin-right: 20px;"> 
@@ -85,12 +99,28 @@
 			var title = $("#titles option:selected").val();
 			var date = $("#show_date").val();
 			var time = $("#show_time").val();
-			if (date != null && date != "" && time != null && time != "") {
-				location.href = "index.jsp?main=admin/updateShowingAction.jsp?show_num=" + <%= show_num %> + "&movie_num=" + title + "&showing_date=" + date + " " + time;
+			var theater = $("#theaters option:selected").val();
+			if (check_theater(theater, date, time)) {
+				if (date != null && date != "" && time != null && time != "") {
+					location.href = "index.jsp?main=admin/updateShowingAction.jsp?show_num=" + <%= show_num %> + "&movie_num=" + title + "&showing_date=" + date + " " + time + "&theater_num=" + theater;
+				} else {
+					alert("잘못된 날짜입니다.");
+				}
 			} else {
-				alert("잘못된 날짜입니다.");
+				alert("해당 시간 상영관의 다른 영화가 상영합니다.");
 			}
 		});
+		
+		function check_theater(theater, date, time) {
+			<% for (ShowingDto i : showing) {%>
+				if ("<%= i.getTheater_num() %>" == theater) {
+					if ("<%= sdf.format(i.getShowing_date()) %>" == date + time) {
+						return false
+					}
+				}
+			<%}%>
+			return true;
+		}
 	</script>
 </body>
 

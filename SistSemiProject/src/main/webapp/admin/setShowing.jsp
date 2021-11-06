@@ -87,7 +87,7 @@
 		<table class="table table-bordered" style="width: 800px;">
 			<thead class="thead-light">
 				<tr>
-					<th>#</th><th width="100px">상영 번호</th><th>영화</th><th>상영 날짜</th><th>수정 / 삭제</th>
+					<th>#</th><th width="150px">상영관</th><th>영화</th><th>상영 날짜</th><th>수정 / 삭제</th>
 				</tr>
 			</thead>
 			<tbody style="color: white;">
@@ -96,7 +96,7 @@
 					int pageNum = totalRows - (cPage - 1) * pageLength;
 					for (ShowingDto i : list) {%>
 						<tr>
-							<td><%= pageNum-- %></td><td><%= i.getShow_num() %></td>
+							<td><%= pageNum-- %></td><td><%= i.getTheater_num() %>번 상영관</td>
 							<td><%= movieDao.getTitle(i.getMovie_num()) %></td>
 							<td><%= sdf.format(i.getShowing_date()) %></td>
 							<td>

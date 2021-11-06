@@ -15,7 +15,7 @@ public class ShowingDao {
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	public void insertShowing(ShowingDto dto) {
-		String sql = "INSERT INTO showing(movie_num, showing_date) VALUES('" + dto.getMovie_num() + "', '" +  sdf.format(dto.getShowing_date()) + "')";
+		String sql = "INSERT INTO showing(movie_num, showing_date, theater_num) VALUES('" + dto.getMovie_num() + "', '" +  sdf.format(dto.getShowing_date()) + "', '" + dto.getTheater_num() + "')";
 	
 		Connection conn = db.getConnection();
 		Statement stmt = null;
@@ -45,6 +45,7 @@ public class ShowingDao {
 				dto.setMovie_num(rs.getString("movie_num"));
 				dto.setShow_num(rs.getString("show_num"));
 				dto.setShowing_date(rs.getTimestamp("showing_date"));
+				dto.setTheater_num(rs.getString("theater_num"));
 				dtos.add(dto);
 			}
 		} catch (SQLException e) {
@@ -105,6 +106,7 @@ public class ShowingDao {
 				dto.setMovie_num(rs.getString("movie_num"));
 				dto.setShow_num(rs.getString("show_num"));
 				dto.setShowing_date(rs.getTimestamp("showing_date"));
+				dto.setTheater_num(rs.getString("theater_num"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -115,7 +117,7 @@ public class ShowingDao {
 	}
 	
 	public void updateShowing(ShowingDto dto) {
-		String sql = "UPDATE showing SET movie_num='" + dto.getMovie_num() + "', showing_date='" + sdf.format(dto.getShowing_date()) + "' WHERE show_num = '" + dto.getShow_num() + "'";
+		String sql = "UPDATE showing SET movie_num='" + dto.getMovie_num() + "', showing_date='" + sdf.format(dto.getShowing_date()) + "', theater_num='" + dto.getTheater_num() + "' WHERE show_num = '" + dto.getShow_num() + "'";
 		
 		Connection conn = db.getConnection();
 		Statement stmt = null;
@@ -143,6 +145,7 @@ public class ShowingDao {
 				dto.setMovie_num(rs.getString("movie_num"));
 				dto.setShow_num(rs.getString("show_num"));
 				dto.setShowing_date(rs.getTimestamp("showing_date"));
+				dto.setTheater_num(rs.getString("theater_num"));
 				list.add(dto);
 			}
 		} catch (SQLException e) {

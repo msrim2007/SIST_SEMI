@@ -40,7 +40,8 @@
 	
 	%>
 	<div class="container" align="center">
-		<%= movie_num + theater_num + show_date %>
+		<h2 style="color: white;">좌석 선택</h2>
+		
 	</div>
 	
 	<!-- Js Plugins -->
