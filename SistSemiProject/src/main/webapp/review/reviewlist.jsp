@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
 
-    <!-- Css Styles -->
+<!-- Css Styles -->
     <link rel="stylesheet" href="tmplt/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="tmplt/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="tmplt/css/elegant-icons.css" type="text/css">
@@ -29,6 +29,12 @@
     <link rel="stylesheet" href="tmplt/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="tmplt/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="tmplt/css/style.css" type="text/css">
+
+<style type="text/css">
+table {
+	font-size: 1.2em;
+}
+</style>
 
 <title>Review List</title>
 </head>
@@ -49,7 +55,7 @@ $(function() {
 			data:{"num":num},
 			success:function(data){
 				tag.next().text(data.likes);
-				tag.next().animate({"font-size":"20px"},500,function(){
+				tag.next().animate({"font-size":"17px"},500,function(){
 					$(this).css("font-size","1em");
 				});
 			}
@@ -111,12 +117,12 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
 
 <!-- 관람평 출력 -->
-<div>
+<div class="container" align="center">
 
 <!-- 로그인시 작성버튼 생성 -->
 <% if(loginok!=null) { %>
-<button type="button" onclick="location.href='review/reviewform.jsp'" class="btn btn-info"
-  style="position: absolute;" id="btnadd">작성</button>
+<button type="button" onclick="location.href='review/reviewform.jsp'" class="btn btn-outline-light"
+  style="position: absolute; width: 40px;" id="btnadd">작성</button>
  <% } 
  %>
 
@@ -129,27 +135,19 @@ for(reviewDto dto:list){
 	MoviesDao mdao=new MoviesDao();
 	String movie=mdao.getTitle(dto.getMovie_num());
 	%>
-	<table class="table table-bordered" style="width: 650px; margin-top: 30px; margin-left: 100px;">
+	<table class="table table-bordered" style="width: 800px; margin-top: 20px;">
    
-<!-- 포스터,번호 -->
+<!-- 영화 포스터,이름 -->
     <tr>
       <td rowspan="7" style="width: 120px; text-align: center;">
         <img alt="" src="./tmplt/img/<%= dto.getMovie_num() %>.jpeg" width="100px" height="140px">
-        <b style="color: white;"><%=dto.getNum() %></b>
+        <b style="color: white;"><%=movie %></b>
       </td>
     </tr>
     
-<!-- 영화 -->
-    <tr>
-      <td style="color: white;"><%=movie %></td>
-    </tr>
-    
 <!-- 글제목,공감 -->
-    <tr> 
-      <td style="color: white;"><b><%=dto.getSubject() %></b>
-      <span class="likes" style="color: white; cursor: pointer; position: absolute; left: 770px;" num="<%=dto.getNum()%>">공감</span>
-	  <span class="getlikes" style="color: white; position: absolute; left: 800px;"><%=dto.getLikes() %></span>
-      <!-- <span class="glyphicon glyphicon-thumbs-up" style="color: magenta; font-size: 0px; float: right; "></span> -->
+    <tr style="height: 40px;"> 
+      <td style="color: white;"><b><%=dto.getNum() %>.  <%=dto.getSubject() %></b>      
       </td>
     </tr>
       
@@ -159,10 +157,12 @@ for(reviewDto dto:list){
     </tr>
     
 <!-- 작성자,작성일 -->
-    <tr>
-      <td>     
-      <span style="float: right;color: white;"><%=sdf.format(dto.getWriteday()) %></span>
-      <span style="float: right;color: white;"><%=name %> (<%=dto.getMyid() %>)&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+    <tr style="height: 40px;">
+      <td>  
+      <span class="likes glyphicon glyphicon-thumbs-up" style="color: white; cursor: pointer; font-size: 1.2em; color: #ffffe0;" num="<%=dto.getNum()%>"></span>
+      <span class="getlikes" style="color: white;"><%=dto.getLikes() %></span>   
+      <span style="float: right; color: white;"><%=sdf.format(dto.getWriteday()) %></span>
+      <span style="float: right; color: white;"><%=name %> (<%=dto.getMyid() %>)&nbsp;&nbsp;|&nbsp;&nbsp;</span>
       </td>   
     </tr>
     
@@ -189,11 +189,11 @@ for(reviewDto dto:list){
 
 <!-- 페이징 처리 -->
 <div style="width: 600px; text-align: center;" class="container">
-    <ul class="pagination">
+    <ul class="pagination jistify-content-center">
       <%
       if(startPage>1){%>
     	  <li>
-    	    <a href="index.jsp?main=review/reviewlist.jsp?currentPage=<%=startPage-1%>">이전</a>
+    	    <a href="index.jsp?main=review/reviewlist.jsp?currentPage=<%=startPage-1%>">《</a>
     	  </li>
       <%}      
       for(int p=startPage;p<=endPage;p++){
@@ -207,14 +207,14 @@ for(reviewDto dto:list){
       }      
       if(endPage<totalPage){%>
     	  <li>
-    	    <a href="index.jsp?main=review/reviewlist.jsp?currentPage=<%=endPage+1%>">다음</a>
+    	    <a href="index.jsp?main=review/reviewlist.jsp?currentPage=<%=endPage+1%>">》</a>
     	  </li>
       <%}
       %>
     </ul>
   </div>
   
-  <!-- Js Plugins -->
+<!-- Js Plugins -->
     <script src="tmplt/js/KobisOpenAPIRestService.js"></script>
 	<script src="tmplt/js/jquery-3.3.1.min.js"></script>
 	<script src="tmplt/js/bootstrap.min.js"></script>
