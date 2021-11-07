@@ -13,9 +13,13 @@
    
     <!-- CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+
 
     <!-- JS -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+	
 
 	<!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -60,6 +64,59 @@ figure:hover img {transform: scale(1.1, 1.1);transition: all .3s ease;opacity: 0
 figure:hover figcaption {opacity: 1;transition: all .3s ease; }
 </style>
 
+<!--이벤트 스와이퍼 css  -->
+
+<style type="text/css">
+#divTopArea{
+	margin: 100px;
+}
+.event-swiper img{
+	border-radius: 50px;
+}
+.event-slider .event-util button {
+    display: block;
+    float: left;
+    height: 12px;
+    margin: 0 0 0 12px;
+    padding: 0;
+    border: 0;
+    font-size: 0;
+    line-height: 0;
+    background-color: transparent;
+}
+.event-slider .event-control button {
+    display: block;
+    position: absolute;
+    top: 1000px;
+    z-index: 2;
+    width: 50px;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 0;
+    line-height: 0;
+    border-radius: 100%;
+    box-shadow: 4px 4px 10px 0 rgb(45 45 45 / 30%);
+    background-color: transparent;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+}
+
+.event-prev
+{
+left: 30px;
+width: 7px;
+background-image: url("event/event_img/btn-prev.png");
+}
+.event-next
+{
+right: 30px;
+width: 7px;
+background-image: url("event/event_img/btn-next.png");
+} 
+</style>
+
 </head>
 <body>
 
@@ -83,6 +140,7 @@ figure:hover figcaption {opacity: 1;transition: all .3s ease; }
 </section>
 <figcaption><h1 style="color: #fff;" id="fig"></h1></figcaption>
 </figure>
+
 <!-- 마우스오버 -->
 
 	<!-- Js Plugins -->
@@ -94,6 +152,55 @@ figure:hover figcaption {opacity: 1;transition: all .3s ease; }
 	<script src="tmplt/js/jquery.slicknav.js"></script>
 	<script src="tmplt/js/owl.carousel.min.js"></script>
 	<script src="tmplt/js/main.js"></script>
+
+
+<!--이벤트 스와이퍼  -->
+
+<div id="divTopArea" class="event-slider">
+<h3 style="color: white">진행중인 이벤트</h3>
+	<div class="inner-wrap">	
+			<div class="event-pagination"></div>
+				<div class="event-count">
+					<!-- <span title="현재 페이지" class="active" >0</span> 
+					<span title="전체 페이지" class="total">0</span> -->
+				</div>
+			<div class="event-util">
+				<button type="button" class="pause on">일시정지</button>
+				<button type="button" class="play">자동재생</button>
+			</div>
+			<div class="event-control">
+				<button type="button" class="event-prev">이전 이벤트 보기</button>
+				<button type="button" class="event-next">다음 이벤트 보기</button>
+			</div>
+	</div>
+
+<div class="event-swiper">
+	<div class="swiper-wrapper">
+	<!-- 반복 -->
+	<div class="cell swiper-slide">
+		<a href="#"  data-netfunnel="N" class="eventBtn">
+		<p class="img"><img src="event/event_img/event1-thumbnail.png" onerror="noImg(this);"></p>
+		</a>
+	</div>
+	<div class="cell swiper-slide">
+		<a href="#" data-netfunnel="N" class="eventBtn">
+		<p class="img"><img src="event/event_img/event2-thumbnail.png" onerror="noImg(this);"></p>
+		</a>
+	</div>
+	<div class="cell swiper-slide">
+		<a href="#" data-netfunnel="N" class="eventBtn">
+		<p class="img"><img src="event/event_img/event3-thumbnail.png" onerror="noImg(this);"></p>
+	</a>
+	</div>
+	<div class="cell swiper-slide">
+		<a href="#" data-netfunnel="N" class="eventBtn">
+		<p class="img"><img src="event/event_img/event4-thumbnail.png" onerror="noImg(this);"></p>
+		</a>
+	</div>
+	</div>
+</div>
+</div>
+
 </body>
 
 
@@ -129,4 +236,82 @@ function showDivs(n) {
 }
 </script>
 
+<!-- 이벤트 스와이퍼 스크립트  -->
+<script type="text/javascript">
+
+
+$(function(){
+	if( $('.event-swiper').length > 0 ){
+		var event_swiper = new Swiper('.event-swiper', {
+			autoplay: {
+				delay: 2000,
+				disableOnInteraction: true,
+			},
+			loop : true,
+			slidesPerView: 2,
+			spaceBetween: 40,
+			pagination: {
+				el: '.event-pagination',
+				clickable: false,
+			},
+			navigation : {
+				prevEl : '.event-prev',
+				nextEl : '.event-next',
+			},
+			ally : {
+				enabled : true
+			}
+		});
+
+		// swiper 전체 count
+		all_count = $('.event-swiper .cell').length;
+	
+		dupli_count = $('.event-swiper .swiper-slide-duplicate').length;
+		real_count = all_count - dupli_count;
+
+		if('9' > 0) $('.event-slider .event-count .active').text(event_swiper.realIndex + 1);
+		$('.event-slider .event-count .total').text(real_count)
+
+		// 이벤트 배너 1개 이하일 경우 좌우 버튼 숨기기
+		if(real_count < 2 ){
+
+			$('.event-prev').hide();
+			$('.event-next').hide();
+
+			$('.swiper-slide-duplicate').hide(); //스와이프용 duplicate 이미지 숨기기
+		}
+
+		// 현재 활성화된 swiper
+		event_swiper.on('slideChange', function(){
+			if('9' > 0) $('.event-slider .event-count .active').text(event_swiper.realIndex + 1);
+		});
+
+		// 자동실행 정지
+		$('.event-util .pause').on('click', function(){
+			event_swiper.autoplay.stop();
+
+			$(this).removeClass('on');
+			$('.event-util .play').addClass('on').focus();
+		});
+
+		// 자동실행 시작
+		$('.event-util .play').on('click', function(){
+			event_swiper.autoplay.start();
+
+			$(this).removeClass('on');
+			$('.event-util .pause').addClass('on').focus();
+		});
+
+		// 좌우 이동시 자동실행 정지됨
+		$(document).on('click','.event-prev, .event-next', function(){
+			$('.event-util .pause').removeClass('on');
+			$('.event-util .play').addClass('on');
+		});
+		$(window).resize(function(){
+			event_swiper.update();
+		}).resize();
+	}
+});
+
+</script>
 </html>
