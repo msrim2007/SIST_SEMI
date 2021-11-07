@@ -46,8 +46,6 @@ String root=request.getContextPath();
     } else {
     	main = "./layout/main.jsp";
     }
-    
-    boolean isLogin = false;
     %>
 </head>
 

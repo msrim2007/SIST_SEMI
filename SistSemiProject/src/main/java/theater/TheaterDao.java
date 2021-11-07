@@ -18,7 +18,7 @@ public class TheaterDao {
 		ResultSet rs = null;
 		try {
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("SELECT theater_num FROM theater GROUP BY theater_num");
+			rs = stmt.executeQuery("SELECT theater_num FROM theater");
 			while (rs.next()) {
 				list.add(rs.getString("theater_num"));
 			}
@@ -30,4 +30,5 @@ public class TheaterDao {
 		
 		return list;
 	}
+	
 }

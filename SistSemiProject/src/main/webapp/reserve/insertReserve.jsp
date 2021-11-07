@@ -1,5 +1,5 @@
-<%@page import="seat.SeatDao"%>
-<%@page import="showing.ShowingDao"%>
+<%@page import="reserve.ReserveDao"%>
+<%@page import="reserve.ReserveDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -21,14 +21,21 @@
 	<%
 	request.setCharacterEncoding("utf-8");
 	
+	String user_num = request.getParameter("user_num");
 	String show_num = request.getParameter("show_num");
+	String theater_num = request.getParameter("theater_num");
+	String seat_id = request.getParameter("seat_id");
 	
-	ShowingDao dao = new ShowingDao();
-	new SeatDao().deleteSeat(show_num);
-	dao.deleteShowing(show_num);
+	ReserveDto dto = new ReserveDto();
+	dto.setSeat_id(seat_id);
+	dto.setShow_num(show_num);
+	dto.setTheater_num(theater_num);
+	dto.setUser_num(user_num);
+	new ReserveDao().insertReserve(dto);
 	%>
 </body>
 	<script type="text/javascript">
-		location.href = "index.jsp?main=admin/setShowing.jsp";
+		alert("예매되었습니다.");
+		location.href = "index.jsp?main=layout/main.jsp";
 	</script>
 </html>

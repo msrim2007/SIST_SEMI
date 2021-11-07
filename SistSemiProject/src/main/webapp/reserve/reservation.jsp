@@ -1,3 +1,4 @@
+<%@page import="Sign.SignDao"%>
 <%@page import="showing.ShowingDao"%>
 <%@page import="showing.ShowingDto"%>
 <%@page import="theater.TheaterDao"%>
@@ -108,6 +109,13 @@
 	request.setCharacterEncoding("utf-8");
 	
 	String movie_num = request.getParameter("movie_num") != null ? request.getParameter("movie_num") : "";
+	String logInOk = (String)session.getAttribute("loginok");
+	String user_num = "";
+	if (logInOk != null) {
+		user_num = new SignDao().getNum((String)session.getAttribute("myid"));
+	} else {
+		user_num = "";
+	}
 	%>
 	
 	<script type="text/javascript">
@@ -115,6 +123,7 @@
 			var movie_num = "<%=movie_num%>";
 			var theater_num = "";
 			var show_date = "";
+			var user_num = "<%=user_num%>"
 			
 			$("a.movie_title").click(function () {
 				if ($(this).closest("tr").css("background-color") == "rgba(0, 0, 0, 0)"){
@@ -184,10 +193,15 @@
 			}
 			
 			$("#selectSeat").click(function () {
-				if (movie_num != "" && theater_num != "" && show_date != "") {
-					location.href = "index.jsp?main=reserve/selectSeat.jsp?movie_num=" + movie_num + "&theater_num=" + theater_num + "&show_date=" + show_date;
+				if (user_num != "") {
+					if (movie_num != "" && theater_num != "" && show_date != "") {
+						location.href = "index.jsp?main=reserve/selectSeat.jsp?movie_num=" + movie_num + "&theater_num=" + theater_num + "&show_date=" + show_date + "&user_num=" + user_num;
+					} else {
+						alert("영화, 상영관, 날짜를 모두 선택해 주세요.");
+					}
 				} else {
-					alert("영화, 상영관, 날짜를 모두 선택해 주세요.");
+					alert("로그인이 필요한 서비스입니다.");
+					location.href = "index.jsp?main=sign/signup/signupform.jsp";
 				}
 			});
 		});

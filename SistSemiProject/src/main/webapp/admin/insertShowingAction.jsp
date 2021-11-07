@@ -1,3 +1,6 @@
+<%@page import="seat.SeatDao"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="seat.SeatDto"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="showing.ShowingDto"%>
@@ -23,6 +26,7 @@
 	<%
 	request.setCharacterEncoding("utf-8");
 	Timestamp show_date = Timestamp.valueOf(request.getParameter("showing_date") + ":00");
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	ShowingDao dao = new ShowingDao();
 	ShowingDto dto = new ShowingDto();
@@ -32,6 +36,18 @@
 	dto.setTheater_num(request.getParameter("theater_num"));
 	
 	dao.insertShowing(dto);
+	
+	SeatDto seat_dto = new SeatDto();
+	String show_num = "";
+	ArrayList<ShowingDto> showing = new ShowingDao().getAllDatas();
+	for (ShowingDto i : showing) {
+		if (sdf.format(i.getShowing_date()).equals(sdf.format(show_date)) && i.getTheater_num().equals(request.getParameter("theater_num"))) {
+			show_num = i.getShow_num();
+		}
+	}
+	seat_dto.setShow_num(show_num);
+	seat_dto.setTheater_num(request.getParameter("theater_num"));
+	new SeatDao().insertSeat(seat_dto);
 	%>
 </body>
 	<script type="text/javascript">

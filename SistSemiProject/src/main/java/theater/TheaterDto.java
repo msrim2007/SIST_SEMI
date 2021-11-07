@@ -6,6 +6,5 @@ import lombok.Setter;
 @Setter
 @Getter
 public class TheaterDto {
-	private String theater_num, seat_num;
-	private boolean chk_seat;
+	private String theater_num;
 }

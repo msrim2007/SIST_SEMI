@@ -23,8 +23,7 @@ JSONArray list = new JSONArray();
 
 String tmp = "";
 for (ShowingDto i : tmp_list) {
-	tmp = i.getMovie_num();
-	if (movie_num.equals(tmp)) {
+	if (movie_num.equals(i.getMovie_num()) && theater_num.equals(i.getTheater_num())) {
 		ob = new JSONObject();
 		ob.put("show_date", sdf.format(i.getShowing_date()));
 		list.add(ob);
