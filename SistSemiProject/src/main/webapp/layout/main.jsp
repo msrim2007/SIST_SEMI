@@ -1,3 +1,7 @@
+
+<%@page import="java.util.List"%>
+<%@page import="review.reviewDao"%>
+<%@page import="review.reviewDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -116,7 +120,39 @@ width: 7px;
 background-image: url("event/event_img/btn-next.png");
 } 
 </style>
+<style type="text/css">
 
+.pre-review{
+
+font-family: 'Nanum Myeongjo', serif;
+font-size: 10pt;
+color: #fff;
+}
+.pre-review img{
+	width: 200px;
+	height: 280px;
+}
+
+#review1, #review2, #review3{
+float:left;
+text-align: center;
+padding:20px;
+border: 1px dotted #fff;
+border-radius:30px;
+margin-top:20px;
+margin-right:80px;
+width: 300px;
+height: 420px;
+}
+#more{
+color:#fff;
+float:right; 
+font-size: 12pt;
+margin-right: 100px;
+font-weight: bold;
+}
+
+</style>
 </head>
 <body>
 
@@ -199,6 +235,54 @@ background-image: url("event/event_img/btn-next.png");
 	</div>
 	</div>
 </div>
+</div>
+<%
+
+
+reviewDao dao = new reviewDao();
+List<reviewDto> list = dao.getList(1,3);
+
+%>
+<a href="index.jsp?main=review/reviewlist.jsp" id="more">더보기 ></a>
+<div class="pre-review">
+<h3 style="color: white">관람 후기</h3>
+
+<div id="review1">
+<img  src="tmplt/img/20218256.jpeg">
+<%
+	reviewDto dto = list.get(0);
+%>
+<br><br>
+<a><br>"<%=dto.getContent() %>"</a>
+<br><br>
+❤︎ <%=dto.getLikes() %>likes
+</div>
+
+
+<div id="review2">
+<img  src="tmplt/img/20218052.jpeg">
+<%
+		
+	dto = list.get(1);
+%>
+<br><br>
+<a><br>"<%=dto.getContent() %>"</a>
+<br><br>
+❤︎ <%=dto.getLikes() %>likes
+</div>
+
+<div id="review3">
+<img  src="tmplt/img/20191061.jpeg">
+<%
+		
+	dto = list.get(2);
+%>
+<br><br>
+<a><br>"<%=dto.getContent() %>"</a>
+<br><br>
+❤︎ <%=dto.getLikes() %>likes
+</div>
+
 </div>
 
 </body>
