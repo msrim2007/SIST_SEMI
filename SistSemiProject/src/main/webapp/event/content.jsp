@@ -9,6 +9,20 @@
 <meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css2?family=Dokdo&family=Gaegu&family=Gugi&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="tmplt/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="tmplt/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="tmplt/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="tmplt/css/plyr.css" type="text/css">
+    <link rel="stylesheet" href="tmplt/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="tmplt/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="tmplt/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="tmplt/css/style.css" type="text/css">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style type="text/css">
@@ -58,13 +72,13 @@ eventDto dto = dao.selectData(num);
 	<tr>
 		<td>
 			<div>
-				<b style="font-size: 18pt;"><%=dto.getSubject() %></b>
+				<b style="font-size: 18pt; color: #fff;"><%=dto.getSubject() %></b>
 				<br>
-				<span style="font-size: 8pt; color: gray; margin: auto;">
+				<span style="font-size: 8pt; color: #fff; margin: auto;">
 					<%=dto.getTerm() %>
 				</span>
 			</div>
-			<hr>
+			<hr style="border: 1px solid #fff;">
 		</td>
 	</tr>
 	<tr>
@@ -107,6 +121,16 @@ $(window).scroll(function() {
 }).scroll();
 $(".sideBanner").click(function() { $('html, body').animate({ scrollTop : 0 }, 400); return false; });
 </script>
-
+<!-- Js Plugins -->
+    <script src="tmplt/js/KobisOpenAPIRestService.js"></script>
+	<script src="tmplt/js/jquery-3.3.1.min.js"></script>
+	<script src="tmplt/js/bootstrap.min.js"></script>
+	<script src="tmplt/js/player.js"></script>
+	<script src="tmplt/js/mixitup.min.js"></script>
+	<script src="tmplt/js/jquery.nice-select.min.js"></script>
+	<script src="tmplt/js/jquery.slicknav.js"></script>
+	<script src="tmplt/js/owl.carousel.min.js"></script>
+	<script src="tmplt/js/main.js"></script>
+	
 </body>
 </html>

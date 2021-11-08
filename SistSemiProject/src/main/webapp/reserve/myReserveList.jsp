@@ -65,9 +65,9 @@
 	String seat_id = "";
 	%>
 	
-	<div class="container">
+	<div class="container" align="center">
 		<table class="table table-bordered" style="margin-top: 30px;">
-			<caption align="center" style="caption-side: top;"><b style="color: white; font-size: 20pt;">예약 내역</b></caption>
+			<caption style="caption-side: top;"><b style="color: white; font-size: 20pt;">예약 내역</b></caption>
 			<thead style="font-size: 16pt; color: white;">
 				<tr>
 					<th>예약 번호</th><th>영화</th><th>상영관</th><th>날짜 / 시간</th><th>좌석</th>
