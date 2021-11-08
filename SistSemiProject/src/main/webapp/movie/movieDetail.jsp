@@ -48,8 +48,8 @@
 		<table class="table table-bordered" style="color: white; font-size: 16pt; width: 650px;">
 			<caption style="caption-side: top;"><%= dto.getKr_title() %> (<%= dto.getEn_title() %>)</caption>
 			<tr>
-				<td colspan="2" width="600px" height="800px" align="center">
-					<img alt="" src="./tmplt/img/<%= dto.getMovie_num() %>.jpeg" width="600px" height="800px">
+				<td colspan="2" width="400px" height="600px" align="center">
+					<img alt="" src="./tmplt/img/<%= dto.getMovie_num() %>.jpeg" width="400px" height="600px">
 				</td>
 			</tr>
 			<tr>
@@ -69,7 +69,7 @@
 				<td><%= sdf.format(dto.getOpenDate()) %></td>
 			</tr>
 		</table>
-		<button onclick="location.href=''" class="btn btn-info btn-lg">예매하기</button>
+		<button onclick="location.href='index.jsp?main=reserve/reservation.jsp?movie_num=<%= dto.getMovie_num() %>'" class="btn btn-info btn-lg">예매하기</button>
 		<button onclick="location.href='index.jsp?main=movie/movieList.jsp'" class="btn btn-info btn-lg">목록으로</button>
 	</div>
 	

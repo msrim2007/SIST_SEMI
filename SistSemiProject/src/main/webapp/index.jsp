@@ -21,7 +21,7 @@ String root=request.getContextPath();
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	
 	<!-- TITLE -->
-	<title>영화 예매 웹사이트</title>
+	<title>SIST MOVIE</title>
 	
 	<!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -71,7 +71,7 @@ String root=request.getContextPath();
                         <nav class="header__menu mobile-menu">
                             <ul>
                                 <li class="active"><a href="./index.jsp?main=layout/main.jsp">Home</a></li>
-                                <li><a href="./categories.html">영화 예매 <span class="arrow_carrot-down"></span></a>
+                                <li><a href="./index.jsp?main=reserve/reservation.jsp">영화 예매 <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
                                         <li><a href="./index.jsp?main=movie/movieList.jsp">영화 목록</a></li>
                                         <li><a href="./index.jsp?main=reserve/reservation.jsp">예매</a></li>

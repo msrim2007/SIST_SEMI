@@ -29,6 +29,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
+    
+	<!-- 슬라이드쇼 css -->
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="tmplt/css/bootstrap.min.css" type="text/css">
@@ -39,9 +42,6 @@
     <link rel="stylesheet" href="tmplt/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="tmplt/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="tmplt/css/style.css" type="text/css">
-
-<!-- 슬라이드쇼 css -->
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <style type="text/css">
 .mySlides {display:none; width: 100%; height: 100%;}
