@@ -1,3 +1,4 @@
+<%@page import="movies.MoviesDto"%>
 <%@page import="movies.MoviesDao"%>
 <%@page import="Sign.SignDao"%>
 <%@page import="review.reviewDto"%>
@@ -140,7 +141,9 @@ for(reviewDto dto:list){
 <!-- 영화 포스터,이름 -->
     <tr>
       <td rowspan="7" style="width: 120px; text-align: center;">
-        <img alt="" src="./tmplt/img/<%= dto.getMovie_num() %>.jpeg" width="100px" height="140px">
+         <a href="index.jsp?main=movie/movieDetail.jsp?movie_num=<%=dto.getMovie_num()%>">
+           <img alt="" src="./tmplt/img/<%= dto.getMovie_num() %>.jpeg" width="100px" height="140px">
+         </a>
         <b style="color: white;"><%=movie %></b>
       </td>
     </tr>
