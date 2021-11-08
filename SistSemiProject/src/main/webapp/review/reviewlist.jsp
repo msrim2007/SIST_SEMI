@@ -141,6 +141,7 @@ for(reviewDto dto:list){
 <!-- 영화 포스터,이름 -->
     <tr>
       <td rowspan="7" style="width: 120px; text-align: center;">
+      
          <a href="index.jsp?main=movie/movieDetail.jsp?movie_num=<%=dto.getMovie_num()%>">
            <img alt="" src="./tmplt/img/<%= dto.getMovie_num() %>.jpeg" width="100px" height="140px">
          </a>
