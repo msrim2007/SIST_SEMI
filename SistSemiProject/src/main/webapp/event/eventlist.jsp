@@ -167,7 +167,7 @@ Date today = new Date();
 
 
 %>
-<!--검색창-->
+<!--검색창-- >
 <form method="post" action="index.jsp?main=event/search.jsp"  class="form1">
 	<div class="board-search">
 		<input type="text" class="input-text" placeholder="검색어를 입력하세요" name="searchWord" />
