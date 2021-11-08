@@ -1,5 +1,5 @@
-<%@page import="movies.MoviesDao"%>
 <%@page import="java.util.Date"%>
+<%@page import="movies.MoviesDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="org.json.simple.JSONArray"%>
 <%@page import="org.json.simple.JSONObject"%>

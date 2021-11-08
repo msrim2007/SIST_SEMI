@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Vector;
-
-import review.reviewDto;
 import mysql.db.DbConnect;
  
 public class reviewDao {	

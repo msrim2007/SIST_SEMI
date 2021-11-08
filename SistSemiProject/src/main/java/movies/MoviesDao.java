@@ -66,7 +66,7 @@ public class MoviesDao {
 				dto.setGenre(rs.getString("genre"));
 				dto.setKr_title(rs.getString("kr_title"));
 				dto.setMovie_num(rs.getString("movie_num"));
-				dto.setOpenDate(rs.getTimestamp("opendate"));
+				dto.setOpenDate(rs.getDate("opendate"));
 				list.add(dto);
 			}
 		} catch (SQLException e) {

@@ -36,12 +36,7 @@
     <link rel="stylesheet" href="tmplt/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="tmplt/css/style.css" type="text/css">
 
-	<style type="text/css">
-		div.container {
-			width: auto;
-			height: 60%;
-		}
-	
+	<style type="text/css">	
 		div.select-movie {
 			float: left;
 			margin-right: 5%;
@@ -201,7 +196,16 @@
 					}
 				} else {
 					alert("로그인이 필요한 서비스입니다.");
-					location.href = "index.jsp?main=sign/signup/signupform.jsp";
+					location.href = "index.jsp?main=sign/login/loginform.jsp";
+				}
+			});
+			
+			$("#myReserve").click(function() {
+				if (user_num != "") {
+					location.href = "index.jsp?main=reserve/myReserveList.jsp";
+				} else {
+					alert("로그인이 필요한 서비스입니다.");
+					location.href = "index.jsp?main=sign/login/loginform.jsp";
 				}
 			});
 		});
@@ -214,7 +218,9 @@
 		ArrayList<MoviesDto> list = new MoviesDao().getAllDatas();
 		int movie_cnt = 1;
 		%>
-		<h2 style="margin-bottom: 5%;"><b style="color: white;">예매 하기</b></h2>
+		<h2 style="margin-bottom: 5%;"><b style="color: white;">예매 하기</b>
+			<button id="myReserve" class="btn btn-info">예매 내역</button>
+		</h2>
 		<div class="select-movie" align="center">
 			<h3><b style="color: magenta;">SELECT MOVIE</b></h3><br>
 			<div class="scroll">
