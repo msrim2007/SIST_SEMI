@@ -1,3 +1,4 @@
+
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="event.eventDto"%>
@@ -42,62 +43,17 @@ ul,li {
 list-style:none;
 }
 
-/*tab css*/
-.tab{
-float:left;
-width:100%; 
-}
+.tab{float:left; }
+.tabnav{font-size:0; border:1px solid #ddd; border-top:none; border-right: none;  width:1060px;}
+.tabnav li{display: inline-block;  height:46px; text-align:center; border-right:1px solid #ddd; */}
+.tabnav li a:before{content:""; position:absolute; left:0; top:0px; width:100%; height:100%;  border-top: 1px solid #fff;  */}
+.tabnav li a.active:before{ height:2px; background:#e63437; width:100%; border:none;}
+.tabnav li a.active{border-bottom:1px solid #0d0c27;}
+.tabnav li a{ position:relative; display:block;/*  background: #f8f8f8; */ color: #fff; padding:0 30px; line-height:46px; text-decoration:none; font-size:16px;}
+.tabnav li a:hover,
+.tabnav li a.active{/* background:#fff; */ color:#e63437; }
+.tabcontent{padding: 20px;  border-top:none;}
 
-.tabnav{
-font-size:0;
-border:1px solid #ddd;
-border-width: 0px 0px 1px 1px;
-}
- 
-.tabnav li{
-display: inline-block;  
-height:46px; 
-text-align:center;
-border-right:1px solid #ddd;
-border-top: 1px solid #ddd;
-}
-
-.tabnav li a:before{
-content:""; 
-position:absolute; 
-left:0; 
-top:0px; 
-width:100%; 
-height:3px; 
-}
-
-.tabnav li a.active:before{
-background:#e63437;
-
-}
-.tabnav li a.active{
-/*  탭 활성화 시 border*/
-border-bottom:1px solid #fff;
-}
-.tabnav li a{ 
-position:relative; 
-display:block; 
-background: #f8f8f8;
-color: #000; 
-padding:0 30px;
- line-height:46px;
-text-decoration:none; 
-font-size:16px;
-}
-.tabnav li a:hover, .tabnav li a.active{
-background:#fff; 
-color:#e63437;
-}
-.tabcontent{
-padding: 20px; 
-
-border-top:none;
-}
 </style>
 
 <style type="text/css">
@@ -130,7 +86,8 @@ form.form1{
 }
 
 #ttl{
-	padding-left: 20px;
+	padding-left: 60px;
+	color: #fff;
 	margin-top: 30px;
 }
 
@@ -152,6 +109,7 @@ form.form1{
     border: 1px solid #d8d9db;
     border-radius: 3px;
         text-align: right;
+    background:#fff; 
 }
 .input-text{
 	cursor: text;
@@ -239,6 +197,7 @@ Date today = new Date();
 				//i번째 dto얻기
 				eventDto dto = list.get(i);
 				if(dto.getExpirydate().after(today) || dto.getExpirydate().compareTo(today)==0){
+					
 			%>
 		<td>
 		<br>
@@ -275,7 +234,8 @@ Date today = new Date();
 						for(int i=0;i<list.size();i++){
 							//i번째 dto얻기
 							eventDto dto = list.get(i);
-								if(dto.getExpirydate().before(today)){
+								if(dto.getExpirydate().compareTo(today)<1){
+									
 					%>
 					
 					<td>
@@ -309,13 +269,6 @@ Date today = new Date();
 <div class="sideBanner">
     <img alt="" src="event/event_img/top.png">
  </div>
-
-
-
-
-	
-
-			
 
 	
 <script type="text/javascript">
