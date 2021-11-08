@@ -1,4 +1,3 @@
-
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="event.eventDto"%>
@@ -163,9 +162,8 @@ ArrayList<eventDto> list = dao.getAllDatas();
 
 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-Date today = new Date();
-
-
+Date today = sdf.parse(sdf.format(new Date()));
+Date tmp_date;
 %>
 <!--검색창-- >
 <form method="post" action="index.jsp?main=event/search.jsp"  class="form1">
@@ -196,7 +194,8 @@ Date today = new Date();
 			for(int i=8; i>=0;i--){
 				//i번째 dto얻기
 				eventDto dto = list.get(i);
-				if(dto.getExpirydate().after(today) || dto.getExpirydate().compareTo(today)==0){
+				tmp_date = sdf.parse(sdf.format(dto.getExpirydate()));
+				if(tmp_date.compareTo(today) >= 0){
 					
 			%>
 		<td>
@@ -206,7 +205,7 @@ Date today = new Date();
 				<img alt="" src="event/event_img/<%=dto.getImg()%>" class="thumbnail" >
 				</a>								
 				<span style="text-align: center; font-size: 8pt" class="list_ttl">
-				<b style="font-size: 11pt;"><%=dto.getSubject() %></b>
+				<b style="font-size: 10pt;"><%=dto.getSubject() %></b>
 				<br>
 				<br>
 				<%=dto.getTerm() %>
@@ -234,7 +233,8 @@ Date today = new Date();
 						for(int i=0;i<list.size();i++){
 							//i번째 dto얻기
 							eventDto dto = list.get(i);
-								if(dto.getExpirydate().compareTo(today)<1){
+							tmp_date = sdf.parse(sdf.format(dto.getExpirydate()));
+							if(tmp_date.compareTo(today) < 0){
 									
 					%>
 					
