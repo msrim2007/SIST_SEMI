@@ -122,7 +122,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 <!-- 로그인시 작성버튼 생성 -->
 <% if(loginok!=null) { %>
 <button type="button" onclick="location.href='review/reviewform.jsp'" class="btn btn-outline-light"
-  style="position: absolute; width: 40px;" id="btnadd">작성</button>
+   id="btnadd">작성</button>
  <% } 
  %>
 
